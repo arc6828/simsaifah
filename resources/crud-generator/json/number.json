@@ -1,0 +1,17 @@
+{
+    "fields": [
+        {
+            "name": "number",
+            "type": "string"
+        },
+        {
+            "name": "price",
+            "type": "float"
+        },
+        {
+            "name": "operator",
+            "type": "string"
+        }
+        
+    ]
+}
