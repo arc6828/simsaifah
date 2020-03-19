@@ -18,17 +18,16 @@ class NumberController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
-
         $operator = $request->get('operator');
         $total = $request->get('total');
         $price = $request->get('price');
         $sort = $request->get('sort','asc');
-        //$numbers = $request->get('number');
+        $numbers = $request->get('numbers');
+        
         $perPage = 25;
         
         
         $filter_number_string = "____________";
-        $numbers = $request->get('numbers');
         if( is_array($numbers) ){
             for($i=0; $i<count($numbers); $i++){
                 if( !empty($numbers[$i]) ){

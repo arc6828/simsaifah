@@ -173,7 +173,14 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                            <div class="pagination-wrapper"> {!! $number->appends(['search' => Request::get('search')])->render() !!} </div>
+                            <div class="pagination-wrapper"> {!! $number->appends([
+                                'search' => Request::get('search'),
+                                'operator' => Request::get('operator'),
+                                'total' => Request::get('total'),
+                                'price' => Request::get('price'),
+                                'sort' => Request::get('sort','asc'),
+                                'numbers' => Request::get('numbers'),
+                            ])->render() !!} </div>
                         </div>
 
                     </div>
