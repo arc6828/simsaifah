@@ -154,7 +154,7 @@
                                 @foreach($number as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->number }}</td>
+                                        <td><h5>{{ $item->number }}</h5></td>
                                         <td>{{ number_format($item->price,0) }}</td><td>{{ $item->operator }}</td>
                                         <td>{{ $item->total }}</td>
                                         <td>
