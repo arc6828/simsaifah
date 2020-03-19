@@ -28,3 +28,7 @@ Route::group(['middleware' => ['auth']], function()
     Route::resource('number', 'NumberController')->except(['index']);
 
 });
+
+Route::resource('order', 'OrderController');
+Route::resource('payment', 'PaymentController');
+Route::resource('profiles', 'ProfilesController');

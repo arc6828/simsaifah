@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Number extends Model
+class Payment extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'numbers';
+    protected $table = 'payments';
 
     /**
     * The database primary key value.
@@ -25,10 +25,7 @@ class Number extends Model
      *
      * @var array
      */
-    protected $fillable = ['number', 'price', 'operator','total'];
+    protected $fillable = ['category', 'discount', 'dept', 'total', 'status', 'tracking_number', 'bank', 'slip', 'order_id', 'user_id'];
 
-    public function order(){
-        return $this->hasMany('App\User','user_id');
-    }
     
 }

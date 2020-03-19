@@ -1,0 +1,34 @@
+{
+    "fields": [
+        {
+            "name": "number",
+            "type": "integer"
+        },
+        {
+            "name": "price",
+            "type": "integer"
+        },
+        {
+            "name": "total",
+            "type": "integer"
+        },
+        {
+            "name": "status",
+            "type": "string"
+        },
+        {
+            "name": "operator",
+            "type": "string"
+        },
+        {
+            "name": "remake",
+            "type": "text"
+        },
+        
+        {
+            "name": "user_id",
+            "type": "integer#unsigned"
+        }
+    ]
+}
+

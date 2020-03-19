@@ -1,0 +1,55 @@
+{
+    "fields": [
+        {
+            "name": "category",
+            "type": "select",
+            "options": {
+                "โอน": "โอนผ่านธนาคาร",
+                "บัตรเครดิต": "บัตรเครดิต (+3%)",
+                "เก็บเงินปลายทาง": "เก็บเงินปลายทาง"
+            }
+        },
+        {
+            "name": "discount",
+            "type": "integer"
+        },
+        {
+            "name": "dept",
+            "type": "integer"
+        },
+        {
+            "name": "total",
+            "type": "integer"
+        },
+        {
+            "name": "status",
+            "type": "string"
+        },
+        {
+            "name": "tracking_number",
+            "type": "integer"
+        },
+
+        {
+            "name": "bank",
+            "type": "string"
+        },
+
+        {
+            "name": "slip",
+            "type": "file"
+        },
+        
+        {
+            "name": "order_id",
+            "type": "integer#unsigned"
+        },
+        {
+            "name": "user_id",
+            "type": "integer#unsigned"
+        }
+        
+      
+    ]
+}
+

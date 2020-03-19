@@ -1,0 +1,12 @@
+{
+    "fields": [
+        {
+            "name": "role",
+            "type": "string"
+        },
+        {
+            "name": "user_id",
+            "type": "integer#unsigned"
+        }
+    ]
+}

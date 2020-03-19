@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Number extends Model
+class Order extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'numbers';
+    protected $table = 'orders';
 
     /**
     * The database primary key value.
@@ -25,10 +25,14 @@ class Number extends Model
      *
      * @var array
      */
-    protected $fillable = ['number', 'price', 'operator','total'];
+    protected $fillable = ['number', 'price', 'total', 'status', 'operator', 'remake', 'user_id'];
 
-    public function order(){
-        return $this->hasMany('App\User','user_id');
+
+    public function payment(){
+        return $this->hasMany('App\Payment','user_id');
     }
     
+    public function user(){
+        return $this->belongTo('App\User','user_id');
+    }
 }
