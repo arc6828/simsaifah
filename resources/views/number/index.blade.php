@@ -24,12 +24,12 @@
                                     </div>    
                                 </div>   
                             </div>
-                            
+
                             <div class="row">                                                   
 
                                 <div class="form-group col-lg">
                                     <label for="">ค่ายมือถือ</label>
-                                    <select name="total" id="total" class="form-control" >
+                                    <select name="operator" id="operator" class="form-control" >
                                         <option value="" >ทั้งหมด</option>                                    
                                         @foreach(["ais","dtac","truemove"] as $operator)
                                         <option value="{{ $operator }}" {{ request('operator') == $operator ? 'selected' : ''  }}>{{ $operator }}</option>
@@ -56,6 +56,15 @@
                                         @for($i=80000; $i>1000; $i=$i/2)
                                         <option value="{{ $i }}" {{ request('price') == $i ? 'selected' : ''  }}>ไม่เกิน {{ number_format($i,0) }}</option>
                                         @endfor                                    
+                                    </select>                                  
+                                </div>
+
+                                <div class="form-group col-lg">                                
+                                    <label for="">เรียงจากราคา</label>
+                                    <select name="sort" id="sort" class="form-control" >
+                                        <option value="asc" {{ request('sort') == 'asc' ? 'selected' : ''  }}>น้อยไปหามาก</option>
+                                        <option value="desc" {{ request('sort') == 'desc' ? 'selected' : ''  }}>มากไปหาน้อย</option>                                     
+                                                                   
                                     </select>                                  
                                 </div>
                             
@@ -145,7 +154,8 @@
                                 @foreach($number as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->number }}</td><td>{{ $item->price }}</td><td>{{ $item->operator }}</td>
+                                        <td>{{ $item->number }}</td>
+                                        <td>{{ number_format($item->price,0) }}</td><td>{{ $item->operator }}</td>
                                         <td>{{ $item->total }}</td>
                                         <td>
                                             <a href="{{ url('/number/' . $item->id) }}" title="View Number"><button class="btn btn-info btn-sm"><i class="fa fa-shopping-cart" aria-hidden="true"></i> สั่งซื้อ</button></a>
