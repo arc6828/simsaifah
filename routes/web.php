@@ -23,8 +23,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('number', 'NumberController')->only(['index']);
 
 Route::group(['middleware' => ['auth']], function()
-{
-    
+{    
     Route::resource('number', 'NumberController')->except(['index']);
-
 });

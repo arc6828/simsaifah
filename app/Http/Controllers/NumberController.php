@@ -18,31 +18,44 @@ class NumberController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
+
         $operator = $request->get('operator');
-        $range = $request->get('range');
-        $sum = $request->get('sum');
+        $total = $request->get('total');
+        $price = $request->get('price');
         //$numbers = $request->get('number');
         $perPage = 25;
-        /*
         
-        $sum = 0;
-        foreach($numbers as $number){
-            if(!empty($number)){
-                $sum += $number;
+        
+        $filter_number_string = "____________";
+        $numbers = $request->get('numbers');
+        if( is_array($numbers) ){
+            for($i=0; $i<count($numbers); $i++){
+                if( !empty($numbers[$i]) ){
+                    $filter_number_string[$i] = $numbers[$i];
+                }
             }
-        }*/
+        }
 
-        if (!empty($keyword)||!empty($operator)||!empty($sum)) {
+
+        $needFilter = !empty($keyword) || !empty($operator) || !empty($sum)  || !empty($price) ;
+        if ($needFilter) {
             $number = Number::where('operator', 'LIKE', "%$operator%")
-                //->where('number', 'LIKE', "%$keyword%")
-                ->where('price', '<', $range)
-                ->where('total',  $sum)
+                ->where('price', '<', $price)
+                ->where('total', 'LIKE', "%$total%")
+                ->where('number', 'LIKE', $filter_number_string)
                 ->latest()->paginate($perPage);
         } else {
             $number = Number::latest()->paginate($perPage);
         }
 
-        return view('number.index', compact('number'));
+        
+        $total_array = Number::selectRaw('total,count(total) as count')
+            ->orderBy('total', 'asc')
+            ->groupBy('total')
+            ->get();
+
+
+        return view('number.index', compact('number','total_array'));
     }
 
     /**
