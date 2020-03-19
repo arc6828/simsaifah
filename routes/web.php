@@ -12,7 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('number');
+    //return view('welcome');
 });
 
 Auth::routes();
@@ -23,10 +24,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('number', 'NumberController')->only(['index']);
 
 Route::group(['middleware' => ['auth']], function()
-{
-    
+{    
     Route::resource('number', 'NumberController')->except(['index']);
-
 });
 
 Route::resource('order', 'OrderController');
