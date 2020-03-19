@@ -22,6 +22,7 @@ class NumberController extends Controller
         $operator = $request->get('operator');
         $total = $request->get('total');
         $price = $request->get('price');
+        $sort = $request->get('sort','asc');
         //$numbers = $request->get('number');
         $perPage = 25;
         
@@ -44,9 +45,10 @@ class NumberController extends Controller
                 ->where('total', 'LIKE', "%$total%")
                 ->where('number', 'LIKE', $filter_number_string)
                 ->where('number', 'LIKE', "%$keyword%")
+                ->orderBy('price', $sort)
                 ->latest()->paginate($perPage);
         } else {
-            $number = Number::latest()->paginate($perPage);
+            $number = Number::orderBy('price', 'asc')->latest()->paginate($perPage);
         }
 
         
