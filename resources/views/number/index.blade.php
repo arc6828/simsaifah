@@ -11,7 +11,21 @@
                     <div class="card-body">
                         <form method="GET" action="{{ url('/number') }}" accept-charset="UTF-8" class="" role="search">
 
-                            <div class="row">                            
+                            <div class="row">    
+                                <div class="form-group col-lg">
+                                    <label for="">ค้นหาเบอร์</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
+                                        <span class="input-group-append">
+                                            <button class="btn btn-secondary" type="submit">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </span>
+                                    </div>    
+                                </div>   
+                            </div>
+                            
+                            <div class="row">                                                   
 
                                 <div class="form-group col-lg">
                                     <label for="">ค่ายมือถือ</label>
@@ -118,21 +132,13 @@
                 <div class="card">
                     <div class="card-header">ผลการค้นหาเบอร์โทรศัพท์</div>
                     <div class="card-body">    
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
-                            <span class="input-group-append">
-                                <button class="btn btn-secondary" type="submit">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                        </div>   
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Number</th><th>Price</th><th>Operator</th>
+                                        <th>#</th><th>เบอร์โทรศัพท์</th><th>ราคา</th><th>ค่ายมือถือ</th>
                                         <th>ผลรวม</th>
-                                        <th>Actions</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>

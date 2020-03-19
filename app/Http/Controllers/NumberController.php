@@ -43,6 +43,7 @@ class NumberController extends Controller
                 ->where('price', '<', $price)
                 ->where('total', 'LIKE', "%$total%")
                 ->where('number', 'LIKE', $filter_number_string)
+                ->where('number', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
             $number = Number::latest()->paginate($perPage);
