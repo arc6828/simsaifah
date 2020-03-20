@@ -27,5 +27,7 @@ class Profile extends Model
      */
     protected $fillable = ['role', 'user_id'];
 
-    
+    public function user(){
+        return $this->belongTo('App\User','user_id');
+    }
 }

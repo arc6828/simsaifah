@@ -27,8 +27,19 @@ class Number extends Model
      */
     protected $fillable = ['number', 'price', 'operator','total'];
 
-    public function order(){
-        return $this->hasMany('App\User','user_id');
+    public function orders(){
+        return $this->hasMany('App\Order','number','number');
     }
-    
+
+    /*
+    ถ้าเป็นปกติจะเขียนแบบนี้ (แบบเต็ม)
+    public function orders(){
+        return $this->hasMany('App\Order','number_id','id');
+    }
+
+    ถ้าเป็นปกติจะเขียนแบบนี้ (แบบย่อ)
+    public function orders(){
+        return $this->hasMany('App\Order','number_id');
+    }
+    */
 }

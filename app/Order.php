@@ -29,7 +29,7 @@ class Order extends Model
 
 
     public function payment(){
-        return $this->hasMany('App\Payment','user_id');
+        return $this->belongsTo('App\Payment','payment_id');
     }
     
     public function user(){
