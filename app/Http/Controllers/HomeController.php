@@ -25,15 +25,6 @@ class HomeController extends Controller
     public function index()
     {
         
-        $profile = Profile::firstOrCreate(
-            ['user_id' => Auth::id()],
-            ['role' => 'guest']
-        );
-
-        if(Auth::user()->profile->role == "admin"){
-            return redirect("/order");
-        }else if(Auth::user()->profile->role == "guest"){
-            return redirect("/number");
-        }
+        return redirect('/');
     }
 }
