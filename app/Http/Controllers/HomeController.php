@@ -35,5 +35,7 @@ class HomeController extends Controller
         }else if(Auth::user()->users->role == "guest"){
             return redirect("/number");
         }
+
+        return redirect('/');
     }
 }
