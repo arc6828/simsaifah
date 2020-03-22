@@ -3,13 +3,11 @@
 @section('content')
     <div class="container">
         <div class="row">
-            @include('admin.sidebar')
-
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Create New Profile</div>
+                    <div class="card-header">Create New Address</div>
                     <div class="card-body">
-                        <a href="{{ url('/profiles') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <a href="{{ url('/address') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
                         <br />
 
@@ -21,10 +19,10 @@
                             </ul>
                         @endif
 
-                        <form method="POST" action="{{ url('/profiles') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                        <form method="POST" action="{{ url('/address') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                             {{ csrf_field() }}
 
-                            @include ('profiles.form', ['formMode' => 'create'])
+                            @include ('address.form', ['formMode' => 'create'])
 
                         </form>
 

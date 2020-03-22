@@ -1,0 +1,44 @@
+{
+    "fields": [
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "address",
+            "type": "string"
+        },
+        {
+            "name": "company",
+            "type": "string"
+        },
+        {
+            "name": "parish",
+            "type": "string"
+        },
+        {
+            "name": "district",
+            "type": "string"
+        },
+        {
+            "name": "province",
+            "type": "string"
+        },
+        {
+            "name": "postal",
+            "type": "string"
+        },
+        {
+            "name": "contact ",
+            "type": "integer"
+        },
+        {
+            "name": "remake",
+            "type": "text"
+        },
+        {
+            "name": "user_id",
+            "type": "integer#unsigned"
+        }
+    ]
+}

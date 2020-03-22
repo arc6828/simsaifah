@@ -27,5 +27,11 @@ class Payment extends Model
      */
     protected $fillable = ['category', 'discount', 'dept', 'total', 'status', 'tracking_number', 'bank', 'slip', 'order_id', 'user_id'];
 
-    
+    public function orders(){
+        return $this->hasMany('App\Order','payment_id');
+    }
+    public function users(){
+        return $this->hasMany('App\User','user_id');
+    }
+
 }

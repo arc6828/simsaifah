@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Payment;
+use App\Number;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -19,6 +20,7 @@ class PaymentController extends Controller
     {
         $keyword = $request->get('search');
         $perPage = 25;
+            
 
         if (!empty($keyword)) {
             $payment = Payment::where('category', 'LIKE', "%$keyword%")
@@ -35,6 +37,7 @@ class PaymentController extends Controller
         } else {
             $payment = Payment::latest()->paginate($perPage);
         }
+            
 
         return view('payment.index', compact('payment'));
     }

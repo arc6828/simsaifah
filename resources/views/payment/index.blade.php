@@ -3,11 +3,9 @@
 @section('content')
     <div class="container">
         <div class="row">
-            @include('admin.sidebar')
-
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Payment</div>
+                    <div class="card-header">ประวัติการชำระเงิน</div>
                     <div class="card-body">
                         <a href="{{ url('/payment/create') }}" class="btn btn-success btn-sm" title="Add New Payment">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
@@ -26,22 +24,89 @@
 
                         <br/>
                         <br/>
+                        @php
+                            $number = $number->number;
+                        @endphp
+
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Category</th><th>Discount</th><th>Dept</th><th>Total</th><th>Status</th><th>Tracking Number</th><th>Bank</th><th>Slip</th><th>Order Id</th><th>User Id</th><th>Actions</th>
+                                        <th>#</th>
+                                        <th class="d-none">ประเภทการโอน</th>
+                                        <th class="d-none">ส่วนลด</th>
+                                        <th class="d-none">Dept</th>
+                                        <th class="d-none">ยอดรวม</th>
+                                        <th>เบอร์โทรศัพท์</th>
+                                        <th>เลขจัดส่ง</th>
+                                        <th class="d-none">Bank</th>
+                                        <th class="d-none">Slip</th>
+                                        <th class="d-none">Order Id</th>
+                                        <th class="d-none">User Id</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($payment as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->category }}</td><td>{{ $item->discount }}</td><td>{{ $item->dept }}</td><td>{{ $item->total }}</td><td>{{ $item->status }}</td><td>{{ $item->tracking_number }}</td><td>{{ $item->bank }}</td><td>{{ $item->slip }}</td><td>{{ $item->order_id }}</td><td>{{ $item->user_id }}</td>
+                                        <td class="d-none">{{ $item->category }}</td>
+                                        <td class="d-none">{{ $item->discount }}</td>
+                                        <td>{{$number->number}}</td>
+                                        <td class="d-none">{{ $item->dept }}</td>
+                                        <td class="d-none">{{ $item->total }}</td>
+                                        <td class="d-none">{{ $item->bank }}</td>
+                                        <td class="d-none"><img src="{{ url('storage')}}/{{ $item->slip }} width="100"></td>
+                                        <td>{{ $item->tracking_number }}</td>
+                                        <td class="d-none">{{ $item->order_id }}</td>
+                                        <td class="d-none">{{ $item->user_id }}</td>      
+                                        <td>
+                                            @switch( $item->status )
+                                                @case("chackpayment")
+                                                    <div><span class="badge badge-secondary">กำลังตรวจสอบ</span></div>
+                                                    <div>{{ $item->chackpayment_at }}</div>
+                                                @break
+
+                                                @case("paid")
+                                                    <div><span class="badge badge-info">เตรียมการจัดส่ง</span></div>
+                                                    <div>{{ $item->paid_at }}</div>
+                                                @break
+                                                            
+                                                @case("delivery")
+                                                    <div><span class="badge badge-success">จัดส่งแล้ว</span></div>
+                                                    <div>{{ $item->delivery_at }}</div>
+                                                @break
+
+                                                @case("cancel")
+                                                    <div><span class="badge badge-danger">ยกเลิกการจัดส่ง</span></div>
+                                                    <div>{{ $item->cancelpayment_at }}</div>
+                                                @break
+
+                                            @endswitch 
+                                       
+                                        
+                                            <form method="POST" action="  {{ url('/payment') . '/' . $item->id}} accept-charset="UTF-8" style="display:inline">
+                                                {{ method_field('PATCH') }}
+                                                {{ csrf_field() }}
+
+                                            @switch($item->status)
+                                                @case("chackpayment")
+                                                    <input type="hidden" name="status" value="booked">  </input>
+                                                    <select name="status" onchange="">
+                                                        <option value="paid">เตรียมการจัดส่ง </option>
+                                                        <option value="delivery">จัดส่งเบอร์โทร </option>
+                                                        <option value="cancel">ยกเลิกการจัดส่ง </option>
+                                                    </select>
+                                                    <button type="submit" class="btn btn-warning btn-sm"> submit</button>
+                                                @break
+                                            @endswitch
+                                            </form>
+                                        </td>   
+
                                         <td>
                                             <a href="{{ url('/payment/' . $item->id) }}" title="View Payment"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/payment/' . $item->id . '/edit') }}" title="Edit Payment"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
-
                                             <form method="POST" action="{{ url('/payment' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                                 {{ method_field('DELETE') }}
                                                 {{ csrf_field() }}

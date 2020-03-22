@@ -27,8 +27,8 @@ class Number extends Model
      */
     protected $fillable = ['number', 'price', 'operator','total'];
 
-    public function order(){
-        return $this->hasMany('App\User','user_id');
+    public function orders(){
+        return $this->hasMany('App\Order','number','number');
     }
     
 }

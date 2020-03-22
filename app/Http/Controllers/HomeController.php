@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Profile;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -25,14 +25,14 @@ class HomeController extends Controller
     public function index()
     {
         
-        $profile = Profile::firstOrCreate(
+        $users = User::firstOrCreate(
             ['user_id' => Auth::id()],
             ['role' => 'guest']
         );
 
-        if(Auth::user()->profile->role == "admin"){
+        if(Auth::user()->users->role == "admin"){
             return redirect("/order");
-        }else if(Auth::user()->profile->role == "guest"){
+        }else if(Auth::user()->users->role == "guest"){
             return redirect("/number");
         }
     }

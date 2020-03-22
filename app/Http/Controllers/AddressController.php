@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Profile;
+use App\Address;
 use Illuminate\Http\Request;
 
-class ProfilesController extends Controller
+class AddressController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,14 +21,22 @@ class ProfilesController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $profiles = Profile::where('role', 'LIKE', "%$keyword%")
+            $address = Address::where('name', 'LIKE', "%$keyword%")
+                ->orWhere('address', 'LIKE', "%$keyword%")
+                ->orWhere('company', 'LIKE', "%$keyword%")
+                ->orWhere('parish', 'LIKE', "%$keyword%")
+                ->orWhere('district', 'LIKE', "%$keyword%")
+                ->orWhere('province', 'LIKE', "%$keyword%")
+                ->orWhere('postal', 'LIKE', "%$keyword%")
+                ->orWhere('contact', 'LIKE', "%$keyword%")
+                ->orWhere('remake', 'LIKE', "%$keyword%")
                 ->orWhere('user_id', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $profiles = Profile::latest()->paginate($perPage);
+            $address = Address::latest()->paginate($perPage);
         }
 
-        return view('profiles.index', compact('profiles'));
+        return view('address.index', compact('address'));
     }
 
     /**
@@ -38,7 +46,7 @@ class ProfilesController extends Controller
      */
     public function create()
     {
-        return view('profiles.create');
+        return view('address.create');
     }
 
     /**
@@ -53,9 +61,9 @@ class ProfilesController extends Controller
         
         $requestData = $request->all();
         
-        Profile::create($requestData);
+        Address::create($requestData);
 
-        return redirect('profiles')->with('flash_message', 'Profile added!');
+        return redirect('address')->with('flash_message', 'Address added!');
     }
 
     /**
@@ -67,9 +75,9 @@ class ProfilesController extends Controller
      */
     public function show($id)
     {
-        $profile = Profile::findOrFail($id);
+        $address = Address::findOrFail($id);
 
-        return view('profiles.show', compact('profile'));
+        return view('address.show', compact('address'));
     }
 
     /**
@@ -81,9 +89,9 @@ class ProfilesController extends Controller
      */
     public function edit($id)
     {
-        $profile = Profile::findOrFail($id);
+        $address = Address::findOrFail($id);
 
-        return view('profiles.edit', compact('profile'));
+        return view('address.edit', compact('address'));
     }
 
     /**
@@ -99,10 +107,10 @@ class ProfilesController extends Controller
         
         $requestData = $request->all();
         
-        $profile = Profile::findOrFail($id);
-        $profile->update($requestData);
+        $address = Address::findOrFail($id);
+        $address->update($requestData);
 
-        return redirect('profiles')->with('flash_message', 'Profile updated!');
+        return redirect('address')->with('flash_message', 'Address updated!');
     }
 
     /**
@@ -114,8 +122,8 @@ class ProfilesController extends Controller
      */
     public function destroy($id)
     {
-        Profile::destroy($id);
+        Address::destroy($id);
 
-        return redirect('profiles')->with('flash_message', 'Profile deleted!');
+        return redirect('address')->with('flash_message', 'Address deleted!');
     }
 }

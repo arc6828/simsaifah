@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Profile extends Model
+class Address extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'profiles';
+    protected $table = 'addresses';
 
     /**
     * The database primary key value.
@@ -25,7 +25,11 @@ class Profile extends Model
      *
      * @var array
      */
-    protected $fillable = ['role', 'user_id'];
+    protected $fillable = ['name', 'address', 'company', 'parish', 'district', 'province', 'postal', 'contact ', 'remake', 'user_id'];
 
+    
+    public function user(){
+        return $this->belongTo('App\User','user_id');
+    }
     
 }
