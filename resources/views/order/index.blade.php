@@ -7,8 +7,10 @@
                 <div class="card">
                     <div class="card-header">รวมเบอร์จองทั้งหมด</div>
                     <div class="card-body">
-                        <a href="{{ url('/order/create') }}" class="btn btn-success btn-sm" title="Add New Order">
+                        <!-- ชื่อว่าจองเบอร์เพิ่มก็จริง แต่ให้ไปโผล่ที่ number จะดีกว่า -->
+                        <a href="{{ url('/number') }}" class="btn btn-success btn-sm" title="Add New Order">
                             <i class="fa fa-plus" aria-hidden="true"></i> จองเบอร์เพิ่ม </a>
+                            <!-- อันนี้ OK-->
                         <a href="{{ url('/payment/create') }}" class="btn btn-success btn-sm" title="Add New Order">
                             <i class="fa fa-plus" aria-hidden="true"></i> แจ้งการชำระเงิน </a>
 
@@ -29,31 +31,33 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th class="d-none">#</th>
+                                        <th>#</th>
                                         <th>ค่าย</th>
                                         <th>เบอร์โทรศัพท์</th>
                                         <th>ราคา</th>
                                         <th>ราคารวม</th>
-                                        <th>Operator</th>
+                                        <th class="d-none">Operator</th>
+                                        <th class="d-none">payment</th>
                                         <th>สถานะ</th> 
                                         <th class="d-none">User Id</th>
-                                        <th>Actions</th>
+                                        <th colspan="2">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($order as $item)
                                     <tr>
-                                    
-                                        <td class="d-none">{{ $loop->iteration }}</td> 
-                                        <td>{{ $item->remake }}</td>
+                                        <td>{{ $loop->iteration }}</td> 
+                                        <td class="d-none">{{ $item->remake }}</td>
+                                        <td>{{ $item->operator }}</td>
                                         <td>{{ $item->number }}</td>
                                         <td>{{ $item->price }}</td>
                                         <td>{{ $item->total }}</td>
-                                        <td>{{ $item->operator }}</td>
+                                        <td class="d-none">{{ $item->operator }}</td>
+                                        <td class="d-none">{{$item->payment_id}}</td>
                                         <td class="d-none">{{ $item->user_id }}</td>
                                         <td>
                                             @switch( $item->status )
-                                                @case("booked")
+                                                @case("Checking")
                                                     <div><span class="badge badge-primary">กำลังตรวจสอบ</span></div>
                                                     <div>{{ $item->bookedorder_at }}</div>
                                                 @break
@@ -77,7 +81,7 @@
                                                 {{ csrf_field() }}
 
                                             @switch($item->status)
-                                                @case("booked")
+                                                @case("Checking")
                                                     <input type="hidden" name="status" value="booked">  </input>
                                                     <select name="status" onchange="">
                                                         <option value="successful">จองเบอร์แล้ว </option>

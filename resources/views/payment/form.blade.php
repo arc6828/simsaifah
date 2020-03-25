@@ -7,24 +7,35 @@
 </select>
     {!! $errors->first('category', '<p class="help-block">:message</p>') !!}
 </div>
-<div class="form-group {{ $errors->has('discount') ? 'has-error' : ''}}">
+<div class="form-group d-none {{ $errors->has('discount') ? 'has-error' : ''}}">
     <label for="discount" class="control-label">{{ 'ส่วนลด' }}</label>
     <input class="form-control" name="discount" type="number" id="discount" value="{{ isset($payment->discount) ? $payment->discount : ''}}" >
     {!! $errors->first('discount', '<p class="help-block">:message</p>') !!}
 </div>
-<div class="form-group {{ $errors->has('dept') ? 'has-error' : ''}}">
+<div class="form-group d-none {{ $errors->has('dept') ? 'has-error' : ''}}">
     <label for="dept" class="control-label">{{ 'Dept' }}</label>
     <input class="form-control" name="dept" type="number" id="dept" value="{{ isset($payment->dept) ? $payment->dept : ''}}" >
     {!! $errors->first('dept', '<p class="help-block">:message</p>') !!}
 </div>
+<div class="form-group {{ $errors->has('number') ? 'has-error' : ''}}">
+    <label for="number" class="control-label">{{ 'เบอร์ที่ท่านเลือก (มีมากกว่า 1 เบอร์ ) :' }}</label>
+    <!-- แสดง Order ที่ Query ออกมา -->
+    <textarea class="form-control" rows="{{ count($orders) }}">
+        @foreach($orders as $item)
+        {{ $item->number }}
+        @endforeach
+    </textarea>
+    <!--input class="form-control" name="number" type="text" id="number" value="" -->
+    {!! $errors->first('number', '<p class="help-block">:message</p>') !!}
+</div>  
 <div class="form-group {{ $errors->has('total') ? 'has-error' : ''}}">
     <label for="total" class="control-label">{{ 'ยอดรวม' }}</label>
-    <input class="form-control" name="total" type="number" id="total" value="{{ isset($payment->total) ? $payment->total : ''}}" >
+    <input class="form-control" name="total" type="number" id="total" value="{{ isset($payment->total) ? $payment->total : $orders->sum('price') }}" >
     {!! $errors->first('total', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('status') ? 'has-error' : ''}}">
     <label for="status" class="control-label">{{ 'Status' }}</label>
-    <input class="form-control" name="status" type="text" id="status" value="{{ isset($payment->status) ? $payment->status : ''}}" >
+    <input class="form-control" name="status" type="text" id="status" value="{{ isset($payment->status) ? $payment->status : 'chackpayment'}}" >
     {!! $errors->first('status', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('tracking_number') ? 'has-error' : ''}}">
@@ -42,14 +53,12 @@
     <input class="form-control" name="slip" type="file" id="slip" value="{{ isset($payment->slip) ? $payment->slip : ''}}" >
     {!! $errors->first('slip', '<p class="help-block">:message</p>') !!}
 </div>
-<div class="form-group d-none {{ $errors->has('order_id') ? 'has-error' : ''}}">
-    <label for="order_id" class="control-label">{{ 'Order Id' }}</label>
-    <input class="form-control" name="order_id" type="number" id="order_id" value="{{ isset($payment->order_id) ? $payment->order_id : ''}}" >
-    {!! $errors->first('order_id', '<p class="help-block">:message</p>') !!}
-</div>
-<div class="form-group d-none {{ $errors->has('user_id') ? 'has-error' : ''}}">
+<!-- อันนี้ orderid ไม่ควรอยู่ใน payment ไม่ได้ใช้ ต้องลบทิ้งเลย -->
+
+<div class="form-group  {{ $errors->has('user_id') ? 'has-error' : ''}}">
     <label for="user_id" class="control-label">{{ 'User Id' }}</label>
-    <input class="form-control" name="user_id" type="number" id="user_id" value="{{ isset($payment->user_id) ? $payment->user_id : ''}}" >
+    <input class="form-control d-none" name="user_id" type="number" id="user_id" value="{{ isset($payment->user_id) ? $payment->user_id : Auth::user()->id }}" >
+    <input class="form-control" name="user_name" type="text" id="user_name" value="{{ isset($payment->user_id) ? $order->user->name : Auth::user()->name}}" >
     {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
 </div>
 

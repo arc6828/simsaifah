@@ -31,10 +31,6 @@ class Address extends Model
     public function user(){
         return $this->belongTo('App\User','user_id');
     }
-    
 
-    public function user(){
-        return $this->belongTo('App\User','user_id');
-    }
 
 }

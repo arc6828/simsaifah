@@ -25,7 +25,7 @@ class HomeController extends Controller
     public function index()
     {
         
-        $users = User::firstOrCreate(
+        /*$users = User::firstOrCreate(
             ['user_id' => Auth::id()],
             ['role' => 'guest']
         );
@@ -34,7 +34,7 @@ class HomeController extends Controller
             return redirect("/order");
         }else if(Auth::user()->users->role == "guest"){
             return redirect("/number");
-        }
+        }**/
 
         return redirect('/');
     }

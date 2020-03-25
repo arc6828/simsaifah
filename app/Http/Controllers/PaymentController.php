@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 
 use App\Payment;
 use App\Number;
+use App\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
 {
@@ -47,9 +49,22 @@ class PaymentController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('payment.create');
+        //เราไม่ได้รับค่าจาก url
+        //$order_keyword = $request->get('payment_id');
+        
+
+        //เราไม่ได้ต้องการ อัพเดท เราแค่ query ออกมา
+        //ดึงค่า user_id ของผู้ที่ Login
+        $user_id = Auth::id(); //
+
+        //เราต้องการดึงค่า Order ที่มี สถานะ เป็น successful และ ถูกสร้าง โดย ผู้ที่ Login 
+        $orders = Order::where('user_id', $user_id) //ตรงนี้ใส่อะไรเอ่ย...
+            ->where('status','successful')
+            ->get(); //OK
+        // ส่ง Order มาแสดงที่ Blade
+        return view('payment.create',compact('orders'));
     }
 
     /**
@@ -66,9 +81,17 @@ class PaymentController extends Controller
                 if ($request->hasFile('slip')) {
             $requestData['slip'] = $request->file('slip')
                 ->store('uploads', 'public');
-        }
-
+        }        
+        //Payment 
         Payment::create($requestData);
+        //อัพเดท Order
+        $data =[
+            'status' => 'successful',
+        ];
+
+        /*$order = Order::where('status', $payment) // บรรทัดนี้ ผิด ต้องแก้ให้ถูก where ผิด
+            ->where('status','successful')
+            ->update($data);/** */
 
         return redirect('payment')->with('flash_message', 'Payment added!');
     }

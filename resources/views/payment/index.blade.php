@@ -24,9 +24,7 @@
 
                         <br/>
                         <br/>
-                        @php
-                            $number = $number->number;
-                        @endphp
+                      
 
                         <div class="table-responsive">
                             <table class="table">
@@ -41,10 +39,9 @@
                                         <th>เลขจัดส่ง</th>
                                         <th class="d-none">Bank</th>
                                         <th class="d-none">Slip</th>
-                                        <th class="d-none">Order Id</th>
                                         <th class="d-none">User Id</th>
                                         <th>Status</th>
-                                        <th>Actions</th>
+                                        <th colspan="2">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -53,13 +50,12 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td class="d-none">{{ $item->category }}</td>
                                         <td class="d-none">{{ $item->discount }}</td>
-                                        <td>{{$number->number}}</td>
                                         <td class="d-none">{{ $item->dept }}</td>
+                                        <td>{{ $item->number }}</td>
                                         <td class="d-none">{{ $item->total }}</td>
                                         <td class="d-none">{{ $item->bank }}</td>
                                         <td class="d-none"><img src="{{ url('storage')}}/{{ $item->slip }} width="100"></td>
                                         <td>{{ $item->tracking_number }}</td>
-                                        <td class="d-none">{{ $item->order_id }}</td>
                                         <td class="d-none">{{ $item->user_id }}</td>      
                                         <td>
                                             @switch( $item->status )
@@ -115,6 +111,7 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                                
                                 </tbody>
                             </table>
                             <div class="pagination-wrapper"> {!! $payment->appends(['search' => Request::get('search')])->render() !!} </div>

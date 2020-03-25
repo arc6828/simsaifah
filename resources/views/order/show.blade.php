@@ -3,9 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            @include('admin.sidebar')
-
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Order {{ $order->id }}</div>
                     <div class="card-body">
@@ -25,9 +23,24 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <th>ID</th><td>{{ $order->id }}</td>
-                                    </tr>
-                                    <tr><th> Number </th><td> {{ $order->number }} </td></tr><tr><th> Price </th><td> {{ $order->price }} </td></tr><tr><th> Total </th><td> {{ $order->total }} </td></tr><tr><th> Status </th><td> {{ $order->status }} </td></tr><tr><th> Operator </th><td> {{ $order->operator }} </td></tr><tr><th> Remake </th><td> {{ $order->remake }} </td></tr><tr><th> User Id </th><td> {{ $order->user_id }} </td></tr>
+                                        <th>ID</th>
+                                        <td>{{ $order->id }}</td>
+                                    <tr><th> Number </th>
+                                    <td> {{ $order->number }} </td></tr>
+                                    <tr><th> Price </th>
+                                    <td> {{ $order->price }} </td></tr>
+                                    <tr><th> Total </th>
+                                    <td> {{ $order->total }} </td></tr>
+                                    <tr><th> Status </th>
+                                    <td> {{ $order->status }} </td></tr>
+                                    <tr><th> Operator </th>
+                                    <td> {{ $order->operator }} </td></tr>
+                                    <tr><th class="d-none"> Remake </th>
+                                    <td class="d-none"> {{ $order->remake }} </td></tr>
+                                    <tr><th> user </th>
+                                    <td> {{ $order->user_id }} </td></tr>
+                                    <tr><th> payment </th>
+                                    <td> {{ $order->payment_id}} </td></tr>
                                 </tbody>
                             </table>
                         </div>

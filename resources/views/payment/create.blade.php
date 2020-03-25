@@ -18,6 +18,7 @@
                                 @endforeach
                             </ul>
                         @endif
+                    
 
                         <form method="POST" action="{{ url('/payment') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                             {{ csrf_field() }}
@@ -25,6 +26,7 @@
                             @include ('payment.form', ['formMode' => 'create'])
 
                         </form>
+                        
 
                     </div>
                 </div>

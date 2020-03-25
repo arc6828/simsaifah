@@ -6,6 +6,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Order;
+use App\Number;
+use App\Mail\TestMail;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -41,9 +43,17 @@ class OrderController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('order.create');
+        /*
+            order/crate จะมาโผล่ที่นี่
+            เราจะต้องดึงข้อมูล number ขึ้นแล้วส่งไปแสดงในหน้า view 
+        */
+        $number_keyword = $request->get('number');//ดึงnumber จาก url : order/create?number=08x-xxx-xxxx
+        //ดึงข้อมูล where ขึ้นมาเฉพาะเบอร์ที่เราต้องการ 
+        $number = Number::where('number',$number_keyword)->firstOrFail(); //FirstOrFail หมายถึง ถ้าเจอหลายตัวให้ดึงตัวแรก แต่ถ้าไม่เจอสักตัวให้ 404
+        
+        return view('order.create',compact('number'));//compact เพื่อส่งไปยังไน้า blade
     }
 
     /**
@@ -59,8 +69,18 @@ class OrderController extends Controller
         $requestData = $request->all();
         
         Order::create($requestData);
+        //$this->testmail($order->id);
 
         return redirect('order')->with('flash_message', 'Order added!');
+    }
+    public function testmail($id)
+    {
+        $order = Order::findOrFail($id);
+        $email = "yyyyy@gmail.com";
+        
+
+         
+        Mail::to($email)->send(new TestMail($order));
     }
 
     /**
