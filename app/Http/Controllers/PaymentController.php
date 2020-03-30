@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Payment;
 use App\Number;
 use App\Order;
+
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -49,18 +51,17 @@ class PaymentController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create(Request $request)
+    public function create(Request $request) 
     {
         //เราไม่ได้รับค่าจาก url
-        //$order_keyword = $request->get('payment_id');
-        
-
+        //$order_keyword = $request->get('payment_id'); 
         //เราไม่ได้ต้องการ อัพเดท เราแค่ query ออกมา
+        
         //ดึงค่า user_id ของผู้ที่ Login
         $user_id = Auth::id(); //
-
-        //เราต้องการดึงค่า Order ที่มี สถานะ เป็น successful และ ถูกสร้าง โดย ผู้ที่ Login 
-        $orders = Order::where('user_id', $user_id) //ตรงนี้ใส่อะไรเอ่ย...
+        
+        // เตรียม order ที่มีสถานะ จองเบอร์ “Successful”
+        $orders = Order::where('user_id', $user_id) //เราต้องการดึงค่า Order ที่มี สถานะ เป็น successful และ ถูกสร้าง โดย ผู้ที่ Login 
             ->where('status','successful')
             ->get(); //OK
         // ส่ง Order มาแสดงที่ Blade
@@ -76,22 +77,26 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        
+        //อัพโหลดหลักฐานการโอนเงิน
         $requestData = $request->all();
                 if ($request->hasFile('slip')) {
             $requestData['slip'] = $request->file('slip')
                 ->store('uploads', 'public');
         }        
-        //Payment 
-        Payment::create($requestData);
-        //อัพเดท Order
-        $data =[
-            'status' => 'successful',
-        ];
-
-        /*$order = Order::where('status', $payment) // บรรทัดนี้ ผิด ต้องแก้ให้ถูก where ผิด
+         //สร้าง payment
+        $payment = Payment::create($requestData);
+        //ดึงค่า user_id ของผู้ที่ Login
+        $user_id = Auth::id(); //
+        //อัพเดท "payment_id ล่าสุด" ใน order ที่มีสถานะ เป็น successful
+        Order::where('user_id', $user_id) //เราต้องการดึงค่า Order ที่มี สถานะ เป็น successful และ ถูกสร้าง โดย ผู้ที่ Login 
             ->where('status','successful')
-            ->update($data);/** */
+            ->update(['payment_id' => $payment->id ]); //อัพเดท payment_id ที่อยู่ในตาราง order 
+
+           
+            //เราต้องการอัพเดท payment_id ใน order ของเราไง เรียบร้อย
+            //id ที่ว่านี้คือของ order ใช่ไหมคะ
+            //payment_id ในตาราง Order
+        
 
         return redirect('payment')->with('flash_message', 'Payment added!');
     }

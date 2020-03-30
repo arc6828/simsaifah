@@ -25,7 +25,7 @@ class Number extends Model
      *
      * @var array
      */
-    protected $fillable = ['number', 'price', 'operator','total'];
+    protected $fillable = ['number', 'price', 'operator','total','status'];
 
     public function orders(){
         return $this->hasMany('App\Order','number','number');

@@ -46,15 +46,15 @@
                                 <tbody>
                                 @foreach($order as $item)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td> 
+                                        <td> {{ $loop->iteration }}</td> 
                                         <td class="d-none">{{ $item->remake }}</td>
-                                        <td>{{ $item->operator }}</td>
-                                        <td>{{ $item->number }}</td>
-                                        <td>{{ $item->price }}</td>
-                                        <td>{{ $item->total }}</td>
-                                        <td class="d-none">{{ $item->operator }}</td>
-                                        <td class="d-none">{{$item->payment_id}}</td>
-                                        <td class="d-none">{{ $item->user_id }}</td>
+                                        <td> {{ $item->operator }}</td>
+                                        <td> {{ $item->number }}</td>
+                                        <td> {{ $item->price }}</td>
+                                        <td> {{ $item->total }}</td>
+                                        <td class="d-none"> {{ $item->operator }}</td>
+                                        <td class="d-none"> {{ $item->payment_id}}</td>
+                                        <td class="d-none"> {{ $item->user_id }}</td>
                                         <td>
                                             @switch( $item->status )
                                                 @case("Checking")
@@ -81,7 +81,7 @@
                                                 {{ csrf_field() }}
 
                                             @switch($item->status)
-                                                @case("Checking")
+                                                @case("Checking") <!--เปลี่ยนสถานะ Order เป็น “succesful-->
                                                     <input type="hidden" name="status" value="booked">  </input>
                                                     <select name="status" onchange="">
                                                         <option value="successful">จองเบอร์แล้ว </option>

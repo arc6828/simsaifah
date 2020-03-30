@@ -36,11 +36,11 @@
                                         <th class="d-none">Dept</th>
                                         <th class="d-none">ยอดรวม</th>
                                         <th>เบอร์โทรศัพท์</th>
-                                        <th>เลขจัดส่ง</th>
+                                        <th>หลักฐานการโอนเงิน</th>
                                         <th class="d-none">Bank</th>
-                                        <th class="d-none">Slip</th>
+                                        <th>เลขจัดส่ง</th>
                                         <th class="d-none">User Id</th>
-                                        <th>Status</th>
+                                        <th>สถานะ</th>
                                         <th colspan="2">Actions</th>
                                     </tr>
                                 </thead>
@@ -51,14 +51,21 @@
                                         <td class="d-none">{{ $item->category }}</td>
                                         <td class="d-none">{{ $item->discount }}</td>
                                         <td class="d-none">{{ $item->dept }}</td>
-                                        <td>{{ $item->number }}</td>
+                                        <!--เป็นการดึงข้อมูล 1 payment สามารถมีหลาย orders โดยดึงผ่าน $item 
+                                        เพราะ payment/index ไม่รู้จัก orders-->
+                                        <td> 
+                                             @foreach( $item->orders as $order ) 
+                                                <div>{{ $order->number }}</div>
+                                             @endforeach
+                                            
+                                        </td> 
                                         <td class="d-none">{{ $item->total }}</td>
                                         <td class="d-none">{{ $item->bank }}</td>
-                                        <td class="d-none"><img src="{{ url('storage')}}/{{ $item->slip }} width="100"></td>
+                                        <td><img src="{{asset('/storage')}}/{{$item->slip}}" width="100"></td>
                                         <td>{{ $item->tracking_number }}</td>
                                         <td class="d-none">{{ $item->user_id }}</td>      
                                         <td>
-                                            @switch( $item->status )
+                                            @switch( $item->status ) 
                                                 @case("chackpayment")
                                                     <div><span class="badge badge-secondary">กำลังตรวจสอบ</span></div>
                                                     <div>{{ $item->chackpayment_at }}</div>
@@ -94,7 +101,8 @@
                                                         <option value="delivery">จัดส่งเบอร์โทร </option>
                                                         <option value="cancel">ยกเลิกการจัดส่ง </option>
                                                     </select>
-                                                    <button type="submit" class="btn btn-warning btn-sm"> submit</button>
+                                                    <input name="tracking_number" class="form-control" value="">
+                                                    <button type="submit" class="btn btn-warning btn-sm"> submit </button>
                                                 @break
                                             @endswitch
                                             </form>

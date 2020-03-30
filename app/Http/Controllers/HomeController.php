@@ -25,17 +25,10 @@ class HomeController extends Controller
     public function index()
     {
         
-        /*$users = User::firstOrCreate(
-            ['user_id' => Auth::id()],
+        $users = User::firstOrCreate(
+            ['id' => Auth::id()],
             ['role' => 'guest']
         );
-
-        if(Auth::user()->users->role == "admin"){
-            return redirect("/order");
-        }else if(Auth::user()->users->role == "guest"){
-            return redirect("/number");
-        }**/
-
-        return redirect('/');
+        return redirect('number');
     }
 }

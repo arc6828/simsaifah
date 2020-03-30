@@ -16,15 +16,15 @@
     <label for="dept" class="control-label">{{ 'Dept' }}</label>
     <input class="form-control" name="dept" type="number" id="dept" value="{{ isset($payment->dept) ? $payment->dept : ''}}" >
     {!! $errors->first('dept', '<p class="help-block">:message</p>') !!}
-</div>
+</div> 
+<!-- แสดง Order ที่ Query ออกมา -->
 <div class="form-group {{ $errors->has('number') ? 'has-error' : ''}}">
-    <label for="number" class="control-label">{{ 'เบอร์ที่ท่านเลือก (มีมากกว่า 1 เบอร์ ) :' }}</label>
-    <!-- แสดง Order ที่ Query ออกมา -->
-    <textarea class="form-control" rows="{{ count($orders) }}">
-        @foreach($orders as $item)
-        {{ $item->number }}
-        @endforeach
-    </textarea>
+    <label for="number" class="control-label">{{ 'เบอร์ที่ท่านเลือก (มีมากกว่า 1 เบอร์ ) :' }}</label> 
+<textarea class="form-control" rows="{{ count($orders) }}"> 
+@foreach($orders as $item)
+{{ $item->number }}
+@endforeach
+</textarea>
     <!--input class="form-control" name="number" type="text" id="number" value="" -->
     {!! $errors->first('number', '<p class="help-block">:message</p>') !!}
 </div>  
@@ -33,12 +33,12 @@
     <input class="form-control" name="total" type="number" id="total" value="{{ isset($payment->total) ? $payment->total : $orders->sum('price') }}" >
     {!! $errors->first('total', '<p class="help-block">:message</p>') !!}
 </div>
-<div class="form-group {{ $errors->has('status') ? 'has-error' : ''}}">
-    <label for="status" class="control-label">{{ 'Status' }}</label>
+<div class="form-group d-none {{ $errors->has('status') ? 'has-error' : ''}}">
+    <label for="status" class="control-label">{{ 'สถานะ' }}</label>
     <input class="form-control" name="status" type="text" id="status" value="{{ isset($payment->status) ? $payment->status : 'chackpayment'}}" >
     {!! $errors->first('status', '<p class="help-block">:message</p>') !!}
 </div>
-<div class="form-group {{ $errors->has('tracking_number') ? 'has-error' : ''}}">
+<div class="form-group d-none {{ $errors->has('tracking_number') ? 'has-error' : ''}}">
     <label for="tracking_number" class="control-label">{{ 'Tracking Number' }}</label>
     <input class="form-control" name="tracking_number" type="number" id="tracking_number" value="{{ isset($payment->tracking_number) ? $payment->tracking_number : ''}}" >
     {!! $errors->first('tracking_number', '<p class="help-block">:message</p>') !!}
@@ -54,15 +54,12 @@
     {!! $errors->first('slip', '<p class="help-block">:message</p>') !!}
 </div>
 <!-- อันนี้ orderid ไม่ควรอยู่ใน payment ไม่ได้ใช้ ต้องลบทิ้งเลย -->
-
-<div class="form-group  {{ $errors->has('user_id') ? 'has-error' : ''}}">
+<div class="form-group d-none {{ $errors->has('user_id') ? 'has-error' : ''}}">
     <label for="user_id" class="control-label">{{ 'User Id' }}</label>
     <input class="form-control d-none" name="user_id" type="number" id="user_id" value="{{ isset($payment->user_id) ? $payment->user_id : Auth::user()->id }}" >
     <input class="form-control" name="user_name" type="text" id="user_name" value="{{ isset($payment->user_id) ? $order->user->name : Auth::user()->name}}" >
     {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
 </div>
-
-
 <div class="form-group">
     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
 </div>

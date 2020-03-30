@@ -33,7 +33,7 @@
 <div class="form-group d-none  {{ $errors->has('payment_id') ? 'has-error' : ''}}">
     <label for="payment_id" class="control-label">{{ 'payment_id'}}</label>
     <!-- payment ควรจะว่างเปล่า เพราะยังไม่ได้เกิดการชำระเงิน จะกลับมา อัพเดทภายหลัง ให้ d-none ไว้ -->
-    <input class="form-control" name="payment_id" type="number" id="payment_id" value="{{ isset($order->payment_id) ? $order->payment_id : ''}}">
+    <input class="form-control" name="payment_id" type="number" id="payment_id" value="{{ isset($order->payment_id) ? $order->payment_id : Auth::user()->id }}">
     {!! $errors->first('payment_id', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group  d-none {{ $errors->has('remake') ? 'has-error' : ''}}">

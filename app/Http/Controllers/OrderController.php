@@ -7,8 +7,10 @@ use App\Http\Controllers\Controller;
 
 use App\Order;
 use App\Number;
-use App\Mail\TestMail;
+use App\Mail\OrderMail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+
 
 class OrderController extends Controller
 {
@@ -22,6 +24,7 @@ class OrderController extends Controller
         $keyword = $request->get('search');
         $perPage = 25;
 
+        //1. แสดง Order ที่มีสถานะ “Checking”
         if (!empty($keyword)) {
             $order = Order::where('number', 'LIKE', "%$keyword%")
                 ->orWhere('price', 'LIKE', "%$keyword%")
@@ -45,13 +48,14 @@ class OrderController extends Controller
      */
     public function create(Request $request)
     {
-        /*
+        /* 2. จองเบอร์ให้
             order/crate จะมาโผล่ที่นี่
             เราจะต้องดึงข้อมูล number ขึ้นแล้วส่งไปแสดงในหน้า view 
         */
         $number_keyword = $request->get('number');//ดึงnumber จาก url : order/create?number=08x-xxx-xxxx
         //ดึงข้อมูล where ขึ้นมาเฉพาะเบอร์ที่เราต้องการ 
         $number = Number::where('number',$number_keyword)->firstOrFail(); //FirstOrFail หมายถึง ถ้าเจอหลายตัวให้ดึงตัวแรก แต่ถ้าไม่เจอสักตัวให้ 404
+            
         
         return view('order.create',compact('number'));//compact เพื่อส่งไปยังไน้า blade
     }
@@ -65,22 +69,31 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        
-        $requestData = $request->all();
-        
-        Order::create($requestData);
-        //$this->testmail($order->id);
+        //เวลาทำให้เอา Flowchart มาเขียน คอมเม้นท์ที่ในโค้ดก่อน จากนั้นให้เอาโค้ดที่มีอยู่แล้วมาเติมจากนั้นเราจะเติมโค้ดใส่ส่วนที่ไม่มี
+        //CRUD Generator ไม่ได้ให้มาทุกอย่าง ยังไงก็ต้องเขียนเพื่มอยู่ดี
+
+        //1.ทำการจองเบอร์ [OK]
+        $requestData = $request->all();        
+        $order = Order::create($requestData);
+
+        //2.เปลี่ยนสถานะ "number" เป็น “Reserved” ต้องดูก่อนว่า number มีคอลัมน์สถานะมั้ย [OK]
+        Number::where('number',$order->number) //YES
+            ->update(['status'=>'Reserved']); //รายละเอียดอยู่ในสไลด์
+
+
+        //3.ทำการส่งเมลแจ้งเตือนร้านค้า   ตรงนี้ OK ยัง ยังไม่สมบูรณ์ค่ะ ปิดไม่ก่อนไม่ซีเรียส
+        $this->orderMail($order->id);
 
         return redirect('order')->with('flash_message', 'Order added!');
     }
-    public function testmail($id)
+    public function orderMail($id)
     {
         $order = Order::findOrFail($id);
-        $email = "yyyyy@gmail.com";
+        //ใส่ Mail ร้านค้า ควรใส่เมล์จริงๆ  ใส่เมล์ของแป้งเลย สมมติว่าแป้งเป็นเจ้าของร้าน 
+        $email = "pangza880@gmail.com";
         
-
-         
-        Mail::to($email)->send(new TestMail($order));
+         //เหมือนยังไม่ได้ทำ Mail ใช่ป่ะ ใช่ค่ะยัง เราใช้ชื่อว่า OrderMail
+        Mail::to($email)->send(new OrderMail($order));
     }
 
     /**
