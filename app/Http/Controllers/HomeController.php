@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\User;
+use App\Address;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -25,10 +25,10 @@ class HomeController extends Controller
     public function index()
     {
         
-        $users = User::firstOrCreate(
-            ['id' => Auth::id()],
+        $address = Address::firstOrCreate(
+            ['user_id' => Auth::id()],
             ['role' => 'guest']
         );
-        return redirect('number');
+            return view('home', compact('address'));
     }
 }

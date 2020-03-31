@@ -25,10 +25,10 @@ class Address extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'address', 'company', 'parish', 'district', 'province', 'postal', 'contact ', 'remake', 'user_id'];
+    protected $fillable = ['name', 'address', 'company', 'parish', 'district', 'province', 'postal', 'contact ', 'remake', 'user_id','role'];
 
     
-    public function user(){
+    public function users(){
         return $this->belongTo('App\User','user_id');
     }
 
