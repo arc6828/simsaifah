@@ -57,7 +57,7 @@
                                         <td class="d-none"> {{ $item->user_id }}</td>
                                         <td>
                                             @switch( $item->status )
-                                                @case("Checking")
+                                                @case("bookedorder")
                                                     <div><span class="badge badge-primary">กำลังตรวจสอบ</span></div>
                                                     <div>{{ $item->bookedorder_at }}</div>
                                                 @break
@@ -84,7 +84,7 @@
                                                 {{ csrf_field() }}
 
                                             @switch($item->status)
-                                                @case("Checking") <!--เปลี่ยนสถานะ Order เป็น “succesful-->
+                                                @case("bookedorder") <!--เปลี่ยนสถานะ Order เป็น “succesful-->
                                                     @if(Auth::user()->role == "admin")
                                                         <input type="hidden" name="status" value="booked">  </input>
                                                         <select name="status" onchange="">

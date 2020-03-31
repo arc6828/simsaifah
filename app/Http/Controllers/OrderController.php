@@ -75,11 +75,15 @@ class OrderController extends Controller
 
         //1.ทำการจองเบอร์ [OK]
         $requestData = $request->all();        
+        $requestData['bookedorder_at'] = date("Y-m-d H:i:s");
         $order = Order::create($requestData);
 
         //2.เปลี่ยนสถานะ "number" เป็น “Reserved” ต้องดูก่อนว่า number มีคอลัมน์สถานะมั้ย [OK]
         Number::where('number',$order->number) //YES
-            ->update(['status'=>'Reserved']); //รายละเอียดอยู่ในสไลด์
+            ->update([
+                'status'=>'Reserved',                
+                'reserved_at'=>date("Y-m-d H:i:s"),
+                ]); //รายละเอียดอยู่ในสไลด์
 
 
         //3.ทำการส่งเมลแจ้งเตือนร้านค้า   ตรงนี้ OK ยัง ยังไม่สมบูรณ์ค่ะ ปิดไม่ก่อนไม่ซีเรียส
@@ -144,6 +148,19 @@ class OrderController extends Controller
     {
         
         $requestData = $request->all();
+        if(!empty($requestData['status'])){
+            switch($requestData['status']){
+                case "bookedorder" : 
+                    $requestData['bookedorder_at'] = date('Y-m-d H:i:s');
+                    break;    
+                case "successful" : 
+                    $requestData['successful_at'] = date('Y-m-d H:i:s');
+                    break;    
+                case "cancel" : 
+                    $requestData['cancel_at'] = date('Y-m-d H:i:s');
+                    break;   
+            }
+        }
         
         $order = Order::findOrFail($id);
         $order->update($requestData);

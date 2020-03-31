@@ -20,7 +20,7 @@
 <!-- แสดง Order ที่ Query ออกมา -->
 <div class="form-group {{ $errors->has('number') ? 'has-error' : ''}}">
     <label for="number" class="control-label">{{ 'เบอร์ที่ท่านเลือก (มีมากกว่า 1 เบอร์ ) :' }}</label> 
-<textarea class="form-control" rows="{{ count($orders) }}"> 
+<textarea class="form-control" rows="{{ count($orders)+2 }}"> 
 @foreach($orders as $item)
 {{ $item->number }}
 @endforeach

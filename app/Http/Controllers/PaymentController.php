@@ -79,10 +79,11 @@ class PaymentController extends Controller
     {
         //อัพโหลดหลักฐานการโอนเงิน
         $requestData = $request->all();
-                if ($request->hasFile('slip')) {
+        if ($request->hasFile('slip')) {
             $requestData['slip'] = $request->file('slip')
                 ->store('uploads', 'public');
         }        
+        $requestData['chackpayment_at'] = date('Y-m-d H:i:s');
          //สร้าง payment
         $payment = Payment::create($requestData);
         //ดึงค่า user_id ของผู้ที่ Login
@@ -141,9 +142,25 @@ class PaymentController extends Controller
     {
         
         $requestData = $request->all();
-                if ($request->hasFile('slip')) {
+        if ($request->hasFile('slip')) {
             $requestData['slip'] = $request->file('slip')
                 ->store('uploads', 'public');
+        }
+        if(!empty($requestData['status'])){
+            switch($requestData['status']){
+                case "chackpayment" : 
+                    $requestData['chackpayment_at'] = date('Y-m-d H:i:s');
+                    break;    
+                case "paid" : 
+                    $requestData['paid_at'] = date('Y-m-d H:i:s');
+                    break;                      
+                case "delivery" : 
+                    $requestData['delivery_at'] = date('Y-m-d H:i:s');
+                    break;    
+                case "cancel" : 
+                    $requestData['cancel_at'] = date('Y-m-d H:i:s');
+                    break;   
+            }
         }
 
         $payment = Payment::findOrFail($id);
