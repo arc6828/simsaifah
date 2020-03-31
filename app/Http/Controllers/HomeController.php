@@ -30,10 +30,7 @@ class HomeController extends Controller
             ['user_id' => Auth::id()],
             ['role' => 'guest']
         );*/
-        $user = User::firstOrCreate(
-            ['id'=>Auth::id()],
-            /*['role'=>'guest']*/
-        );
+        
 
         if(Auth::user()->role == "admin"){
             return redirect("/order");
