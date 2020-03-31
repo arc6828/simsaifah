@@ -8,9 +8,9 @@
     <input class="form-control" name="price" type="number" id="price" value="{{ isset($order->price) ? $order->price  : $number->price }}" >
     {!! $errors->first('price', '<p class="help-block">:message</p>') !!}
 </div>
-<div class="form-group {{ $errors->has('total') ? 'has-error' : ''}}">
+<div class="form-group d-none {{ $errors->has('total') ? 'has-error' : ''}}">
     <label for="total" class="control-label">{{ 'ราคาทั้งหมด' }}</label>
-    <input class="form-control" name="total" type="number" id="total" value="{{ isset($order->total) ? $order->total  : $number->price }}" >
+    <input class="form-control" name="total" type="number" id="total" value="{{ isset($order->total) ? $order->total  : '' }}" >
     {!! $errors->first('total', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group  {{ $errors->has('operator') ? 'has-error' : ''}}">
@@ -44,5 +44,5 @@
 
 
 <div class="form-group">
-    <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
+    <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'ยืนยันการสั่งซื้อ' }}">
 </div>

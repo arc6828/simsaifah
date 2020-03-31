@@ -8,7 +8,7 @@
                     <div class="card-header">ประวัติการชำระเงิน</div>
                     <div class="card-body">
                         <a href="{{ url('/payment/create') }}" class="btn btn-success btn-sm" title="Add New Payment">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add New
+                            <i class="fa fa-plus" aria-hidden="true"></i> เพิ่มรายการจ่าย
                         </a>
 
                         <form method="GET" action="{{ url('/payment') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
@@ -112,8 +112,12 @@
 
                                         <td class="d-none">
 
-                                            <a href="{{ url('/payment/' . $item->id) }}" title="View Payment"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                            <a href="{{ url('/payment/' . $item->id . '/edit') }}" title="Edit Payment"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                            <a href="{{ url('/payment/' . $item->id) }}" title="View Payment">
+                                            <button class="btn btn-info btn-sm">
+                                            <i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
+                                            <a href="{{ url('/payment/' . $item->id . '/edit') }}" title="Edit Payment">
+                                            <button class="btn btn-primary btn-sm">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
                                             
                                             <form method="POST" action="{{ url('/payment' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                                 {{ method_field('DELETE') }}

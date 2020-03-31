@@ -32,10 +32,10 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>ค่าย</th>
+                                        <th>ค่ายมือถือ</th>
                                         <th>เบอร์โทรศัพท์</th>
                                         <th>ราคา</th>
-                                        <th>ราคารวม</th>
+                                        <th class="d-none">ราคารวม</th>
                                         <th class="d-none">Operator</th>
                                         <th class="d-none">payment</th>
                                         <th>สถานะ</th> 
@@ -51,7 +51,7 @@
                                         <td> {{ $item->operator }}</td>
                                         <td> {{ $item->number }}</td>
                                         <td> {{ $item->price }}</td>
-                                        <td> {{ $item->total }}</td>
+                                        <td class="d-none"> {{ $item->total }}</td>
                                         <td class="d-none"> {{ $item->operator }}</td>
                                         <td class="d-none"> {{ $item->payment_id}}</td>
                                         <td class="d-none"> {{ $item->user_id }}</td>

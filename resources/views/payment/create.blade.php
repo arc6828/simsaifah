@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">แจ้งการชำระเงิน</div>
                     <div class="card-body">
-                        <a href="{{ url('/payment') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <a href="{{ url('/payment') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i>กลับ</button></a>
                         <br />
                         <br />
 
