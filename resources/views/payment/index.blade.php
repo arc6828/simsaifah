@@ -95,6 +95,7 @@
 
                                             @switch($item->status)
                                                 @case("chackpayment")
+                                                @if(Auth::user()->role == "admin")
                                                     <input type="hidden" name="status" value="booked">  </input>
                                                     <select name="status" onchange="">
                                                         <option value="paid">เตรียมการจัดส่ง </option>
@@ -103,14 +104,17 @@
                                                     </select>
                                                     <input name="tracking_number" class="form-control" value="">
                                                     <button type="submit" class="btn btn-warning btn-sm"> submit </button>
+                                                @endif
                                                 @break
                                             @endswitch
                                             </form>
                                         </td>   
 
-                                        <td>
+                                        <td class="d-none">
+
                                             <a href="{{ url('/payment/' . $item->id) }}" title="View Payment"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/payment/' . $item->id . '/edit') }}" title="Edit Payment"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                            
                                             <form method="POST" action="{{ url('/payment' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                                 {{ method_field('DELETE') }}
                                                 {{ csrf_field() }}

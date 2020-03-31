@@ -61,10 +61,13 @@
                                                     <div><span class="badge badge-primary">กำลังตรวจสอบ</span></div>
                                                     <div>{{ $item->bookedorder_at }}</div>
                                                 @break
+
                                                             
                                                 @case("successful")
+                                                
                                                     <div><span class="badge badge-success">จองเบอร์แล้ว</span></div>
                                                     <div>{{ $item->successful_at }}</div>
+                                                
                                                 @break
 
                                                 @case("cancel")
@@ -82,18 +85,20 @@
 
                                             @switch($item->status)
                                                 @case("Checking") <!--เปลี่ยนสถานะ Order เป็น “succesful-->
-                                                    <input type="hidden" name="status" value="booked">  </input>
-                                                    <select name="status" onchange="">
-                                                        <option value="successful">จองเบอร์แล้ว </option>
-                                                        <option value="cancel">ยกเลิกการจองเบอร์ </option>
-                                                    </select>
-                                                    <button type="submit" class="btn btn-warning btn-sm"> submit</button>
+                                                    @if(Auth::user()->role == "admin")
+                                                        <input type="hidden" name="status" value="booked">  </input>
+                                                        <select name="status" onchange="">
+                                                            <option value="successful">จองเบอร์แล้ว </option>
+                                                            <option value="cancel">ยกเลิกการจองเบอร์ </option>
+                                                        </select>
+                                                        <button type="submit" class="btn btn-warning btn-sm"> submit</button>
+                                                    @endif    
                                                 @break
                                             @endswitch
                                         </form>
                                         </td>       
-                                        <td>
-
+                                        <td class="d-none">
+                                        
                                             <a href="{{ url('/order/' . $item->id) }}" title="View Order"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/order/' . $item->id . '/edit') }}" title="Edit Order"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
 

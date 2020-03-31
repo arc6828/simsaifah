@@ -28,7 +28,7 @@ class Address extends Model
     protected $fillable = ['name', 'address', 'company', 'parish', 'district', 'province', 'postal', 'contact ', 'remake', 'user_id','role'];
 
     
-    public function users(){
+    public function user(){
         return $this->belongTo('App\User','user_id');
     }
 
