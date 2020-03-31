@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Order;
 use App\Number;
+use App\User;
 use App\Mail\OrderMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
