@@ -90,13 +90,17 @@ class OrderController extends Controller
     {
         $order = Order::findOrFail($id);
         //ใส่ Mail ร้านค้า ควรใส่เมล์จริงๆ  ใส่เมล์ของแป้งเลย สมมติว่าแป้งเป็นเจ้าของร้าน 
-        $email = "pangza880@gmail.com";
+        //$email = "pangza880@gmail.com";
+        $users = User::where('role','admin')->get();
+        foreach($users as $user){
+            //เหมือนยังไม่ได้ทำ Mail ใช่ป่ะ ใช่ค่ะยัง เราใช้ชื่อว่า OrderMail
+            $email = $user->email;
+            Mail::to($email)
+                ->cc('scarlets1150@gmail.com')
+                ->send(new OrderMail($order));   
+        }
         
         
-         //เหมือนยังไม่ได้ทำ Mail ใช่ป่ะ ใช่ค่ะยัง เราใช้ชื่อว่า OrderMail
-        Mail::to($email)
-            ->cc('scarlets1150@gmail.com')
-            ->send(new OrderMail($order));   
     }
 
     /**
