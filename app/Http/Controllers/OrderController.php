@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\User;
 use App\Order;
 use App\Number;
 use App\Mail\OrderMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
+
 
 
 class OrderController extends Controller
@@ -25,20 +27,44 @@ class OrderController extends Controller
         $perPage = 25;
 
         //1. แสดง Order ที่มีสถานะ “Checking”
-        if (!empty($keyword)) {
-            $order = Order::where('number', 'LIKE', "%$keyword%")
-                ->orWhere('price', 'LIKE', "%$keyword%")
-                ->orWhere('total', 'LIKE', "%$keyword%")
-                ->orWhere('status', 'LIKE', "%$keyword%")
-                ->orWhere('operator', 'LIKE', "%$keyword%")
-                ->orWhere('remake', 'LIKE', "%$keyword%")
-                ->orWhere('user_id', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
-        } else {
-            $order = Order::latest()->paginate($perPage);
-        }
 
-        return view('order.index', compact('order'));
+        switch(Auth::user()->role){
+            case "admin" : //แอดมินจะเห็นทั้งหมด
+                if (!empty($keyword)) { //แอดมิน
+                    $order = Order::where('number', 'LIKE', "%$keyword%")
+                        ->orWhere('price', 'LIKE', "%$keyword%")
+                        ->orWhere('total', 'LIKE', "%$keyword%")
+                        ->orWhere('status', 'LIKE', "%$keyword%")
+                        ->orWhere('operator', 'LIKE', "%$keyword%")
+                        ->orWhere('remake', 'LIKE', "%$keyword%")
+                        ->orWhere('user_id', 'LIKE', "%$keyword%")
+                        ->latest()->paginate($perPage);
+                } else {
+                    
+                    $order = Order::latest()->paginate($perPage);
+                }
+            break;
+
+            default : // guest ผู้ใช้เห็นแค่ของตนเอง
+                if (!empty($keyword)) {
+                    $order = Order::where('user_id', Auth::user()->id)
+                        ->where(function($query) use ($keyword){
+                    $query
+                        ->where('number', 'LIKE', "%$keyword%")
+                        ->orWhere('price', 'LIKE', "%$keyword%")
+                        ->orWhere('total', 'LIKE', "%$keyword%")
+                        ->orWhere('status', 'LIKE', "%$keyword%")
+                        ->orWhere('operator', 'LIKE', "%$keyword%")
+                        ->orWhere('remake', 'LIKE', "%$keyword%")
+                        ->orWhere('user_id', 'LIKE', "%$keyword%");
+                        
+                        })
+                        ->latest()->paginate($perPage); 
+                } else {
+                    $order= Order::where('user_id' , Auth::user()->id)->latest()->paginate($perPage);
+                }
+        }
+            return view('order.index', compact('order'));
     }
 
     /**

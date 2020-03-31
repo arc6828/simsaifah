@@ -24,8 +24,6 @@
 
                         <br/>
                         <br/>
-                      
-
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
@@ -57,7 +55,6 @@
                                              @foreach( $item->orders as $order ) 
                                                 <div>{{ $order->number }}</div>
                                              @endforeach
-                                            
                                         </td> 
                                         <td class="d-none">{{ $item->total }}</td>
                                         <td class="d-none">{{ $item->bank }}</td>
@@ -87,39 +84,33 @@
                                                 @break
 
                                             @endswitch 
-                                       
                                         
+                                            
                                             <form method="POST" action="  {{ url('/payment') . '/' . $item->id}} accept-charset="UTF-8" style="display:inline">
                                                 {{ method_field('PATCH') }}
                                                 {{ csrf_field() }}
 
-                                            @switch($item->status)
-                                                @case("chackpayment")
-                                                @if(Auth::user()->role == "admin")
-                                                    <input type="hidden" name="status" value="booked">  </input>
-                                                    <select name="status" onchange="">
-                                                        <option value="paid">เตรียมการจัดส่ง </option>
-                                                        <option value="delivery">จัดส่งเบอร์โทร </option>
-                                                        <option value="cancel">ยกเลิกการจัดส่ง </option>
-                                                    </select>
-                                                    <input name="tracking_number" class="form-control" value="">
-                                                    <button type="submit" class="btn btn-warning btn-sm"> submit </button>
-                                                @endif
-                                                @break
-                                            @endswitch
+                                                @switch($item->status)
+                                                    @case("chackpayment")
+                                                        @if(Auth::user()->role == "admin")
+                                                            <input type="hidden" name="status" value="booked">  </input>
+                                                            <select name="status" onchange="">
+                                                                <option value="paid">เตรียมการจัดส่ง </option>
+                                                                <option value="delivery">จัดส่งเบอร์โทร </option>
+                                                                <option value="cancel">ยกเลิกการจัดส่ง </option>
+                                                            </select>
+                                                            <input name="tracking_number" class="form-control" value="">
+                                                            <button type="submit" class="btn btn-warning btn-sm"> submit </button>
+                                                        @endif
+                                                    @break
+                                                @endswitch
                                             </form>
                                         </td>   
 
-                                        <td class="d-none">
-
-                                            <a href="{{ url('/payment/' . $item->id) }}" title="View Payment">
-                                            <button class="btn btn-info btn-sm">
-                                            <i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                            <a href="{{ url('/payment/' . $item->id . '/edit') }}" title="Edit Payment">
-                                            <button class="btn btn-primary btn-sm">
-                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
-                                            
-                                            <form method="POST" action="{{ url('/payment' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                                        <td>
+                                            <a  class="d-none" href="{{ url('/payment/' . $item->id) }}" title="View Payment"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
+                                            <a  class="d-none" href="{{ url('/payment/' . $item->id . '/edit') }}" title="Edit Payment"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                            <form  class="d-none" method="POST" action="{{ url('/payment' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                                 {{ method_field('DELETE') }}
                                                 {{ csrf_field() }}
                                                 <button type="submit" class="btn btn-danger btn-sm" title="Delete Payment" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
@@ -127,12 +118,10 @@
                                         </td>
                                     </tr>
                                 @endforeach
-                                
                                 </tbody>
                             </table>
                             <div class="pagination-wrapper"> {!! $payment->appends(['search' => Request::get('search')])->render() !!} </div>
                         </div>
-
                     </div>
                 </div>
             </div>

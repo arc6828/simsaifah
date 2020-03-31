@@ -1,11 +1,11 @@
 <div class="form-group {{ $errors->has('number') ? 'has-error' : ''}}">
     <label for="number" class="control-label">{{ 'เบอร์ที่ท่านเลือก :' }}</label>
-    <input class="form-control" name="number" type="text" id="number" value="{{ isset($order->number) ? $order->number : $number->number }}" >
+    <input class="form-control" name="number" type="text" id="number" value="{{ isset($order->number) ? $order->number : $number->number }}" readonly>
     {!! $errors->first('number', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('price') ? 'has-error' : ''}}">
     <label for="price" class="control-label">{{ 'ราคา' }}</label>
-    <input class="form-control" name="price" type="number" id="price" value="{{ isset($order->price) ? $order->price  : $number->price }}" >
+    <input class="form-control" name="price" type="number" id="price" value="{{ isset($order->price) ? $order->price  : $number->price }}" readonly>
     {!! $errors->first('price', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group d-none {{ $errors->has('total') ? 'has-error' : ''}}">
@@ -15,7 +15,7 @@
 </div>
 <div class="form-group  {{ $errors->has('operator') ? 'has-error' : ''}}">
     <label for="operator" class="control-label" >{{ 'Operator' }}</label>
-    <input class="form-control" name="operator" type="text" id="operator" value="{{ isset($order->operator) ? $order->operator : $number->operator}}" >
+    <input class="form-control" name="operator" type="text" id="operator" value="{{ isset($order->operator) ? $order->operator : $number->operator}}" readonly>
     {!! $errors->first('operator', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group d-none {{ $errors->has('status') ? 'has-error' : ''}}">
@@ -27,7 +27,7 @@
 <div class="form-group  {{ $errors->has('user_id') ? 'has-error' : ''}}">
     <label for="user_id" class="control-label ">{{ 'ผู้ใช้งาน' }}</label>
     <input class="form-control d-none" name="user_id" type="number" id="user_id" value="{{ isset ($order->user_id) ? $order->user_id : Auth::user()->id }}" >
-    <input class="form-control " name="user_name" type="text" id="user_name" value="{{ isset ($order->user_name) ? $order->user->name : Auth::user()->name}}" >
+    <input class="form-control " name="user_name" type="text" id="user_name" value="{{ isset ($order->user_name) ? $order->user->name : Auth::user()->name}}" readonly>
     {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group d-none  {{ $errors->has('payment_id') ? 'has-error' : ''}}">

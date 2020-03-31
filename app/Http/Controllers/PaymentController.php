@@ -25,25 +25,47 @@ class PaymentController extends Controller
         $keyword = $request->get('search');
         $perPage = 25;
             
+        switch(Auth::user()->role){
+            case "admin" : 
+                if (!empty($keyword)) {
+                    $payment = Payment::where('category', 'LIKE', "%$keyword%")
+                        ->orWhere('discount', 'LIKE', "%$keyword%")
+                        ->orWhere('dept', 'LIKE', "%$keyword%")
+                        ->orWhere('total', 'LIKE', "%$keyword%")
+                        ->orWhere('status', 'LIKE', "%$keyword%")
+                        ->orWhere('tracking_number', 'LIKE', "%$keyword%")
+                        ->orWhere('bank', 'LIKE', "%$keyword%")
+                        ->orWhere('slip', 'LIKE', "%$keyword%")
+                        ->orWhere('order_id', 'LIKE', "%$keyword%")
+                        ->orWhere('user_id', 'LIKE', "%$keyword%")
+                        ->latest()->paginate($perPage);
+                } else {
+                    $payment = Payment::latest()->paginate($perPage);
+                }
+            break;
 
-        if (!empty($keyword)) {
-            $payment = Payment::where('category', 'LIKE', "%$keyword%")
-                ->orWhere('discount', 'LIKE', "%$keyword%")
-                ->orWhere('dept', 'LIKE', "%$keyword%")
-                ->orWhere('total', 'LIKE', "%$keyword%")
-                ->orWhere('status', 'LIKE', "%$keyword%")
-                ->orWhere('tracking_number', 'LIKE', "%$keyword%")
-                ->orWhere('bank', 'LIKE', "%$keyword%")
-                ->orWhere('slip', 'LIKE', "%$keyword%")
-                ->orWhere('order_id', 'LIKE', "%$keyword%")
-                ->orWhere('user_id', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
-        } else {
-            $payment = Payment::latest()->paginate($perPage);
+            default : // guest ผู้ใช้เห็นแค่ของตนเอง
+                if (!empty($keyword)) {
+                    $payment = Payment::where('user_id', Auth::user()->id)
+                        ->where(function($query) use ($keyword){
+                    $query
+                        ->orWhere('category', 'LIKE', "%$keyword%")
+                        ->orWhere('discount', 'LIKE', "%$keyword%")
+                        ->orWhere('dept', 'LIKE', "%$keyword%")
+                        ->orWhere('total', 'LIKE', "%$keyword%")
+                        ->orWhere('status', 'LIKE', "%$keyword%")
+                        ->orWhere('tracking_number', 'LIKE', "%$keyword%")
+                        ->orWhere('bank', 'LIKE', "%$keyword%")
+                        ->orWhere('slip', 'LIKE', "%$keyword%")
+                        ->orWhere('order_id', 'LIKE', "%$keyword%")
+                        ->orWhere('user_id', 'LIKE', "%$keyword%");
+                    })
+                    ->latest()->paginate($perPage); 
+                } else {
+                    $payment= Payment::where('user_id' , Auth::user()->id)->latest()->paginate($perPage);
+                }
         }
-            
-
-        return view('payment.index', compact('payment'));
+        return view('payment.index', compact('payment')); 
     }
 
     /**
