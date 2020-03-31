@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ChangeColumnsToPaymentsTable extends Migration
+class ChangeColumns3ToPaymentsTable extends Migration
 {
     /**
      * Run the migrations.
