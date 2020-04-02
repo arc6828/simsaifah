@@ -32,6 +32,7 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th>เวลาจอง</th>
                                         <th>ค่ายมือถือ</th>
                                         <th>เบอร์โทรศัพท์</th>
                                         <th>ราคา</th>
@@ -47,6 +48,7 @@
                                 @foreach($order as $item)
                                     <tr>
                                         <td> {{ $loop->iteration }}</td> 
+                                        <td >{{ $item->created_at }}</td>
                                         <td class="d-none">{{ $item->remake }}</td>
                                         <td> {{ $item->operator }}</td>
                                         <td> {{ $item->number }}</td>
