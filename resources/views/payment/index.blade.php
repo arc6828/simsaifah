@@ -66,11 +66,45 @@
                                                 @case("chackpayment")
                                                     <div><span class="badge badge-secondary">กำลังตรวจสอบ</span></div>
                                                     <div>{{ $item->chackpayment_at }}</div>
+                                                    <form method="POST" action="  {{ url('/payment') . '/' . $item->id}} accept-charset="UTF-8" style="display:inline">
+                                                        {{ method_field('PATCH') }}
+                                                        {{ csrf_field() }}
+
+                                                        @switch($item->status)
+                                                            @case("chackpayment")
+                                                                @if(Auth::user()->role == "admin")
+                                                                    <input type="hidden" name="status" value="booked">  </input>
+                                                                    <select name="status" onchange="">
+                                                                        <option value="paid">เตรียมการจัดส่ง </option>                                                                        
+                                                                    </select>                                                                    
+                                                                    <button type="submit" class="btn btn-warning btn-sm"> submit </button>
+                                                                @endif
+                                                            @break
+                                                        @endswitch
+                                                    </form>
                                                 @break
 
                                                 @case("paid")
                                                     <div><span class="badge badge-info">เตรียมการจัดส่ง</span></div>
                                                     <div>{{ $item->paid_at }}</div>
+                                                    <form method="POST" action="  {{ url('/payment') . '/' . $item->id}} accept-charset="UTF-8" style="display:inline">
+                                                        {{ method_field('PATCH') }}
+                                                        {{ csrf_field() }}
+
+                                                        @switch($item->status)
+                                                            @case("chackpayment")
+                                                                @if(Auth::user()->role == "admin")
+                                                                    <input type="hidden" name="status" value="booked">  </input>
+                                                                    <select name="status" onchange="">
+                                                                        <option value="delivery">กรอกเลขพัสดุ </option>
+                                                                        <option value="cancel">ยกเลิกการจัดส่ง </option>
+                                                                    </select>
+                                                                    <input name="tracking_number" class="form-control" value="">
+                                                                    <button type="submit" class="btn btn-warning btn-sm"> submit </button>
+                                                                @endif
+                                                            @break
+                                                        @endswitch
+                                                    </form>
                                                 @break
                                                             
                                                 @case("delivery")
@@ -86,25 +120,7 @@
                                             @endswitch 
                                         
                                             
-                                            <form method="POST" action="  {{ url('/payment') . '/' . $item->id}} accept-charset="UTF-8" style="display:inline">
-                                                {{ method_field('PATCH') }}
-                                                {{ csrf_field() }}
-
-                                                @switch($item->status)
-                                                    @case("chackpayment")
-                                                        @if(Auth::user()->role == "admin")
-                                                            <input type="hidden" name="status" value="booked">  </input>
-                                                            <select name="status" onchange="">
-                                                                <option value="paid">เตรียมการจัดส่ง </option>
-                                                                <option value="delivery">จัดส่งเบอร์โทร </option>
-                                                                <option value="cancel">ยกเลิกการจัดส่ง </option>
-                                                            </select>
-                                                            <input name="tracking_number" class="form-control" value="">
-                                                            <button type="submit" class="btn btn-warning btn-sm"> submit </button>
-                                                        @endif
-                                                    @break
-                                                @endswitch
-                                            </form>
+                                            
                                         </td>   
 
                                         <td>
