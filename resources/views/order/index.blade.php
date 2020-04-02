@@ -82,13 +82,12 @@
                                         </td>
                                         <td>
                                         <form method="POST" action="  {{url('/order') . '/' . $item->id}} accept-charset="UTF-8" style="display:inline">
-                                                {{ method_field('PATCH') }}
-                                                {{ csrf_field() }}
+                                            {{ method_field('PATCH') }}
+                                            {{ csrf_field() }}
 
                                             @switch($item->status)
                                                 @case("bookedorder") <!--เปลี่ยนสถานะ Order เป็น “succesful-->
                                                     @if(Auth::user()->role == "admin")
-                                                        <input type="hidden" name="status" value="booked">  </input>
                                                         <select name="status" onchange="">
                                                             <option value="successful">จองเบอร์แล้ว </option>
                                                             <option value="cancel">ยกเลิกการจองเบอร์ </option>
