@@ -182,7 +182,7 @@
                                 'total' => Request::get('total'),
                                 'price' => Request::get('price'),
                                 'sort' => Request::get('sort','asc'),
-                                'numbers' => Request::get('numbers'),
+                                'numbers[]' => Request::get('numbers'),
                             ])->render() !!} </div>
                         </div>
 
