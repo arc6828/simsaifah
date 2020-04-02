@@ -21,7 +21,7 @@
 <div class="form-group d-none {{ $errors->has('status') ? 'has-error' : ''}}">
     <label for="status" class="control-label ">{{ 'สถานะการจอง' }}</label>
     <!-- ตรงนี้ควรเป็นคำว่า "Checking" เพราะเมื่อสร้าง Order ขึ้นมาสถานะของ Order จะเป็น "Checking" -->
-    <input class="form-control" name="status" type="text" id="status" value="{{ isset($order->status) ? $order->status : 'Checking'}}" >
+    <input class="form-control" name="status" type="text" id="status" value="{{ isset($order->status) ? $order->status : 'bookedorder'}}" >
     {!! $errors->first('status', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group  {{ $errors->has('user_id') ? 'has-error' : ''}}">

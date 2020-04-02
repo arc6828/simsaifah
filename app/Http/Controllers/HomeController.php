@@ -36,7 +36,7 @@ class HomeController extends Controller
             return redirect("/order");
         }else if(Auth::user()->role == "guest"){
             return redirect("/number");
-    }
+        }
     
     }
 }
