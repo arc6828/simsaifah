@@ -146,8 +146,8 @@
                                     <tr>
                                         <th>#</th><th>เบอร์โทรศัพท์</th><th>ราคา</th><th>ค่ายมือถือ</th>
                                         <th>ผลรวม</th>
+                                        <th  class="d-none"></th>
                                         <th>สถานะ</th>
-                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -157,11 +157,13 @@
                                         <td><h5>{{ $item->number }}</h5></td>
                                         <td>{{ number_format($item->price,0) }}</td><td>{{ $item->operator }}</td>
                                         <td>{{ $item->total }}</td>
-                                        <td>{{$item->status}}</td>
+                                        <td class="d-none">{{$item->status}}</td>
                                         <td>
                                             <!-- ตรงนี้ต้องแนบเบอร์ ไปหน้า create ด้วย -->
                                             @if( $item->status != "Reserved")
                                             <a href="{{ url('/order/create') }}?number={{ $item->number }}" title="View Number"><button class="btn btn-info btn-sm"><i class="fa fa-shopping-cart" aria-hidden="true"></i> สั่งซื้อ</button></a>
+                                            @else
+                                            {{$item->status}}
                                             @endif
                                             <a class="d-none" href="{{ url('/number/' . $item->id) }}" title="View Number"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a class="d-none" href="{{ url('/number/' . $item->id . '/edit') }}" title="Edit Number"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
