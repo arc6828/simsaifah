@@ -14,7 +14,7 @@
                                 <div class="form-group col-lg">
                                     <label for="">ค้นหาเบอร์</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
+                                        <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}" autocomplete="off">
                                         <span class="input-group-append">
                                             <button class="btn btn-secondary" type="submit">
                                                 <i class="fa fa-search"></i>
