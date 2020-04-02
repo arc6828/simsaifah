@@ -84,7 +84,7 @@
                                     @if($i==3 || $i==7)
                                     -<input class="number-sm dash" type="hidden"  name="numbers[]">
                                     @else
-                                    <input class="number-sm digit"  name="numbers[]" onkeydown="" maxlength="1" value="{{ $numbers[$i] }}">
+                                    <input class="number-sm digit"  name="numbers[]" onkeydown="" maxlength="1" value="{{ isset($numbers[$i])? $numbers[$i] : '' }}">
                                     @endif
                                 @endfor                              
                                 </div>
