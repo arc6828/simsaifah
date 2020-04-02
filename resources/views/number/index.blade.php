@@ -81,10 +81,14 @@
                                 }
                                 @endphp
                                 @for($i=0; $i< 12; $i++) 
-                                    @if($i==3 || $i==7)
-                                    -<input class="number-sm dash" type="hidden"  name="numbers[]">
+                                    
+                                    @php
+                                        $numbers[$i] =  isset($numbers[$i])? $numbers[$i] : '';
+                                    @endphp
+                                    @if($i==3 || $i==7) 
+                                        -<input class="number-sm dash" type="hidden"  name="numbers[]" value="-">
                                     @else
-                                    <input class="number-sm digit"  name="numbers[]" onkeydown="" maxlength="1" value="{{ isset($numbers[$i])? $numbers[$i] : '' }}">
+                                        <input class="number-sm digit"  name="numbers[]" onkeydown="" maxlength="1" value="{{ isset($numbers[$i])? $numbers[$i] : '' }}">
                                     @endif
                                 @endfor                              
                                 </div>
@@ -184,9 +188,10 @@
                                 'total' => Request::get('total'),
                                 'price' => Request::get('price'),
                                 'sort' => Request::get('sort','asc'),
-                                'numbers[]' => Request::get('numbers'),
+                                'numbers' => $numbers,
                             ])->render() !!} </div>
                         </div>
+                        <input class="number-sm digit"  name="numbers[]" onkeydown="" maxlength="1" value="{{ isset($numbers[$i])? $numbers[$i] : '' }}">
 
                     </div>
                 </div>
