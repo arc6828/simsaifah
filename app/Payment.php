@@ -30,8 +30,8 @@ class Payment extends Model
     public function orders(){
         return $this->hasMany('App\Order','payment_id');
     }
-    public function users(){
-        return $this->hasMany('App\User','user_id');
+    public function user(){
+        return $this->belongsTo('App\User','user_id');
     }
 
 }

@@ -39,8 +39,8 @@
                                         <th class="d-none">ราคารวม</th>
                                         <th class="d-none">Operator</th>
                                         <th class="d-none">payment</th>
-                                        <th>สถานะ</th> 
                                         <th>ผู้จอง</th>
+                                        <th>สถานะ</th> 
                                         <th colspan="2">Actions</th>
                                     </tr>
                                 </thead>
