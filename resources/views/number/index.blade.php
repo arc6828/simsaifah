@@ -191,8 +191,8 @@
                                 'numbers' => $numbers,
                             ])->render() !!} </div>
                         </div>
-                        <input class="number-sm digit"  name="numbers[]" onkeydown="" maxlength="1" value="{{ isset($numbers[$i])? $numbers[$i] : '' }}">
-
+                        
+                        
                     </div>
                 </div>
             </div>

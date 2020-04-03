@@ -54,7 +54,7 @@
                             <a class="nav-link" href="#">หน้าหลัก<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">ค้นหาเบอร์<span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="{{ url('/number') }}">ค้นหาเบอร์<span class="sr-only">(current)</span></a>
                         </li>
                         
                         <li class="nav-item">
@@ -63,7 +63,7 @@
                         
                         
                         <li class="nav-item">
-                            <a class="nav-link" href="">บทความ<span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="#">บทความ<span class="sr-only">(current)</span></a>
                         </li>
                         
                         
