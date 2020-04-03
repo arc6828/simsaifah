@@ -56,8 +56,13 @@ class NumberController extends Controller
             ->groupBy('total')
             ->get();
 
+        $operator_array = Number::selectRaw('operator,count(operator) as count')
+            ->orderBy('operator', 'asc')
+            ->groupBy('operator')
+            ->get();
 
-        return view('number.index', compact('number','total_array'));
+
+        return view('number.index', compact('number','total_array','operator_array'));
     }
 
     /**

@@ -30,8 +30,8 @@
                                     <label for="">ค่ายมือถือ</label>
                                     <select name="operator" id="operator" class="form-control" >
                                         <option value="" >ทั้งหมด</option>                                    
-                                        @foreach(["ais","dtac","truemove"] as $operator)
-                                        <option value="{{ $operator }}" {{ request('operator') == $operator ? 'selected' : ''  }}>{{ $operator }}</option>
+                                        @foreach($operator_array as $op)
+                                        <option value="{{ $op->operator }}" {{ request('operator') == $op->operator ? 'selected' : ''  }}>{{ $op->operator }} (มี {{ $t->count }} รายการ)</option>
                                         @endforeach                                    
                                     </select>                                
                                 </div>
