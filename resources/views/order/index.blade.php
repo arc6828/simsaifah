@@ -73,7 +73,7 @@
                                                     @break
                                                 @case("paid")
                                                 
-                                                    <div><span class="badge badge-paid">ชำระเงินแล้ว</span></div>
+                                                    <div><span class="badge badge-primary">ชำระเงินแล้ว</span></div>
                                                     <div>{{ $item->paid_at }}</div>
                                                 
                                                     @break
