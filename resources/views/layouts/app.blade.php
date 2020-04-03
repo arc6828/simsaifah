@@ -51,7 +51,7 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->                        
                         <li class="nav-item">
-                            <a class="nav-link" href="https://www.berthongpol.coms">หน้าหลัก<span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="https://www.berthongpol.com">หน้าหลัก<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="{{ url('/number') }}">ค้นหาเบอร์<span class="sr-only">(current)</span></a>
