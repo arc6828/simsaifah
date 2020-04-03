@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Address;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AddressController extends Controller
 {
