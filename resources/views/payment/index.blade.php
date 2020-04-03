@@ -37,7 +37,7 @@
                                         <th>หลักฐานการโอนเงิน</th>
                                         <th class="d-none">Bank</th>
                                         <th>เลขจัดส่ง</th>
-                                        <th class="d-none">User Id</th>
+                                        <th>ผู้สั่งซื้อ</th>
                                         <th>สถานะ</th>
                                         <th colspan="2">Actions</th>
                                     </tr>
@@ -60,7 +60,7 @@
                                         <td class="d-none">{{ $item->bank }}</td>
                                         <td><img src="{{asset('/storage')}}/{{$item->slip}}" width="100"></td>
                                         <td>{{ $item->tracking_number }}</td>
-                                        <td class="d-none">{{ $item->user_id }}</td>      
+                                        <td>{{ $item->user->name }}</td>      
                                         <td>
                                             @switch( $item->status ) 
                                                 @case("chackpayment")
@@ -110,8 +110,6 @@
                                                 @break
 
                                             @endswitch 
-                                        
-                                            
                                             
                                         </td>   
 

@@ -31,7 +31,7 @@
                                     <select name="operator" id="operator" class="form-control" >
                                         <option value="" >ทั้งหมด</option>                                    
                                         @foreach($operator_array as $op)
-                                        <option value="{{ $op->operator }}" {{ request('operator') == $op->operator ? 'selected' : ''  }}>{{ $op->operator }} (มี {{ $op->count }} รายการ)</option>
+                                        <option value="{{ $op->operator }}" {{ request('operator') == $op->operator ? 'selected' : ''  }}>{{ $op->operator }} ({{ number_format($op->count,2) }} รายการ)</option>
                                         @endforeach                                    
                                     </select>                                
                                 </div>
@@ -41,7 +41,7 @@
                                     <select name="total" id="total" class="form-control" >
                                         <option value="" >ทั้งหมด</option>                                    
                                         @foreach($total_array as $t) 
-                                        <option value="{{ $t->total }}" {{ request('total') == ($t->total) ? 'selected' : ''  }} >{{ $t->total }} (มี {{ $t->count }} รายการ)</option>
+                                        <option value="{{ $t->total }}" {{ request('total') == ($t->total) ? 'selected' : ''  }} >{{ $t->total }} (มี {{ number_format($t->count) }} รายการ)</option>
                                         @endforeach
                                     </select>
                                     <input type="password" class="form-control d-none" id="exampleInputPassword1">
