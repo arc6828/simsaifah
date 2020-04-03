@@ -30,5 +30,9 @@ Route::group(['middleware' => ['auth']], function()
     Route::resource('payment', 'PaymentController');
     Route::resource('profiles', 'ProfilesController');
     Route::resource('address', 'AddressController');
+});
+
+Route::group(['middleware' => ['auth','role:admin']], function()
+{        
     Route::resource('bank', 'BankController');
 });
