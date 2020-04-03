@@ -33,9 +33,9 @@ class Order extends Model
     }
     
     public function user(){
-        return $this->belongTo('App\User','user_id');
+        return $this->belongsTo('App\User','user_id');
     }
     public function number(){
-        return $this->belongTo('App\Number','number','number');
+        return $this->belongsTo('App\Number','number','number');
     }
 }
