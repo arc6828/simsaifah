@@ -184,7 +184,7 @@ class OrderController extends Controller
                 case "cancel" : 
                     $requestData['cancel_at'] = date('Y-m-d H:i:s');                    
                     //ต้องไป set status ใน ตาราง number ว่าเป็น ""
-                    Number:where('number',$requestData['number'])->update(["status"=>""]);
+                    Number::where('number',$requestData['number'])->update(["status"=>""]);
                     break;   
             }
         }
