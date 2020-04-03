@@ -62,7 +62,7 @@
                                                 @case("bookedorder")
                                                     <div><span class="badge badge-primary">กำลังตรวจสอบ</span></div>
                                                     <div>{{ $item->bookedorder_at }}</div>
-                                                @break
+                                                    @break
 
                                                             
                                                 @case("successful")
@@ -70,12 +70,18 @@
                                                     <div><span class="badge badge-success">จองเบอร์แล้ว</span></div>
                                                     <div>{{ $item->successful_at }}</div>
                                                 
-                                                @break
+                                                    @break
+                                                @case("paid")
+                                                
+                                                    <div><span class="badge badge-paid">ชำระเงินแล้ว</span></div>
+                                                    <div>{{ $item->paid_at }}</div>
+                                                
+                                                    @break
 
                                                 @case("cancel")
                                                     <div><span class="badge badge-danger">ยกเลิกการจองเบอร์</span></div>
                                                     <div>{{ $item->cancel_at }}</div>
-                                                @break
+                                                    @break
 
                                             @endswitch 
                                             

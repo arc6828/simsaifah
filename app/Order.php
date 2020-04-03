@@ -25,7 +25,7 @@ class Order extends Model
      *
      * @var array
      */
-    protected $fillable = ['number', 'price', 'total', 'status', 'operator', 'remake', 'user_id','payment_id','bookedorder_at','successful_at','cancel_at'];
+    protected $fillable = ['number', 'price', 'total', 'status', 'operator', 'remake', 'user_id','payment_id','bookedorder_at','successful_at','cancel_at','paid_at'];
 
 
     public function payments(){

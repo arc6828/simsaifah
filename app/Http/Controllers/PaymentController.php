@@ -110,10 +110,14 @@ class PaymentController extends Controller
         $payment = Payment::create($requestData);
         //ดึงค่า user_id ของผู้ที่ Login
         $user_id = Auth::id(); //
-        //อัพเดท "payment_id ล่าสุด" ใน order ที่มีสถานะ เป็น successful
+        //อัพเดท "payment_id ล่าสุด และเวลาชำระ และเปลี่ยนสถานะเป็นจ่ายเงิน" ใน order ที่มีสถานะ เป็น successful
         Order::where('user_id', $user_id) //เราต้องการดึงค่า Order ที่มี สถานะ เป็น successful และ ถูกสร้าง โดย ผู้ที่ Login 
             ->where('status','successful')
-            ->update(['payment_id' => $payment->id , 'status'=>'paid']); //อัพเดท payment_id ที่อยู่ในตาราง order 
+            ->update([
+                    'payment_id' => $payment->id , 
+                    'status'=>'paid',
+                    'paid_at'=>date('Y-m-d H:i:s'),
+                ]); //อัพเดท payment_id ที่อยู่ในตาราง order 
 
            
             //เราต้องการอัพเดท payment_id ใน order ของเราไง เรียบร้อย
