@@ -64,7 +64,7 @@ class OrderController extends Controller
                     $order= Order::where('user_id' , Auth::user()->id)->latest()->paginate($perPage);
                 }
         }
-            return view('order.index', compact('order'));
+        return view('order.index', compact('order'));
     }
 
     /**

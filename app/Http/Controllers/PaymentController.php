@@ -113,7 +113,7 @@ class PaymentController extends Controller
         //อัพเดท "payment_id ล่าสุด" ใน order ที่มีสถานะ เป็น successful
         Order::where('user_id', $user_id) //เราต้องการดึงค่า Order ที่มี สถานะ เป็น successful และ ถูกสร้าง โดย ผู้ที่ Login 
             ->where('status','successful')
-            ->update(['payment_id' => $payment->id ]); //อัพเดท payment_id ที่อยู่ในตาราง order 
+            ->update(['payment_id' => $payment->id , 'status'=>'paid']); //อัพเดท payment_id ที่อยู่ในตาราง order 
 
            
             //เราต้องการอัพเดท payment_id ใน order ของเราไง เรียบร้อย

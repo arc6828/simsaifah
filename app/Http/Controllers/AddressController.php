@@ -19,22 +19,51 @@ class AddressController extends Controller
     {
         $keyword = $request->get('search');
         $perPage = 25;
+        //1. แสดง Order ที่มีสถานะ “Checking”
 
-        if (!empty($keyword)) {
-            $address = Address::where('name', 'LIKE', "%$keyword%")
-                ->orWhere('address', 'LIKE', "%$keyword%")
-                ->orWhere('company', 'LIKE', "%$keyword%")
-                ->orWhere('parish', 'LIKE', "%$keyword%")
-                ->orWhere('district', 'LIKE', "%$keyword%")
-                ->orWhere('province', 'LIKE', "%$keyword%")
-                ->orWhere('postal', 'LIKE', "%$keyword%")
-                ->orWhere('contact', 'LIKE', "%$keyword%")
-                ->orWhere('remake', 'LIKE', "%$keyword%")
-                ->orWhere('user_id', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
-        } else {
-            $address = Address::latest()->paginate($perPage);
+        switch(Auth::user()->role){
+            case "admin" : //แอดมินจะเห็นทั้งหมด
+                if (!empty($keyword)) {
+                    $address = Address::where('name', 'LIKE', "%$keyword%")
+                        ->orWhere('address', 'LIKE', "%$keyword%")
+                        ->orWhere('company', 'LIKE', "%$keyword%")
+                        ->orWhere('parish', 'LIKE', "%$keyword%")
+                        ->orWhere('district', 'LIKE', "%$keyword%")
+                        ->orWhere('province', 'LIKE', "%$keyword%")
+                        ->orWhere('postal', 'LIKE', "%$keyword%")
+                        ->orWhere('contact', 'LIKE', "%$keyword%")
+                        ->orWhere('remake', 'LIKE', "%$keyword%")
+                        ->orWhere('user_id', 'LIKE', "%$keyword%")
+                        ->latest()->paginate($perPage);
+                } else {
+                    $address = Address::latest()->paginate($perPage);
+                }
+                break;
+
+            default : // guest ผู้ใช้เห็นแค่ของตนเอง                
+                if (!empty($keyword)) {
+                    $address = Address::where('user_id', Auth::user()->id)
+                        ->where(function($query) use ($keyword){
+                            $query
+                                ->where('name', 'LIKE', "%$keyword%")
+                                ->orWhere('address', 'LIKE', "%$keyword%")
+                                ->orWhere('company', 'LIKE', "%$keyword%")
+                                ->orWhere('parish', 'LIKE', "%$keyword%")
+                                ->orWhere('district', 'LIKE', "%$keyword%")
+                                ->orWhere('province', 'LIKE', "%$keyword%")
+                                ->orWhere('postal', 'LIKE', "%$keyword%")
+                                ->orWhere('contact', 'LIKE', "%$keyword%")
+                                ->orWhere('remake', 'LIKE', "%$keyword%")
+                                ->orWhere('user_id', 'LIKE', "%$keyword%");
+                        
+                        })
+                        ->latest()->paginate($perPage); 
+                } else {
+                    $address = Address::where('user_id' , Auth::user()->id)->latest()->paginate($perPage);
+                }
         }
+
+        
 
         return view('address.index', compact('address'));
     }
