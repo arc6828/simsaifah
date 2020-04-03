@@ -28,14 +28,14 @@ class Order extends Model
     protected $fillable = ['number', 'price', 'total', 'status', 'operator', 'remake', 'user_id','payment_id','bookedorder_at','successful_at','cancel_at','paid_at'];
 
 
-    public function payments(){
+    public function payment(){
         return $this->belongsTo('App\Payment','payment_id');
     }
     
-    public function users(){
+    public function user(){
         return $this->belongTo('App\User','user_id');
     }
-    public function numbers(){
+    public function number(){
         return $this->belongTo('App\Number','number','number');
     }
 }
