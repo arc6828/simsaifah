@@ -35,7 +35,7 @@
 </div>
 <div class="form-group {{ $errors->has('contact') ? 'has-error' : ''}}">
     <label for="contact" class="control-label">{{ 'ติดต่อ' }}</label>
-    <input class="form-control" name="contact" type="number" id="contact" value="{{ isset($address->contact) ? $address->contact : ''}}" >
+    <input class="form-control" name="contact" type="text" id="contact" value="{{ isset($address->contact) ? $address->contact : ''}}" >
     {!! $errors->first('contact', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('remake') ? 'has-error' : ''}}">
@@ -45,7 +45,7 @@
 </div>
 <div class="form-group d-none" {{ $errors->has('user_id') ? 'has-error' : ''}}">
     <label for="user_id" class="control-label">{{ 'User Id' }}</label>
-    <input class="form-control" name="user_id" type="number" id="user_id" value="{{ isset($address->user_id) ? $address->user_id : ''}}" >
+    <input class="form-control" name="user_id" type="number" id="user_id" value="{{ isset($address->user_id) ? $address->user_id : Auth::id() }}" >
     {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
 </div>
 
