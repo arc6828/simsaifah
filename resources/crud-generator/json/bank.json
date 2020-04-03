@@ -1,0 +1,28 @@
+{
+    "fields": [
+        {
+            "name": "account_name",
+            "type": "string"
+        },
+        {
+            "name": "account_number",
+            "type": "string"
+        },
+        {
+            "name": "bank_name",
+            "type": "string"
+        },
+        {
+            "name": "user_id",
+            "type": "integer"
+        },
+        {
+            "name": "remark",
+            "type": "text"
+        },
+        {
+            "name": "status",
+            "type": "string"
+        }
+    ]
+}

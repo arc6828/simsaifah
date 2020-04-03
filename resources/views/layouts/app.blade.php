@@ -100,11 +100,16 @@
                                     <a class="dropdown-item" href="{{ url('/address') }}" >
                                         <i class="fa fa-address-card mr-2"></i> ตั้งค่าที่อยู่
                                     </a>
+                                    @if(Auth::user()->role == "admin")
+                                    <a class="dropdown-item" href="{{ url('/bank') }}" >
+                                        <i class="fa fa-bank mr-2"></i> ตั้งค่าธนาคาร (for Admin)
+                                    </a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ url('/order') }}" >
                                         <i class="fa fa-shopping-cart mr-2"></i> การสั่งซื้อ
                                     </a>
                                     <a class="dropdown-item" href="{{ url('/payment') }}" >
-                                        <i class="fa fa-credit-card mr-2"></i> การชำระเงิน
+                                        <i class="fa fa-credit-card mr-2"></i> ประวัติการสั่งซื้อ
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

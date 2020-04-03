@@ -1,0 +1,3 @@
+php artisan crud:generate Post --fields_from_file="resources/crud-generator/json/post.json"
+
+php artisan crud:generate Bank --fields_from_file="resources/crud-generator/json/bank.json"
