@@ -97,8 +97,8 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     
-                                    <a class="dropdown-item" href="{{ url('/profile') }}" >
-                                        <i class="fa fa-address-card mr-2"></i> โปรไฟล์
+                                    <a class="dropdown-item" href="{{ url('/address') }}" >
+                                        <i class="fa fa-address-card mr-2"></i> ตั้งค่าที่อยู่
                                     </a>
                                     <a class="dropdown-item" href="{{ url('/order') }}" >
                                         <i class="fa fa-shopping-cart mr-2"></i> การสั่งซื้อ
