@@ -188,8 +188,8 @@ class OrderController extends Controller
         $requestData = $request->all();
         //เตรียมอัพเดทสถานะ และเวลา
         if(!empty($requestData['status'])){
-            $order = Order::findOrFail($id); // เป็นการเขียนให้ update รู้จัก order
-            switch($requestData['status']){
+            $order = Order::findOrFail($id); // เป็นการเขียนให้ update รู้จัก order 
+            switch($requestData['status']){//
                 case "bookedorder" : 
                     $requestData['bookedorder_at'] = date('Y-m-d H:i:s');
                     break;    
@@ -202,11 +202,10 @@ class OrderController extends Controller
                     //$this->cancelMail($order->id);    // เมื่อเป็น cancel จะส่งอีเมล ยกเลิกการสั่งซื้อ
                     //ต้องไป set status ใน ตาราง number ว่าเป็น ""
                     Number::where('number',$requestData['number'])->update(["status"=>""]);
-
                     break;   
-            }
+            }// เป็นการเขียนอัพเดทสถานะแบบยังไม่ได้ส่งอีเมล
         }
-        //อัพเดท
+        //อัพเดทสถานะ
         $order = Order::findOrFail($id);
         $order->update($requestData);
 

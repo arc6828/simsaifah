@@ -190,31 +190,38 @@ class PaymentController extends Controller
             $requestData['slip'] = $request->file('slip')
                 ->store('uploads', 'public');
         }
-        if(!empty($requestData['status'])){
-            $payment = Payment::findOrFail($id);
+        
+        if(!empty($requestData['status'])){ //เป็นการเช็คสถานะต่างๆ 
                 switch($requestData['status']){
                     case "chackpayment" : 
                         $requestData['chackpayment_at'] = date('Y-m-d H:i:s');
                         break;    
                     case "paid" : 
-                        $requestData['paid_at'] = date('Y-m-d H:i:s');
-                            
+                        $requestData['paid_at'] = date('Y-m-d H:i:s');          
                         break;                      
                     case "delivery" : 
                         $requestData['delivery_at'] = date('Y-m-d H:i:s');
-                            $this->PaymentMail($payment->id);
                         break;    
                     case "cancel" : 
                         $requestData['cancel_at'] = date('Y-m-d H:i:s');
                         break;   
                 }
         }
-
+        
+    //เป็นการอัพเดทสถานะ
         $payment = Payment::findOrFail($id);
         $payment->update($requestData);
+    //เตรียมส่งพัสดุ ต้องมากรอกเลขแท็กกิ่งทีหลังถึงจะทำการส่งอีเมล
+        if(!empty($requestData['status'])){
+            switch($requestData['status']){
+                case "delivery" : 
+                    $this->PaymentMail($payment->id);
+                break;    
+            }
+    }
 
         return redirect('payment')->with('flash_message', 'Payment updated!');
-    }
+}
 
     /**
      * Remove the specified resource from storage.
