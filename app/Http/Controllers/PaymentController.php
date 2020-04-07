@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\User;
 use App\Payment;
 use App\Number;
 use App\Order;
 use App\Bank;
 use App\Address;
-
+use App\Mail\PaymentMail;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -132,6 +133,19 @@ class PaymentController extends Controller
         return redirect('payment')->with('flash_message', 'Payment added!');
     }
 
+    public function paymentMail($id)
+    {
+        $payment = Payment::findOrFail($id);
+        //$email = "pangza880@gmail.com";
+        $users = User::where('role','admin')->get();
+        foreach($users as $user){
+            $email = $user->email;
+            Mail::to($email)
+                //->cc('scarlets1150@gmail.com')
+                ->send(new PaymentMail($payment));   
+        }
+    }
+
     /**
      * Display the specified resource.
      *
@@ -177,20 +191,23 @@ class PaymentController extends Controller
                 ->store('uploads', 'public');
         }
         if(!empty($requestData['status'])){
-            switch($requestData['status']){
-                case "chackpayment" : 
-                    $requestData['chackpayment_at'] = date('Y-m-d H:i:s');
-                    break;    
-                case "paid" : 
-                    $requestData['paid_at'] = date('Y-m-d H:i:s');
-                    break;                      
-                case "delivery" : 
-                    $requestData['delivery_at'] = date('Y-m-d H:i:s');
-                    break;    
-                case "cancel" : 
-                    $requestData['cancel_at'] = date('Y-m-d H:i:s');
-                    break;   
-            }
+            $payment = Payment::findOrFail($id);
+                switch($requestData['status']){
+                    case "chackpayment" : 
+                        $requestData['chackpayment_at'] = date('Y-m-d H:i:s');
+                        break;    
+                    case "paid" : 
+                        $requestData['paid_at'] = date('Y-m-d H:i:s');
+                            
+                        break;                      
+                    case "delivery" : 
+                        $requestData['delivery_at'] = date('Y-m-d H:i:s');
+                            $this->PaymentMail($payment->id);
+                        break;    
+                    case "cancel" : 
+                        $requestData['cancel_at'] = date('Y-m-d H:i:s');
+                        break;   
+                }
         }
 
         $payment = Payment::findOrFail($id);

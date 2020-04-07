@@ -1,4 +1,4 @@
-<h1>คำสั่งซื้อหมายเลข : Shop {{ $order->id }}, คุณ {{ $order->user->name }} ได้สั่งซื้อเบอร์ {{ $order->number }} กับทางร้าน</h1>
+<h1>ยกเลิกซื้อหมายเลขจาก : Shop {{ $order->id }}, คุณ {{ $order->user->name }} เบอร์ที่ท่านสั่งซื้อ {{ $order->number }} กับทางร้าน</h1>
 <div class="table-responsive">
     <table class="table">
         <tbody>
@@ -15,7 +15,6 @@
             <tr><th>เบอร์ติดต่อลูกค้า</th><td> {{ $order->user->phone }} </td></tr>
             
             <tr><th>ตรวจสอบการจองได้ที่</th><td> {{ url('/order') }} </td></tr>
-            <tr><th>สามารถชำระเงินได้ที่</th></td>{{url('/payment')}}</td></tr>
         </tbody>
     </table>
 </div>

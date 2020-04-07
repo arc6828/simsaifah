@@ -8,6 +8,7 @@ use App\User;
 use App\Order;
 use App\Number;
 use App\Mail\OrderMail;
+use App\Mail\CancelMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
@@ -113,10 +114,8 @@ class OrderController extends Controller
         //3.อัพเดท เบอร์โทรผู้ใช้ในตาราง user [OK]
         User::where('id',$order->user_id) //YES
             ->update([ 'phone'=> $requestData['phone'] ]);
-
+            
         //4.ทำการส่งเมลแจ้งเตือนร้านค้า   ตรงนี้ OK ยัง ยังไม่สมบูรณ์ค่ะ ปิดไม่ก่อนไม่ซีเรียส
-        $this->orderMail($order->id);
-
         return redirect('order')->with('flash_message', 'Order added!');
     }
     public function orderMail($id)
@@ -126,14 +125,25 @@ class OrderController extends Controller
         //$email = "pangza880@gmail.com";
         $users = User::where('role','admin')->get();
         foreach($users as $user){
-            //เหมือนยังไม่ได้ทำ Mail ใช่ป่ะ ใช่ค่ะยัง เราใช้ชื่อว่า OrderMail
             $email = $user->email;
             Mail::to($email)
                 //->cc('scarlets1150@gmail.com')
                 ->send(new OrderMail($order));   
         }
-        
-        
+    }
+
+    public function cancelMail($id)
+    {
+        $order = Order::findOrFail($id);
+        //ใส่ Mail ร้านค้า ควรใส่เมล์จริงๆ  ใส่เมล์ของแป้งเลย สมมติว่าแป้งเป็นเจ้าของร้าน 
+        //$email = "pangza880@gmail.com";
+        $users = User::where('role','admin')->get();
+        foreach($users as $user){
+            $email = $user->email;
+            Mail::to($email)
+                //->cc('scarlets1150@gmail.com')
+                ->send(new CancelMail($order));   
+        }
     }
 
     /**
@@ -174,21 +184,25 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+       
         $requestData = $request->all();
         if(!empty($requestData['status'])){
-            switch($requestData['status']){
-                case "bookedorder" : 
-                    $requestData['bookedorder_at'] = date('Y-m-d H:i:s');
-                    break;    
-                case "successful" : 
-                    $requestData['successful_at'] = date('Y-m-d H:i:s');
-                    break;    
-                case "cancel" : 
-                    $requestData['cancel_at'] = date('Y-m-d H:i:s');                    
-                    //ต้องไป set status ใน ตาราง number ว่าเป็น ""
-                    Number::where('number',$requestData['number'])->update(["status"=>""]);
-                    break;   
+            $order = Order::findOrFail($id); // เป็นการเขียนให้ update รู้จัก order
+                switch($requestData['status']){
+                    case "bookedorder" : 
+                        $requestData['bookedorder_at'] = date('Y-m-d H:i:s');
+                        break;    
+                    case "successful" : 
+                        $requestData['successful_at'] = date('Y-m-d H:i:s');
+                            $this->orderMail($order->id); // เมื่อเป็น successful จะส่งอีเมล ทำการสั่งซื้อ
+                        break;    
+                    case "cancel" : 
+                        $requestData['cancel_at'] = date('Y-m-d H:i:s');    
+                            $this->cancelMail($order->id);    // เมื่อเป็น cancel จะส่งอีเมล ยกเลิกการสั่งซื้อ
+                        //ต้องไป set status ใน ตาราง number ว่าเป็น ""
+                        Number::where('number',$requestData['number'])->update(["status"=>""]);
+
+                        break;   
             }
         }
         

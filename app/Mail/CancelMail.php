@@ -10,7 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 
 
 
-class OrderMail extends Mailable
+class CancelMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -34,8 +34,7 @@ class OrderMail extends Mailable
     public function build()
     {
         $order = $this->order;
-        return $this->subject('ลูกค้าสั่งซื้อเบอร์โทรศัพท์')
-            ->view('order.mail', compact('order') );//หมายถึง order/mail.blade.php
-            
+        return $this->subject('ยกเลิกการสั่งซื้อเบอร์โทรศัพท์')
+            ->view('order.mailcancel', compact('order'));
     }
 }
