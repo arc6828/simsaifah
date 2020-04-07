@@ -94,6 +94,7 @@
                                             @switch($item->status)
                                                 @case("bookedorder") <!--เปลี่ยนสถานะ Order เป็น “succesful-->
                                                     @if(Auth::user()->role == "admin")
+                                                        <input type="hidden" name="number" value="{{$item->number}}">
                                                         <select name="status" onchange="">
                                                             <option value="successful">จองเบอร์แล้ว </option>
                                                             <option value="cancel">ยกเลิกการจองเบอร์ </option>

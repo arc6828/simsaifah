@@ -110,8 +110,11 @@ class OrderController extends Controller
                 'reserved_at'=>date("Y-m-d H:i:s"),
                 ]); //รายละเอียดอยู่ในสไลด์
 
+        //3.อัพเดท เบอร์โทรผู้ใช้ในตาราง user [OK]
+        User::where('id',$order->user_id) //YES
+            ->update([ 'phone'=> $requestData['phone'] ]);
 
-        //3.ทำการส่งเมลแจ้งเตือนร้านค้า   ตรงนี้ OK ยัง ยังไม่สมบูรณ์ค่ะ ปิดไม่ก่อนไม่ซีเรียส
+        //4.ทำการส่งเมลแจ้งเตือนร้านค้า   ตรงนี้ OK ยัง ยังไม่สมบูรณ์ค่ะ ปิดไม่ก่อนไม่ซีเรียส
         $this->orderMail($order->id);
 
         return redirect('order')->with('flash_message', 'Order added!');
@@ -126,7 +129,7 @@ class OrderController extends Controller
             //เหมือนยังไม่ได้ทำ Mail ใช่ป่ะ ใช่ค่ะยัง เราใช้ชื่อว่า OrderMail
             $email = $user->email;
             Mail::to($email)
-                ->cc('scarlets1150@gmail.com')
+                //->cc('scarlets1150@gmail.com')
                 ->send(new OrderMail($order));   
         }
         

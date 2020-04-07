@@ -10,7 +10,7 @@
 </div>
 <div class="form-group d-none {{ $errors->has('total') ? 'has-error' : ''}}">
     <label for="total" class="control-label">{{ 'ราคาทั้งหมด' }}</label>
-    <input class="form-control" name="total" type="number" id="total" value="{{ isset($order->total) ? $order->total  : '' }}" >
+    <input class="form-control" name="total" type="number" id="total" value="{{ isset($order->total) ? $order->total  : $number->price }}" >
     {!! $errors->first('total', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group  {{ $errors->has('operator') ? 'has-error' : ''}}">
@@ -27,8 +27,13 @@
 <div class="form-group  {{ $errors->has('user_id') ? 'has-error' : ''}}">
     <label for="user_id" class="control-label ">{{ 'ผู้ใช้งาน' }}</label>
     <input class="form-control d-none" name="user_id" type="number" id="user_id" value="{{ isset ($order->user_id) ? $order->user_id : Auth::user()->id }}" >
-    <input class="form-control " name="user_name" type="text" id="user_name" value="{{ isset ($order->user_name) ? $order->user->name : Auth::user()->name}}" readonly>
+    <input class="form-control " name="user_name" type="text" id="user_name" value="{{ isset ($order->user_id) ? $order->user->name : Auth::user()->name}}" readonly>
     {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
+</div>
+<div class="form-group  {{ $errors->has('phone') ? 'has-error' : ''}}">
+    <label for="phone" class="control-label ">{{ 'เบอร์ติดต่อผู้ใช้งาน' }}</label>
+    <input class="form-control " name="phone" type="text" id="phone" value="{{ isset ($order->user_id) ? $order->user->phone : Auth::user()->phone}}" required>
+    {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group d-none  {{ $errors->has('payment_id') ? 'has-error' : ''}}">
     <label for="payment_id" class="control-label">{{ 'payment_id'}}</label>

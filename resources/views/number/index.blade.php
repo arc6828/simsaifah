@@ -51,7 +51,7 @@
                                 <div class="form-group col-lg">                                
                                     <label for="">ค้นหาจากราคา</label>
                                     <select name="price" id="price" class="form-control" >
-                                        <option value="100000" >ทุกราคา</option>                                    
+                                        <option value="1000000" >ทุกราคา</option>                                    
                                         @for($i=80000; $i>1000; $i=$i/2)
                                         <option value="{{ $i }}" {{ request('price') == $i ? 'selected' : ''  }}>ไม่เกิน {{ number_format($i,0) }}</option>
                                         @endfor                                    
