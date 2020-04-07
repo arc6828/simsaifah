@@ -186,28 +186,42 @@ class OrderController extends Controller
     {
        
         $requestData = $request->all();
+        //เตรียมอัพเดทสถานะ และเวลา
         if(!empty($requestData['status'])){
             $order = Order::findOrFail($id); // เป็นการเขียนให้ update รู้จัก order
-                switch($requestData['status']){
-                    case "bookedorder" : 
-                        $requestData['bookedorder_at'] = date('Y-m-d H:i:s');
-                        break;    
-                    case "successful" : 
-                        $requestData['successful_at'] = date('Y-m-d H:i:s');
-                            $this->orderMail($order->id); // เมื่อเป็น successful จะส่งอีเมล ทำการสั่งซื้อ
-                        break;    
-                    case "cancel" : 
-                        $requestData['cancel_at'] = date('Y-m-d H:i:s');    
-                            $this->cancelMail($order->id);    // เมื่อเป็น cancel จะส่งอีเมล ยกเลิกการสั่งซื้อ
-                        //ต้องไป set status ใน ตาราง number ว่าเป็น ""
-                        Number::where('number',$requestData['number'])->update(["status"=>""]);
+            switch($requestData['status']){
+                case "bookedorder" : 
+                    $requestData['bookedorder_at'] = date('Y-m-d H:i:s');
+                    break;    
+                case "successful" : 
+                    $requestData['successful_at'] = date('Y-m-d H:i:s');
+                    //$this->orderMail($order->id); // เมื่อเป็น successful จะส่งอีเมล ทำการสั่งซื้อ
+                    break;    
+                case "cancel" : 
+                    $requestData['cancel_at'] = date('Y-m-d H:i:s');    
+                    //$this->cancelMail($order->id);    // เมื่อเป็น cancel จะส่งอีเมล ยกเลิกการสั่งซื้อ
+                    //ต้องไป set status ใน ตาราง number ว่าเป็น ""
+                    Number::where('number',$requestData['number'])->update(["status"=>""]);
 
-                        break;   
+                    break;   
             }
         }
-        
+        //อัพเดท
         $order = Order::findOrFail($id);
         $order->update($requestData);
+
+        //ส่งอีเมล์
+        if(!empty($requestData['status'])){
+            $order = Order::findOrFail($id); // เป็นการเขียนให้ update รู้จัก order
+            switch($requestData['status']){
+                case "successful" : 
+                    $this->orderMail($order->id); // เมื่อเป็น successful จะส่งอีเมล ทำการสั่งซื้อ
+                    break;    
+                case "cancel" :   
+                    $this->cancelMail($order->id);
+                    break;   
+            }
+        }
 
         return redirect('order')->with('flash_message', 'Order updated!');
     }

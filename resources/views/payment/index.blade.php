@@ -65,11 +65,14 @@
                                         </td>                                        
                                         <td style="max-width:500px;">
                                             <div>
+                                                @if(isset($item->user_id))
                                                 <strong>ผู้สั่งซื้อ</strong>
                                                 {{ $item->user->name }}  
-                                                {{ $item->user->phone }} 
+                                                {{ $item->user->phone }}
+                                                @endif 
                                             </div>
                                             <div>
+                                                @if(isset($item->address_id))
                                                 <strong>ผู้รับสินค้า</strong>
                                                 {{ $item->address->name }}  <br>
                                                 {{ $item->address->address }}   
@@ -81,6 +84,7 @@
                                                 {{ $item->address->contact }}  <br>
                                                 หมายเหตุ -
                                                 {{ $item->address->remake }} 
+                                                @endif
                                             </div>
                                         </td>      
                                         <td>{{ $item->tracking_number }}</td>
