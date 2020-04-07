@@ -46,11 +46,31 @@
     <label for="bank" class="control-label">{{ 'ธนาคาร' }}</label>
     <select class="form-control" name="bank" id="bank">
         @foreach($banks as $bank)
-        <option value="{{$bank->id}}">{{ $bank->bank_name }}</option>
+        <option value="{{$bank->id}}" >
+            ธนาคาร{{ $bank->bank_name }} / {{ $bank->account_name }} / {{ $bank->account_number }}
+        </option>
         @endforeach
-    </select>
-    <input class="form-control" name="bank" type="text" id="bank" value="{{ isset($payment->bank) ? $payment->bank : ''}}">
+    </select>    
     {!! $errors->first('bank', '<p class="help-block">:message</p>') !!}
+</div>
+<div class="form-group {{ $errors->has('address_id') ? 'has-error' : ''}}">
+    <label for="address_id" class="control-label">{{ 'ที่อยู่จัดส่ง' }}</label> 
+    <a href="{{ url('/address/create') }}" class="ml-4 btn btn-success btn-sm" title="Add New Address">
+        <i class="fa fa-plus" aria-hidden="true"></i> เพิ่มที่อยู่จัดส่ง
+    </a>
+    <select class="form-control" name="address_id" id="address_id" required >
+        @foreach($addresses as $address)
+        <option value="{{$address->id}}" >
+            {{ $address->name }}  
+            {{ $address->address }}   
+            {{ $address->parish }}     
+            {{ $address->district }}    
+            {{ $address->province }}  
+            {{ $address->postal }} 
+        </option>
+        @endforeach
+    </select>    
+    {!! $errors->first('address_id', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('slip') ? 'has-error' : ''}}">
     <label for="slip" class="control-label">{{ 'หลักฐานการโอน' }}</label>

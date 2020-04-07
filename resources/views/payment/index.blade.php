@@ -32,14 +32,14 @@
                                         <th class="d-none">ประเภทการโอน</th>
                                         <th class="d-none">ส่วนลด</th>
                                         <th class="d-none">Dept</th>
-                                        <th class="d-none">ยอดรวม</th>
                                         <th>เบอร์โทรศัพท์</th>
+                                        <th>ยอดรวม</th>
                                         <th>หลักฐานการโอนเงิน</th>
                                         <th class="d-none">Bank</th>
+                                        <th >ผู้สั่งซื้อ</th>
                                         <th>เลขจัดส่ง</th>
-                                        <th>ผู้สั่งซื้อ</th>
                                         <th>สถานะ</th>
-                                        <th colspan="2">Actions</th>
+                                        <th class="d-none" >Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -56,11 +56,34 @@
                                                 <div>{{ $order->number }}</div>
                                              @endforeach
                                         </td> 
-                                        <td class="d-none">{{ $item->total }}</td>
+                                        <td>{{ $item->total }}</td>
                                         <td class="d-none">{{ $item->bank }}</td>
-                                        <td><img src="{{asset('/storage')}}/{{$item->slip}}" width="100"></td>
+                                        <td>
+                                            <a href="{{asset('/storage')}}/{{$item->slip}}" target="_blank">
+                                            <img src="{{asset('/storage')}}/{{$item->slip}}" width="100">
+                                            </a>
+                                        </td>                                        
+                                        <td style="max-width:500px;">
+                                            <div>
+                                                <strong>ผู้สั่งซื้อ</strong>
+                                                {{ $item->user->name }}  
+                                                {{ $item->user->phone }} 
+                                            </div>
+                                            <div>
+                                                <strong>ผู้รับสินค้า</strong>
+                                                {{ $item->address->name }}  <br>
+                                                {{ $item->address->address }}   
+                                                {{ $item->address->parish }}     
+                                                {{ $item->address->district }}     
+                                                {{ $item->address->province }}  
+                                                {{ $item->address->postal }} <br>
+                                                เบอร์
+                                                {{ $item->address->contact }}  <br>
+                                                หมายเหตุ -
+                                                {{ $item->address->remake }} 
+                                            </div>
+                                        </td>      
                                         <td>{{ $item->tracking_number }}</td>
-                                        <td>{{ $item->user->name }}</td>      
                                         <td>
                                             @switch( $item->status ) 
                                                 @case("chackpayment")
@@ -73,7 +96,8 @@
                                                         @if(Auth::user()->role == "admin")
                                                             <input type="hidden" name="status" value="booked">  </input>
                                                             <select name="status" onchange="">
-                                                                <option value="paid">เตรียมการจัดส่ง </option>                                                                        
+                                                                <option value="paid">โอนครบ / เตรียมการจัดส่ง </option>
+                                                                <option value="cancel">ยกเลิกการจัดส่ง </option>                                                                        
                                                             </select>                                                                    
                                                             <button type="submit" class="btn btn-warning btn-sm"> submit </button>
                                                         @endif                                                                
@@ -89,11 +113,10 @@
                                                 
                                                         @if(Auth::user()->role == "admin")
                                                             <input type="hidden" name="status" value="booked">  </input>
-                                                            <select name="status" onchange="">
+                                                            <select name="status" onchange="" class="d-none">
                                                                 <option value="delivery">กรอกเลขพัสดุ </option>
-                                                                <option value="cancel">ยกเลิกการจัดส่ง </option>
                                                             </select>
-                                                            <input name="tracking_number" class="form-control" value="">
+                                                            <input name="tracking_number" class="form-control form-control-sm" value="" placeholder="กรอกเลขพัสดุ">
                                                             <button type="submit" class="btn btn-warning btn-sm"> submit </button>
                                                         @endif
                                                     </form>
@@ -113,7 +136,7 @@
                                             
                                         </td>   
 
-                                        <td>
+                                        <td class="d-none" >
                                             <a  class="d-none" href="{{ url('/payment/' . $item->id) }}" title="View Payment"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a  class="d-none" href="{{ url('/payment/' . $item->id . '/edit') }}" title="Edit Payment"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
                                             <form  class="d-none" method="POST" action="{{ url('/payment' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">

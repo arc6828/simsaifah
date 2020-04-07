@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Payment;
 use App\Number;
 use App\Order;
+use App\Bank;
+use App\Address;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
@@ -87,7 +89,9 @@ class PaymentController extends Controller
             ->where('status','successful')
             ->get(); //OK
         // ส่ง Order มาแสดงที่ Blade
-        return view('payment.create',compact('orders'));
+        $banks = Bank::all();
+        $addresses = Address::where('user_id',Auth::id() )->get();
+        return view('payment.create',compact('orders','banks','addresses'));
     }
 
     /**

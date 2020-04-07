@@ -10,6 +10,9 @@
                         <a href="{{ url('/address/create') }}" class="btn btn-success btn-sm" title="Add New Address">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
                         </a>
+                        <a href="{{ url('/payment/create') }}" class="btn btn-success btn-sm" title="Add New Address">
+                            <i class="fa fa-plus" aria-hidden="true"></i> แจ้งการชำระเงิน
+                        </a>
 
                         <form method="GET" action="{{ url('/address') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                             <div class="input-group">
