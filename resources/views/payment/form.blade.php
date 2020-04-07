@@ -44,6 +44,11 @@
 </div>
 <div class="form-group {{ $errors->has('bank') ? 'has-error' : ''}}">
     <label for="bank" class="control-label">{{ 'ธนาคาร' }}</label>
+    <select class="form-control" name="bank" id="bank">
+        @foreach($banks as $bank)
+        <option value="{{$bank->id}}">{{ $bank->bank_name }}</option>
+        @endforeach
+    </select>
     <input class="form-control" name="bank" type="text" id="bank" value="{{ isset($payment->bank) ? $payment->bank : ''}}">
     {!! $errors->first('bank', '<p class="help-block">:message</p>') !!}
 </div>
