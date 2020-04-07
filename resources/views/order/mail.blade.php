@@ -13,6 +13,8 @@
             <tr><th>อีมเล์ลูกค้า</th><td> {{ $order->user->email }} </td></tr>
             <tr><th>ลูกค้า</th><td> {{ $order->user->name }} </td></tr>
             <tr><th>เบอร์ติดต่อลูกค้า</th><td> {{ $order->user->phone }} </td></tr>
+            
+            <tr><th>ตรวจสอบการจองได้ที่</th><td> {{ url('/order') }} </td></tr>
         </tbody>
     </table>
 </div>
