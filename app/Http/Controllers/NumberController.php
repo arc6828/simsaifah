@@ -24,7 +24,7 @@ class NumberController extends Controller
         $sort = $request->get('sort','asc');
         $numbers = $request->get('numbers');
         
-        $perPage = 25;
+        $perPage = 100;
         
         
         $filter_number_string = "____________";
