@@ -136,14 +136,12 @@ class PaymentController extends Controller
     public function paymentMail($id)
     {
         $payment = Payment::findOrFail($id);
-        //$email = "pangza880@gmail.com";
-        $users = User::where('role','admin')->get();
-        foreach($users as $user){
-            $email = $user->email;
-            Mail::to($email)
-                //->cc('scarlets1150@gmail.com')
-                ->send(new PaymentMail($payment));   
-        }
+        $users = User::where('role','guest')->get();
+            {
+                $email = $payment->user->email;
+                Mail::to($email)
+                    ->send(new PaymentMail($payment));   
+            }
     }
 
     /**

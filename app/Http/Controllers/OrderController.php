@@ -9,6 +9,7 @@ use App\Order;
 use App\Number;
 use App\Mail\OrderMail;
 use App\Mail\CancelMail;
+use App\Mail\GuestMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
@@ -116,6 +117,8 @@ class OrderController extends Controller
             ->update([ 'phone'=> $requestData['phone'] ]);
             
         //4.ทำการส่งเมลแจ้งเตือนร้านค้า   ตรงนี้ OK ยัง ยังไม่สมบูรณ์ค่ะ ปิดไม่ก่อนไม่ซีเรียส
+            $this->ordermail($order->id); //เป็นการส่งอีเมลหลังจากมีการ create order 1 ครั้ง
+
         return redirect('order')->with('flash_message', 'Order added!');
     }
     public function orderMail($id)
@@ -135,14 +138,22 @@ class OrderController extends Controller
     public function cancelMail($id)
     {
         $order = Order::findOrFail($id);
-        //ใส่ Mail ร้านค้า ควรใส่เมล์จริงๆ  ใส่เมล์ของแป้งเลย สมมติว่าแป้งเป็นเจ้าของร้าน 
-        //$email = "pangza880@gmail.com";
-        $users = User::where('role','admin')->get();
-        foreach($users as $user){
-            $email = $user->email;
+        $users = User::where('role','guest')->get();
+        {
+            $email = $order->user->email;
             Mail::to($email)
-                //->cc('scarlets1150@gmail.com')
                 ->send(new CancelMail($order));   
+        }
+    }
+
+    public function guestMail($id)
+    {
+        $order = Order::findOrFail($id);
+        $users = User::where('role','guest')->get();
+        {
+            $email = $order->user->email; //เป็นการเรียกใช้ข้อมูล order ในตาราง user คอลั้ม email
+            Mail::to($email)
+                ->send(new GuestMail($order));   
         }
     }
 
@@ -214,7 +225,7 @@ class OrderController extends Controller
             $order = Order::findOrFail($id); // เป็นการเขียนให้ update รู้จัก order
             switch($requestData['status']){
                 case "successful" : 
-                    $this->orderMail($order->id); // เมื่อเป็น successful จะส่งอีเมล ทำการสั่งซื้อ
+                    $this->guestmail($order->id); // เมื่อเป็น successful จะส่งอีเมล ทำการสั่งซื้อ
                     break;    
                 case "cancel" :   
                     $this->cancelMail($order->id);
