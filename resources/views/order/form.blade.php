@@ -49,5 +49,5 @@
 
 
 <div class="form-group">
-    <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'ยืนยันการสั่งซื้อ' }}">
+    <input class="btn btn-success" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'ยืนยันการสั่งซื้อ' }}">
 </div>

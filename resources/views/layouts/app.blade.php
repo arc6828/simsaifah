@@ -18,17 +18,21 @@
     <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/eiei.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         h1, h2, h3, h4, h5, h6, nav, .nav, .menu, button, .button, .btn, .price, ._heading, .wp-block-pullquote blockquote, blockquote, label, legend, a, .card-header, th {
             font-family: "Prompt", "Open Sans script=all rev=1" !important;
             font-weight: 700 !important;
+            
         }
+
     </style>
+        
 </head>
 <body>
     <div id="">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-danger shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{ asset('/img/saifahlogoB.png')}}" width="60" height="60" class="mr-2" alt="">

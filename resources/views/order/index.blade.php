@@ -8,17 +8,17 @@
                     <div class="card-header">รวมเบอร์จองทั้งหมด</div>
                     <div class="card-body">
                         <!-- ชื่อว่าจองเบอร์เพิ่มก็จริง แต่ให้ไปโผล่ที่ number จะดีกว่า -->
-                        <a href="{{ url('/number') }}" class="btn btn-success btn-sm" title="Add New Order">
+                        <a href="{{ url('/number') }}" class="btn btn-danger btn-sm" title="Add New Order">
                             <i class="fa fa-plus" aria-hidden="true"></i> จองเบอร์เพิ่ม </a>
                             <!-- อันนี้ OK-->
-                        <a href="{{ url('/payment/create') }}" class="btn btn-success btn-sm" title="Add New Order">
+                        <a href="{{ url('/payment/create') }}" class="btn btn-danger btn-sm" title="Add New Order">
                             <i class="fa fa-plus" aria-hidden="true"></i> แจ้งการชำระเงิน </a>
 
                         <form method="GET" action="{{ url('/order') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
                                 <span class="input-group-append">
-                                    <button class="btn btn-secondary" type="submit">
+                                    <button class="btn btn-success" type="submit">
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </span>
@@ -100,7 +100,7 @@
                                                             <option value="successful">จองเบอร์แล้ว </option>
                                                             <option value="cancel">ยกเลิกการจองเบอร์ </option>
                                                         </select>
-                                                        <button type="submit" class="btn btn-warning btn-sm"> submit</button>
+                                                        <button type="submit" class="btn btn-success btn-sm"> submit</button>
                                                     @endif    
                                                 @break
                                             @endswitch

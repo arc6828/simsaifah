@@ -2,21 +2,21 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
+        <div class="row ">
 
             <div class="col-md-12">
                 <div class="card mb-4">
-                    <div class="card-header">ตัวกรองเบอร์โทรศัพท์</div>
-                    <div class="card-body">
+                    <div class="card-header bg-danger">ตัวกรองเบอร์โทรศัพท์</div>
+                    <div class="card-body bg-secondary">
                         <form method="GET" action="{{ url('/number') }}" accept-charset="UTF-8" class="" role="search">
 
-                            <div class="row">    
+                            <div class="row ">    
                                 <div class="form-group col-lg">
                                     <label for="">ค้นหาเบอร์</label>
                                     <div class="input-group">
                                         <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}" autocomplete="off">
                                         <span class="input-group-append">
-                                            <button class="btn btn-secondary" type="submit">
+                                            <button class="btn btn-danger" type="submit">
                                                 <i class="fa fa-search"></i>
                                             </button>
                                         </span>
@@ -135,15 +135,15 @@
 
                             
 
-                            <a class="btn btn-outline-success" href="{{ url('/number') }}" >Reset</a> 
-                            <button class="btn btn-success" type="submit">Submit</button>     
+                            <a class="btn btn-outline-dark" href="{{ url('/number') }}" >Reset</a> 
+                            <button class="btn btn-outline-dark" type="submit">Submit</button>     
                         </form>
                     </div>
                 </div>
 
-                <div class="card">
-                    <div class="card-header">ผลการค้นหาเบอร์โทรศัพท์</div>
-                    <div class="card-body">    
+                <div class="card bg-secondary">
+                    <div class="card-header bg-danger">ผลการค้นหาเบอร์โทรศัพท์</div>
+                    <div class="card-body ">    
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
@@ -165,7 +165,7 @@
                                         <td>
                                             <!-- ตรงนี้ต้องแนบเบอร์ ไปหน้า create ด้วย -->
                                             @if( $item->status != "Reserved")
-                                            <a href="{{ url('/order/create') }}?number={{ $item->number }}" title="View Number"><button class="btn btn-info btn-sm"><i class="fa fa-shopping-cart" aria-hidden="true"></i> สั่งซื้อ</button></a>
+                                            <a href="{{ url('/order/create') }}?number={{ $item->number }}" title="View Number"><button class="btn btn-dark btn-sm"><i class="fa fa-shopping-cart" aria-hidden="true"></i> สั่งซื้อ</button></a>
                                             @else
                                             {{$item->status}}
                                             @endif
@@ -182,7 +182,7 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                            <div class="pagination-wrapper"> {!! $number->appends([
+                            <div class="pagination-wrapper ">{!! $number->appends([
                                 'search' => Request::get('search'),
                                 'operator' => Request::get('operator'),
                                 'total' => Request::get('total'),
@@ -191,8 +191,6 @@
                                 'numbers' => $numbers,
                             ])->render() !!} </div>
                         </div>
-                        
-                        
                     </div>
                 </div>
             </div>
