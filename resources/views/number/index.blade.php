@@ -189,7 +189,7 @@
                                 <thead>
                                     <tr>
                                         <th class="d-none">#</th>
-                                        <th>เครือข่าย</th>
+                                        <th>ค่ายมือถือ</th>
                                         <th>เบอร์โทรศัพท์</th>
                                         <th>ราคา</th>
                                         <th  class="d-none"></th>
@@ -200,7 +200,7 @@
                                 @foreach($number as $item)
                                     <tr>
                                         <td  class="d-none">{{ $loop->iteration }}</td>
-                                        <td ><img class="align-self-center mr-3" src="{{ url('/') }}/img/operators/logo_{{ strtolower($item->operator) }}.jpg" width="100%" style="max-width:100px;"></td>
+                                        <td ><img class="align-self-center mr-3" src="{{ url('/') }}/img/operators/logo_{{ strtolower($item->operator) }}.jpg" width="100%" style="max-width:80px;"></td>
                                         <td>
                                             <div class="media">
                                                 
