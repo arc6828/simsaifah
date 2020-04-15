@@ -2,9 +2,10 @@
 
 @section('content')
     <div class="container">
-        <div class="row ">
-
-            <div class="col-md-12">
+        <div class="" ><img src="{{ url('img/test-cover.jpg') }}" width="100%"></div>
+        <div class="row mt-4">
+            
+            <div class="col-md-9">
                 <div class="card mb-4">
                     <div class="card-header">ตัวกรองเบอร์โทรศัพท์</div>
                     <div class="card-body">
@@ -201,6 +202,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div  class="col-md-3">
+                สำหรับ sidebar 
             </div>
         </div>
     </div>
