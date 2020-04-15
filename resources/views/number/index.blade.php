@@ -149,7 +149,7 @@
 
                     </div>
                 </div>
-                <div class="card mt-4">
+                <div class="card mt-4 mb-4">
                     <div class="card-body">
                         <h5>เมนูลัด</h5>
                         <ul>
@@ -189,9 +189,9 @@
                                 <thead>
                                     <tr>
                                         <th class="d-none">#</th>
-                                        <th>ค่ายมือถือ</th>
-                                        <th>เบอร์โทรศัพท์</th><th>ราคา</th>
-                                        <th>ผลรวม</th>
+                                        <th>เครือข่าย</th>
+                                        <th>เบอร์โทรศัพท์</th>
+                                        <th>ราคา</th>
                                         <th  class="d-none"></th>
                                         <th>สถานะ</th>
                                     </tr>
@@ -200,10 +200,19 @@
                                 @foreach($number as $item)
                                     <tr>
                                         <td  class="d-none">{{ $loop->iteration }}</td>
-                                        <td><img src="{{ url('/') }}/img/operators/logo_{{ strtolower($item->operator) }}.jpg" width="50"></td>
-                                        <td><h5>{{ $item->number }}</h5></td>
+                                        <td ><img class="align-self-center mr-3" src="{{ url('/') }}/img/operators/logo_{{ strtolower($item->operator) }}.jpg" width="100%" style="max-width:100px;"></td>
+                                        <td>
+                                            <div class="media">
+                                                
+                                                <div class="media-body">
+                                                    <h5 class="mt-0">{{ $item->number }}</h5>
+                                                    <p><strong>ผลรวมเบอร์ : {{ $item->total }}</strong></p>
+                                                    
+                                                </div>
+                                            </div>
+                                            
+                                        </td>
                                         <td>{{ number_format($item->price,0) }}.-</td>
-                                        <td>{{ $item->total }}</td>
                                         <td class="d-none">{{$item->status}}</td>
                                         <td>
                                             <!-- ตรงนี้ต้องแนบเบอร์ ไปหน้า create ด้วย -->
