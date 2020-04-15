@@ -189,8 +189,8 @@
                                 <thead>
                                     <tr >
                                         <th class="d-none">#</th>
-                                        
-                                        <th>เบอร์โทรศัพท์</th>
+                                        <th class="d-lg-block d-md-none d-sm-none d-none text-center">ค่ายมือถือ</th>
+                                        <th class="text-center">เบอร์โทรศัพท์</th>
                                         <th>ราคา</th>
                                         <th  class="d-none"></th>
                                         <th>สถานะ</th>
@@ -200,20 +200,21 @@
                                 @foreach($number as $item)
                                     <tr>
                                         <td  class="d-none">{{ $loop->iteration }}</td>
+                                        <td  class="d-lg-block d-md-none d-sm-none d-none  text-center">
+                                            <img class="align-self-center" src="{{ url('/') }}/img/operators/logo_{{ strtolower($item->operator) }}.jpg" width="100%" style="max-width:80px;">
+                                        </td>
                                         <td class="text-center">
-                                            <div class="row">
-                                                <div class="col-md-3 mb-4">
-                                                    <img class="align-self-center" src="{{ url('/') }}/img/operators/logo_{{ strtolower($item->operator) }}.jpg" width="100%" style="max-width:80px;">
-                                                </div>
-                                                <div class="col-md-9">
-                                                    <h5 class="mt-0">{{ $item->number }}</h5>
-                                                    <p><strong>ผลรวมเบอร์ : {{ $item->total }}</strong></p>
-                                                    
-                                                </div>
-                                            </div>
+                                            
+                                            
+                                            
+                                            
+                                            <h5 class="mt-0">{{ $item->number }}</h5>
+                                            <div><strong>ผลรวมเบอร์ : {{ $item->total }}</strong></div>
+                                            <img class="d-lg-none" src="{{ url('/') }}/img/operators/logo_{{ strtolower($item->operator) }}.jpg" width="100%" style="max-width:50px;">
+                                            
                                             
                                         </td>
-                                        <td>{{ number_format($item->price,0) }}.-</td>
+                                        <td >{{ number_format($item->price,0) }}.-</td>
                                         <td class="d-none">{{$item->status}}</td>
                                         <td>
                                             <!-- ตรงนี้ต้องแนบเบอร์ ไปหน้า create ด้วย -->
