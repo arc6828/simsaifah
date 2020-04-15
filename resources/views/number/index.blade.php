@@ -2,16 +2,16 @@
 
 @section('content')
     <div class="container">
-        <div class="" ><img src="{{ url('img/test-cover.jpg') }}" width="100%"></div>
+    
         <div class="row mt-4">
             
             <div class="col-md-9">
-                <div class="card mb-4">
-                    <div class="card-header">ตัวกรองเบอร์โทรศัพท์</div>
+                <div class="card">
                     <div class="card-body">
+                        <h4>ตัวกรองเบอร์โทรศัพท์</h4>
                         <form method="GET" action="{{ url('/number') }}" accept-charset="UTF-8" class="" role="search">
 
-                            <div class="row ">    
+                            <div class="row mt-4">    
                                 <div class="form-group col-lg">
                                     <label for="">ค้นหาเบอร์</label>
                                     <div class="input-group">
@@ -147,11 +147,11 @@
                     </div>
                 </div>
 
-                <div class="card">
-                    <div class="card-header">ผลการค้นหาเบอร์โทรศัพท์</div>
-                    <div class="card-body ">    
-                        <div class="table-responsive table-striped">
-                            <table class="table">
+                <div class="card mt-4">
+                    <div class="card-body ">   
+                        <h4>ผลการค้นหาเบอร์โทรศัพท์</h4> 
+                        <div class="table-responsive mt-4">
+                            <table class="table table-dark table-striped  table-hover">
                                 <thead>
                                     <tr>
                                         <th class="d-none">#</th>
@@ -204,7 +204,11 @@
                 </div>
             </div>
             <div  class="col-md-3">
-                สำหรับ sidebar 
+                <div class="card">
+                    <div class="card-header">Sidebar </div>
+                    <div class="card-body ">  
+                    </div>
+                </div> 
             </div>
         </div>
     </div>
