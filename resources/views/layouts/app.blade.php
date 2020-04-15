@@ -18,7 +18,7 @@
     <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/eiei.css') }}" rel="stylesheet">
+    <!--link href="{{ asset('css/eiei.css') }}" rel="stylesheet"-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         h1, h2, h3, h4, h5, h6, nav, .nav, .menu, button, .button, .btn, .price, ._heading, .wp-block-pullquote blockquote, blockquote, label, legend, a, .card-header, th {
@@ -32,10 +32,10 @@
 </head>
 <body>
     <div id="">
-        <nav class="navbar navbar-expand-md navbar-light bg-danger shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="background-image: linear-gradient(270deg, #2af598 0%, #009efd 100%);">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{ asset('/img/saifahlogoB.png')}}" width="60" height="60" class="mr-2" alt="">
+                    <img src="{{ asset('/img/logo-berthongpol.png')}}" width="60" height="60" class="mr-2" alt="">
                     {{ config('app.name', 'หน้าหลัก') }}
                 </a>
                 <a class="navbar-brand" href="#">

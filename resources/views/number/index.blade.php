@@ -6,8 +6,8 @@
 
             <div class="col-md-12">
                 <div class="card mb-4">
-                    <div class="card-header bg-danger">ตัวกรองเบอร์โทรศัพท์</div>
-                    <div class="card-body bg-secondary">
+                    <div class="card-header">ตัวกรองเบอร์โทรศัพท์</div>
+                    <div class="card-body">
                         <form method="GET" action="{{ url('/number') }}" accept-charset="UTF-8" class="" role="search">
 
                             <div class="row ">    
@@ -16,7 +16,7 @@
                                     <div class="input-group">
                                         <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}" autocomplete="off">
                                         <span class="input-group-append">
-                                            <button class="btn btn-danger" type="submit">
+                                            <button class="btn btn-primary" type="submit">
                                                 <i class="fa fa-search"></i>
                                             </button>
                                         </span>
@@ -31,7 +31,12 @@
                                     <select name="operator" id="operator" class="form-control" >
                                         <option value="" >ทั้งหมด</option>                                    
                                         @foreach($operator_array as $op)
-                                        <option value="{{ $op->operator }}" {{ request('operator') == $op->operator ? 'selected' : ''  }}>{{ $op->operator }} ({{ number_format($op->count,0) }} รายการ)</option>
+                                        <option 
+                                            value="{{ $op->operator }}" 
+                                            style="background-image:url({{ url('/') }}/img/operators/logo_{{ $op->operator }}.jpg); background-repeat: no-repeat, repeat;" 
+                                            {{ request('operator') == $op->operator ? 'selected' : ''  }} >
+                                            {{ $op->operator }} ({{ number_format($op->count,0) }} รายการ)
+                                        </option>
                                         @endforeach                                    
                                     </select>                                
                                 </div>
@@ -135,20 +140,22 @@
 
                             
 
-                            <a class="btn btn-outline-dark" href="{{ url('/number') }}" >Reset</a> 
-                            <button class="btn btn-outline-dark" type="submit">Submit</button>     
+                            <a class="btn btn-outline-primary" href="{{ url('/number') }}" >Reset</a> 
+                            <button class="btn btn-primary" type="submit">Submit</button>     
                         </form>
                     </div>
                 </div>
 
-                <div class="card bg-secondary">
-                    <div class="card-header bg-danger">ผลการค้นหาเบอร์โทรศัพท์</div>
+                <div class="card">
+                    <div class="card-header">ผลการค้นหาเบอร์โทรศัพท์</div>
                     <div class="card-body ">    
-                        <div class="table-responsive">
+                        <div class="table-responsive table-striped">
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>เบอร์โทรศัพท์</th><th>ราคา</th><th>ค่ายมือถือ</th>
+                                        <th class="d-none">#</th>
+                                        <th>ค่ายมือถือ</th>
+                                        <th>เบอร์โทรศัพท์</th><th>ราคา</th>
                                         <th>ผลรวม</th>
                                         <th  class="d-none"></th>
                                         <th>สถานะ</th>
@@ -157,15 +164,16 @@
                                 <tbody>
                                 @foreach($number as $item)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
+                                        <td  class="d-none">{{ $loop->iteration }}</td>
+                                        <td><img src="{{ url('/') }}/img/operators/logo_{{ $item->operator }}.jpg" width="50"></td>
                                         <td><h5>{{ $item->number }}</h5></td>
-                                        <td>{{ number_format($item->price,0) }}</td><td>{{ $item->operator }}</td>
+                                        <td>{{ number_format($item->price,0) }}.-</td>
                                         <td>{{ $item->total }}</td>
                                         <td class="d-none">{{$item->status}}</td>
                                         <td>
                                             <!-- ตรงนี้ต้องแนบเบอร์ ไปหน้า create ด้วย -->
                                             @if( $item->status != "Reserved")
-                                            <a href="{{ url('/order/create') }}?number={{ $item->number }}" title="View Number"><button class="btn btn-dark btn-sm"><i class="fa fa-shopping-cart" aria-hidden="true"></i> สั่งซื้อ</button></a>
+                                            <a href="{{ url('/order/create') }}?number={{ $item->number }}" title="View Number"><button class="btn btn-success btn-sm"><i class="fa fa-shopping-cart" aria-hidden="true"></i> สั่งซื้อ</button></a>
                                             @else
                                             {{$item->status}}
                                             @endif
