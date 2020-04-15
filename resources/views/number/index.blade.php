@@ -166,7 +166,7 @@
                                 @foreach($number as $item)
                                     <tr>
                                         <td  class="d-none">{{ $loop->iteration }}</td>
-                                        <td><img src="{{ url('/') }}/img/operators/logo_{{ $item->operator }}.jpg" width="50"></td>
+                                        <td><img src="{{ url('/') }}/img/operators/logo_{{ strtolower($item->operator) }}.jpg" width="50"></td>
                                         <td><h5>{{ $item->number }}</h5></td>
                                         <td>{{ number_format($item->price,0) }}.-</td>
                                         <td>{{ $item->total }}</td>
