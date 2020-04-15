@@ -4,8 +4,7 @@
     <div class="container">
     
         <div class="row mt-4">
-            
-            <div class="col-md-9">
+            <div class="col-lg-3">
                 <div class="card">
                     <div class="card-body">
                         <h4>ตัวกรองเบอร์โทรศัพท์</h4>
@@ -27,7 +26,7 @@
 
                             <div class="row">                                                   
 
-                                <div class="form-group col-lg">
+                                <div class="form-group col-lg-12">
                                     <label for="">ค่ายมือถือ</label>
                                     <select name="operator" id="operator" class="form-control" >
                                         <option value="" >ทั้งหมด</option>                                    
@@ -42,7 +41,7 @@
                                     </select>                                
                                 </div>
 
-                                <div class="form-group col-lg">
+                                <div class="form-group col-lg-12">
                                     <label for="">ผลรวมเบอร์</label>
                                     <select name="total" id="total" class="form-control" >
                                         <option value="" >ทั้งหมด</option>                                    
@@ -54,7 +53,7 @@
                                 </div>
                                 
 
-                                <div class="form-group col-lg">                                
+                                <div class="form-group col-lg-12">                                
                                     <label for="">ค้นหาจากราคา</label>
                                     <select name="price" id="price" class="form-control" >
                                         <option value="1000000" >ทุกราคา</option>                                    
@@ -64,7 +63,7 @@
                                     </select>                                  
                                 </div>
 
-                                <div class="form-group col-lg">                                
+                                <div class="form-group col-lg-12">                                
                                     <label for="">เรียงจากราคา</label>
                                     <select name="sort" id="sort" class="form-control" >
                                         <option value="asc" {{ request('sort') == 'asc' ? 'selected' : ''  }}>น้อยไปหามาก</option>
@@ -78,7 +77,7 @@
                             <div class="form-group">
                                 
                                 <label for="">ระบุตัวเลขตามตำแหน่ง</label>
-                                <div class="my-container">
+                                <div class="my-container" style="flex-direction:row; display: flex;" >
                                 @php
                                 $numbers = ["","","","","","","","","","","",""];
                                 if( is_array(request('numbers')) ){                                    
@@ -92,16 +91,19 @@
                                         $numbers[$i] =  isset($numbers[$i])? $numbers[$i] : '';
                                     @endphp
                                     @if($i==3 || $i==7) 
-                                        -<input class="number-sm dash" type="hidden"  name="numbers[]" value="-">
+                                        <div style="flex:1; padding:0 1px;"><input style="text-align: center;" align="middle" class="number-sm dash" type="text"  name="numbers[]" value="-"  readonly> </div>
                                     @else
-                                        <input class="number-sm digit"  name="numbers[]" onkeydown="" maxlength="1" value="{{ isset($numbers[$i])? $numbers[$i] : '' }}">
+                                        <div style="flex:5; padding:0 1px; "><input style="text-align: center;" align="middle" class="number-sm digit"  name="numbers[]" onkeydown="" maxlength="1" value="{{ isset($numbers[$i])? $numbers[$i] : '' }}" > </div>
                                     @endif
                                 @endfor                              
                                 </div>
                                 
                                 <style>
                                     .number-sm{
-                                        width:20px;
+                                        width:100%;
+                                    }
+                                    .dash{
+                                        border: none;
                                     }
                                 </style>
                                 <script>
@@ -146,8 +148,11 @@
                         </form>
                     </div>
                 </div>
+            </div>
+            
+            <div class="col-lg-9">                
 
-                <div class="card mt-4">
+                <div class="card">
                     <div class="card-body ">   
                         <h4>ผลการค้นหาเบอร์โทรศัพท์</h4> 
                         <div class="table-responsive mt-4">
@@ -203,13 +208,7 @@
                     </div>
                 </div>
             </div>
-            <div  class="col-md-3">
-                <div class="card">
-                    <div class="card-header">Sidebar </div>
-                    <div class="card-body ">  
-                    </div>
-                </div> 
-            </div>
+            
         </div>
     </div>
 
