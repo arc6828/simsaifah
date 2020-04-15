@@ -7,7 +7,7 @@
             <div class="col-lg-3">
                 <div class="card">
                     <div class="card-body">
-                        <h4>ตัวกรองเบอร์โทรศัพท์</h4>
+                        <h5>ตัวกรองเบอร์โทรศัพท์</h5>
                         <form method="GET" action="{{ url('/number') }}" accept-charset="UTF-8" class="" role="search">
 
                             <div class="row mt-4">    
@@ -146,6 +146,35 @@
                             <a class="btn btn-outline-primary" href="{{ url('/number') }}" >Reset</a> 
                             <button class="btn btn-primary" type="submit">Submit</button>     
                         </form>
+
+                    </div>
+                </div>
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <h5>เมนูลัด</h5>
+                        <ul>
+                            <li class=""><a href="#">เบอร์มงคลสวย เบอร์มงคลพิเศษ VIP</a></li>
+                            <li class=""><a href="#">เบอร์มงคลตอง XXX</a></li>
+                            <li class=""><a href="#">เบอร์มงคลเลขสลับ XYXY</a></li>
+                            <li class=""><a href="#">เบอร์มงคลเลขคู่ XXYY</a></li>
+                            <li class=""><a href="#">เบอร์มงคลเลขหาบ XYYX</a></li>
+                            <li class=""><a href="#">เบอร์มงคลเลขเรียง 456 / 654</a></li>
+                            <li class=""><a href="#">เบอร์มงคลเลขเรียง 789 / 987</a></li>
+                            <li class=""><a href="#">เบอร์โฟร์หน้า เลข4ตัวเหมือน</a></li>
+                            <li class=""><a href="#">เบอร์สลับ3ชุด</a></li>
+                            <li class=""><a href="#">เบอร์สามคู่</a></li>
+                            <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 1,000 บาท</a></li>
+                            <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 2,000 บาท</a></li>
+                            <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 3,000 บาท</a></li>
+                            <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 4,000 บาท</a></li>
+                            <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 5,000 บาท</a></li>
+                            <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 8,000 บาท</a></li>
+                            <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 10,000 บาท</a></li>
+                            <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 15,000 บาท</a></li>
+                            <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 20,000 บาท</a></li>
+                            <li class=""><a href="#">เบอร์มงคลราคาเกิน 20,000 บาท</a></li>
+                        </ul>
+                        
                     </div>
                 </div>
             </div>
