@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Number;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class NumberController extends Controller
 {
@@ -151,5 +152,34 @@ class NumberController extends Controller
         Number::destroy($id);
 
         return redirect('number')->with('flash_message', 'Number deleted!');
+    }
+
+    public function destroyAll()
+    {
+        //Number::delete();
+        
+        DB::statement('TRUNCATE TABLE numbers');
+
+        return redirect('number')->with('flash_message', 'Number deleted!');
+    }
+
+    public function importAll(Request $request)
+    {
+        
+        $requestData = $request->all();
+        $long_sql = trim($request['sql']);
+
+        $commands = explode(";",$long_sql);
+        foreach($commands as $sql){
+            //echo "<p>$sql<p>";
+            $sql = trim($sql);
+            if($sql != ""){
+                DB::statement($sql);
+            }
+        }
+        
+        //Number::create($requestData);
+
+        return redirect('number')->with('flash_message', 'Number added!');
     }
 }

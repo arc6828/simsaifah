@@ -183,6 +183,13 @@
 
                 <div class="card">
                     <div class="card-body ">   
+                        @if(Auth::check())
+                            @switch(Auth::user()->role)
+                                @case("admin")                                    
+                                    @include('number/import-modal')
+                                    @break
+                            @endswitch  
+                        @endif
                         <h4>ผลการค้นหาเบอร์โทรศัพท์</h4> 
                         <div class="table-responsive mt-4">
                             <table class="table table-dark table-striped  table-hover">

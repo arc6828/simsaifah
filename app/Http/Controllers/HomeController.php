@@ -33,10 +33,12 @@ class HomeController extends Controller
         
 
         if(Auth::user()->role == "admin"){
-            return redirect("/order");
+            return redirect("order");
         }else if(Auth::user()->role == "guest"){
-            return redirect("/number");
+            return redirect("number");
         }
+
+        return redirect("number");
     
     }
 }

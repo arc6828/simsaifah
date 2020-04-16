@@ -36,4 +36,6 @@ Route::group(['middleware' => ['auth']], function()
 Route::group(['middleware' => ['auth','role:admin']], function()
 {        
     Route::resource('bank', 'BankController');
+    Route::delete('number','NumberController@destroyAll');
+    Route::post('number/import','NumberController@importAll');
 });
