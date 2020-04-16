@@ -37,14 +37,14 @@ class ForecastController extends Controller
             $set7 = $array[7] . $array[8];
             $set8 = $array[8] . $array[9];
 
-            echo " " . $set1;
-            echo " " . $set2;
-            echo " " . $set3;
-            echo " " . $set4;
-            echo " " . $set5;
-            echo " " . $set6;
-            echo " " . $set7;
-            echo " " . $set8;
+            //echo " " . $set1;
+            //echo " " . $set2;
+            //echo " " . $set3;
+            //echo " " . $set4;
+            //echo " " . $set5;
+            //echo " " . $set6;
+            //echo " " . $set7;
+            //echo " " . $set8;
 
             //strpos
             //$array = array("color" => array("blue", "red", "green"),
@@ -160,20 +160,20 @@ class ForecastController extends Controller
                 $grade8 = 0;
             }
 
-            echo "g1" . $grade1;
-            echo "g2" . $grade2;
-            echo "g3" . $grade3;
-            echo "g4" . $grade4;
-            echo "g5" . $grade5;
-            echo "g6" . $grade6;
-            echo "g7" . $grade7;
-            echo "g8" . $grade8;
+            //echo "g1" . $grade1;
+            //echo "g2" . $grade2;
+            //echo "g3" . $grade3;
+            //echo "g4" . $grade4;
+            //echo "g5" . $grade5;
+            //echo "g6" . $grade6;
+            //echo "g7" . $grade7;
+            //echo "g8" . $grade8;
 
             $grade = $grade1 + $grade2 + $grade3 + $grade4 + $grade5 + $grade6 + $grade7 + $grade8;
 
             $avggrade = $grade/8;
 
-            echo "avg" . $avggrade;
+            //echo "avg" . $avggrade;
 
             if ($avggrade > 0.95){
                 $result = "A+";
