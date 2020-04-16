@@ -22,6 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::resource('number', 'NumberController')->only(['index']);
+Route::resource('forecast', 'ForecastController');
 
 Route::group(['middleware' => ['auth']], function()
 {    
@@ -30,7 +31,6 @@ Route::group(['middleware' => ['auth']], function()
     Route::resource('payment', 'PaymentController');
     Route::resource('profiles', 'ProfilesController');
     Route::resource('address', 'AddressController');
-    Route::resource('forecast', 'ForecastController');
 });
 
 Route::group(['middleware' => ['auth','role:admin']], function()
