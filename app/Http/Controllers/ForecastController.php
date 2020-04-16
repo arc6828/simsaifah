@@ -23,6 +23,99 @@ class ForecastController extends Controller
         //$arr1 = str_split($str);
 
         //$length = count($array);
+        return $this->forecast($tel);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function create()
+    {
+        return view('forecast.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function store(Request $request)
+    {
+        
+        $requestData = $request->all();
+        
+        Forecast::create($requestData);
+
+        return redirect('forecast')->with('flash_message', 'Forecast added!');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     *
+     * @return \Illuminate\View\View
+     */
+    public function show($id)
+    {
+        $forecast = Forecast::findOrFail($id);
+
+        return view('forecast.show', compact('forecast'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     *
+     * @return \Illuminate\View\View
+     */
+    public function edit($id)
+    {
+        $forecast = Forecast::findOrFail($id);
+
+        return view('forecast.edit', compact('forecast'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param  int  $id
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function update(Request $request, $id)
+    {
+        
+        $requestData = $request->all();
+        
+        $forecast = Forecast::findOrFail($id);
+        $forecast->update($requestData);
+
+        return redirect('forecast')->with('flash_message', 'Forecast updated!');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function destroy($id)
+    {
+        Forecast::destroy($id);
+
+        return redirect('forecast')->with('flash_message', 'Forecast deleted!');
+    }
+
+    public function forecast($tel)
+    {
         if(empty($tel)){
             $forecast = "";
         } else {
@@ -198,93 +291,5 @@ class ForecastController extends Controller
         }
 
         return view('forecast.index', compact('forecast'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function create()
-    {
-        return view('forecast.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function store(Request $request)
-    {
-        
-        $requestData = $request->all();
-        
-        Forecast::create($requestData);
-
-        return redirect('forecast')->with('flash_message', 'Forecast added!');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     *
-     * @return \Illuminate\View\View
-     */
-    public function show($id)
-    {
-        $forecast = Forecast::findOrFail($id);
-
-        return view('forecast.show', compact('forecast'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     *
-     * @return \Illuminate\View\View
-     */
-    public function edit($id)
-    {
-        $forecast = Forecast::findOrFail($id);
-
-        return view('forecast.edit', compact('forecast'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param  int  $id
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function update(Request $request, $id)
-    {
-        
-        $requestData = $request->all();
-        
-        $forecast = Forecast::findOrFail($id);
-        $forecast->update($requestData);
-
-        return redirect('forecast')->with('flash_message', 'Forecast updated!');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function destroy($id)
-    {
-        Forecast::destroy($id);
-
-        return redirect('forecast')->with('flash_message', 'Forecast deleted!');
     }
 }
