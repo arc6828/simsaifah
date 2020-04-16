@@ -55,7 +55,7 @@
 </div>
 <div class="form-group {{ $errors->has('address_id') ? 'has-error' : ''}}">
     <label for="address_id" class="control-label">{{ 'ที่อยู่จัดส่ง' }}</label> 
-    <a href="{{ url('/address/create') }}" class="ml-4 btn btn-success btn-sm" title="Add New Address">
+    <a href="{{ url('/address/create') }}" class="ml-4 btn btn-danger btn-sm" title="Add New Address">
         <i class="fa fa-plus" aria-hidden="true"></i> เพิ่มที่อยู่จัดส่ง
     </a>
     <select class="form-control" name="address_id" id="address_id" required >
@@ -85,5 +85,5 @@
     {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group">
-    <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'ยืนยันการจ่ายเงิน' }}">
+    <input class="btn btn-success" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'ยืนยันการจ่ายเงิน' }}">
 </div>

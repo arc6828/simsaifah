@@ -2,21 +2,21 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-
-            <div class="col-md-12">
-                <div class="card mb-4">
-                    <div class="card-header">ตัวกรองเบอร์โทรศัพท์</div>
+    
+        <div class="row mt-4">
+            <div class="col-lg-3">
+                <div class="card">
                     <div class="card-body">
+                        <h5>ตัวกรองเบอร์โทรศัพท์</h5>
                         <form method="GET" action="{{ url('/number') }}" accept-charset="UTF-8" class="" role="search">
 
-                            <div class="row">    
+                            <div class="row mt-4">    
                                 <div class="form-group col-lg">
                                     <label for="">ค้นหาเบอร์</label>
                                     <div class="input-group">
                                         <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}" autocomplete="off">
                                         <span class="input-group-append">
-                                            <button class="btn btn-secondary" type="submit">
+                                            <button class="btn btn-primary" type="submit">
                                                 <i class="fa fa-search"></i>
                                             </button>
                                         </span>
@@ -26,17 +26,22 @@
 
                             <div class="row">                                                   
 
-                                <div class="form-group col-lg">
+                                <div class="form-group col-lg-12">
                                     <label for="">ค่ายมือถือ</label>
                                     <select name="operator" id="operator" class="form-control" >
                                         <option value="" >ทั้งหมด</option>                                    
                                         @foreach($operator_array as $op)
-                                        <option value="{{ $op->operator }}" {{ request('operator') == $op->operator ? 'selected' : ''  }}>{{ $op->operator }} ({{ number_format($op->count,0) }} รายการ)</option>
+                                        <option 
+                                            value="{{ $op->operator }}" 
+                                            style="background-image:url({{ url('/') }}/img/operators/logo_{{ $op->operator }}.jpg); background-repeat: no-repeat, repeat;" 
+                                            {{ request('operator') == $op->operator ? 'selected' : ''  }} >
+                                            {{ $op->operator }} ({{ number_format($op->count,0) }} รายการ)
+                                        </option>
                                         @endforeach                                    
                                     </select>                                
                                 </div>
 
-                                <div class="form-group col-lg">
+                                <div class="form-group col-lg-12">
                                     <label for="">ผลรวมเบอร์</label>
                                     <select name="total" id="total" class="form-control" >
                                         <option value="" >ทั้งหมด</option>                                    
@@ -48,7 +53,7 @@
                                 </div>
                                 
 
-                                <div class="form-group col-lg">                                
+                                <div class="form-group col-lg-12">                                
                                     <label for="">ค้นหาจากราคา</label>
                                     <select name="price" id="price" class="form-control" >
                                         <option value="1000000" >ทุกราคา</option>                                    
@@ -58,7 +63,7 @@
                                     </select>                                  
                                 </div>
 
-                                <div class="form-group col-lg">                                
+                                <div class="form-group col-lg-12">                                
                                     <label for="">เรียงจากราคา</label>
                                     <select name="sort" id="sort" class="form-control" >
                                         <option value="asc" {{ request('sort') == 'asc' ? 'selected' : ''  }}>น้อยไปหามาก</option>
@@ -72,7 +77,7 @@
                             <div class="form-group">
                                 
                                 <label for="">ระบุตัวเลขตามตำแหน่ง</label>
-                                <div class="my-container">
+                                <div class="my-container" style="flex-direction:row; display: flex;" >
                                 @php
                                 $numbers = ["","","","","","","","","","","",""];
                                 if( is_array(request('numbers')) ){                                    
@@ -86,16 +91,19 @@
                                         $numbers[$i] =  isset($numbers[$i])? $numbers[$i] : '';
                                     @endphp
                                     @if($i==3 || $i==7) 
-                                        -<input class="number-sm dash" type="hidden"  name="numbers[]" value="-">
+                                        <div style="flex:1; padding:0 1px;"><input style="text-align: center;" align="middle" class="number-sm dash" type="text"  name="numbers[]" value="-"  readonly> </div>
                                     @else
-                                        <input class="number-sm digit"  name="numbers[]" onkeydown="" maxlength="1" value="{{ isset($numbers[$i])? $numbers[$i] : '' }}">
+                                        <div style="flex:5; padding:0 1px; "><input style="text-align: center;" align="middle" class="number-sm digit"  name="numbers[]" onkeydown="" maxlength="1" value="{{ isset($numbers[$i])? $numbers[$i] : '' }}" > </div>
                                     @endif
                                 @endfor                              
                                 </div>
                                 
                                 <style>
                                     .number-sm{
-                                        width:20px;
+                                        width:100%;
+                                    }
+                                    .dash{
+                                        border: none;
                                     }
                                 </style>
                                 <script>
@@ -135,21 +143,55 @@
 
                             
 
-                            <a class="btn btn-outline-success" href="{{ url('/number') }}" >Reset</a> 
-                            <button class="btn btn-success" type="submit">Submit</button>     
+                            <a class="btn btn-outline-primary" href="{{ url('/number') }}" >Reset</a> 
+                            <button class="btn btn-primary" type="submit">Submit</button>     
                         </form>
+
                     </div>
                 </div>
+                <div class="card mt-4 mb-4">
+                    <div class="card-body">
+                        <h5>เมนูลัด</h5>
+                        <ul>
+                            <li class=""><a href="#">เบอร์มงคลสวย เบอร์มงคลพิเศษ VIP</a></li>
+                            <li class=""><a href="#">เบอร์มงคลตอง XXX</a></li>
+                            <li class=""><a href="#">เบอร์มงคลเลขสลับ XYXY</a></li>
+                            <li class=""><a href="#">เบอร์มงคลเลขคู่ XXYY</a></li>
+                            <li class=""><a href="#">เบอร์มงคลเลขหาบ XYYX</a></li>
+                            <li class=""><a href="#">เบอร์มงคลเลขเรียง 456 / 654</a></li>
+                            <li class=""><a href="#">เบอร์มงคลเลขเรียง 789 / 987</a></li>
+                            <li class=""><a href="#">เบอร์โฟร์หน้า เลข4ตัวเหมือน</a></li>
+                            <li class=""><a href="#">เบอร์สลับ3ชุด</a></li>
+                            <li class=""><a href="#">เบอร์สามคู่</a></li>
+                            <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 1,000 บาท</a></li>
+                            <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 2,000 บาท</a></li>
+                            <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 3,000 บาท</a></li>
+                            <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 4,000 บาท</a></li>
+                            <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 5,000 บาท</a></li>
+                            <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 8,000 บาท</a></li>
+                            <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 10,000 บาท</a></li>
+                            <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 15,000 บาท</a></li>
+                            <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 20,000 บาท</a></li>
+                            <li class=""><a href="#">เบอร์มงคลราคาเกิน 20,000 บาท</a></li>
+                        </ul>
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-9">                
 
                 <div class="card">
-                    <div class="card-header">ผลการค้นหาเบอร์โทรศัพท์</div>
-                    <div class="card-body">    
-                        <div class="table-responsive">
-                            <table class="table">
+                    <div class="card-body ">   
+                        <h4>ผลการค้นหาเบอร์โทรศัพท์</h4> 
+                        <div class="table-responsive mt-4">
+                            <table class="table table-dark table-striped  table-hover">
                                 <thead>
-                                    <tr>
-                                        <th>#</th><th>เบอร์โทรศัพท์</th><th>ราคา</th><th>ค่ายมือถือ</th>
-                                        <th>ผลรวม</th>
+                                    <tr >
+                                        <th class="d-none">#</th>
+                                        <th class="d-lg-block d-md-none d-sm-none d-none text-center">ค่ายมือถือ</th>
+                                        <th class="text-center">เบอร์โทรศัพท์</th>
+                                        <th>ราคา</th>
                                         <th  class="d-none"></th>
                                         <th>สถานะ</th>
                                     </tr>
@@ -157,15 +199,27 @@
                                 <tbody>
                                 @foreach($number as $item)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td><h5>{{ $item->number }}</h5></td>
-                                        <td>{{ number_format($item->price,0) }}</td><td>{{ $item->operator }}</td>
-                                        <td>{{ $item->total }}</td>
+                                        <td  class="d-none">{{ $loop->iteration }}</td>
+                                        <td  class="d-lg-block d-md-none d-sm-none d-none  text-center">
+                                            <img class="align-self-center" src="{{ url('/') }}/img/operators/logo_{{ strtolower($item->operator) }}.jpg" width="100%" style="max-width:80px;">
+                                        </td>
+                                        <td class="text-center">
+                                            
+                                            
+                                            
+                                            
+                                            <h5 class="mt-0">{{ $item->number }}</h5>
+                                            <div><strong>ผลรวมเบอร์ : {{ $item->total }}</strong></div>
+                                            <img class="d-lg-none" src="{{ url('/') }}/img/operators/logo_{{ strtolower($item->operator) }}.jpg" width="100%" style="max-width:50px;">
+                                            
+                                            
+                                        </td>
+                                        <td >{{ number_format($item->price,0) }}.-</td>
                                         <td class="d-none">{{$item->status}}</td>
                                         <td>
                                             <!-- ตรงนี้ต้องแนบเบอร์ ไปหน้า create ด้วย -->
                                             @if( $item->status != "Reserved")
-                                            <a href="{{ url('/order/create') }}?number={{ $item->number }}" title="View Number"><button class="btn btn-info btn-sm"><i class="fa fa-shopping-cart" aria-hidden="true"></i> สั่งซื้อ</button></a>
+                                            <a href="{{ url('/order/create') }}?number={{ $item->number }}" title="View Number"><button class="btn btn-success btn-sm"><i class="fa fa-shopping-cart" aria-hidden="true"></i> สั่งซื้อ</button></a>
                                             @else
                                             {{$item->status}}
                                             @endif
@@ -182,7 +236,7 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                            <div class="pagination-wrapper"> {!! $number->appends([
+                            <div class="pagination-wrapper ">{!! $number->appends([
                                 'search' => Request::get('search'),
                                 'operator' => Request::get('operator'),
                                 'total' => Request::get('total'),
@@ -191,11 +245,10 @@
                                 'numbers' => $numbers,
                             ])->render() !!} </div>
                         </div>
-                        
-                        
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
 
