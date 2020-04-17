@@ -39,3 +39,4 @@ Route::group(['middleware' => ['auth','role:admin']], function()
     Route::delete('number','NumberController@destroyAll');
     Route::post('number/import','NumberController@importAll');
 });
+Route::resource('forecast-meaning', 'ForecastMeaningController');

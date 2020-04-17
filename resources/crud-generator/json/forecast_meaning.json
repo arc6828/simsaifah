@@ -1,0 +1,16 @@
+{
+    "fields": [
+        {
+            "name": "number",
+            "type": "string"
+        },
+        {
+            "name": "content",
+            "type": "text"
+        },
+        {
+            "name": "position",
+            "type": "string"
+        }
+    ]
+}
