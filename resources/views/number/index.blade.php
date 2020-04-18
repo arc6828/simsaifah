@@ -208,7 +208,7 @@
                                     <tr>
                                         <td  class="d-none">{{ $loop->iteration }}</td>
                                         <td  class="d-lg-block d-md-none d-sm-none d-none  text-center">
-                                            <img class="align-self-center" src="{{ url('/') }}/img/operators/logo_{{ strtolower($item->operator) }}.jpg" width="100%" style="max-width:80px;">
+                                            <img class="align-self-center img-thumbnail" src="{{ url('/') }}/img/operators/logo_{{ strtolower($item->operator) }}.jpg" width="100%" style="max-width:80px;">
                                         </td>
                                         <td class="text-center">
                                             
@@ -217,7 +217,7 @@
                                             
                                             <h5 class="mt-0">{{ $item->number }}</h5>
                                             <div><strong>ผลรวมเบอร์ : {{ $item->total }}</strong></div>
-                                            <img class="d-lg-none" src="{{ url('/') }}/img/operators/logo_{{ strtolower($item->operator) }}.jpg" width="100%" style="max-width:50px;">
+                                            <img class="d-lg-none img-thumbnail" src="{{ url('/') }}/img/operators/logo_{{ strtolower($item->operator) }}.jpg" width="100%" style="max-width:50px;">
                                             
                                             
                                         </td>
