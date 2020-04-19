@@ -16,22 +16,16 @@
                                     <input type="text" class="form-control" name="tel" placeholder="" value="{{ request('tel') }}" autocomplete="off" pattern="[0-9]{10}">
                                 </div>
                             </div>
-                            <div class="form-group col-lg-2">
-                                <label for="">วันที่ (วันที่ เดือน ปี)</label>
+                            <div class="form-group col-lg-3">
+                                <label for="">วันที่ (วันที่/เดือน/ปี)</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="date" placeholder="" value="{{ request('date') }}" autocomplete="off">
+                                    <input type="date" class="form-control" name="date" placeholder="" value="{{ request('date') }}" autocomplete="off">
                                 </div>
                             </div>
-                            <div class="form-group col-lg-2">
-                                <label for="">เวลา (ชั่วโมง)</label>
+                            <div class="form-group col-lg-3">
+                                <label for="">เวลา (ชั่วโมง:นาที)</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="hour" placeholder="" value="{{ request('hour') }}" autocomplete="off">
-                                </div>
-                            </div>
-                            <div class="form-group col-lg-2">
-                                <label for="">เวลา (นาที)</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="minute" placeholder="" value="{{ request('minute') }}" autocomplete="off">
+                                    <input type="time" class="form-control" name="time" placeholder="" value="{{ request('time') }}" autocomplete="off">
                                 </div>
                             </div>
                         </div>
@@ -50,14 +44,16 @@
                         <div class="row">
                         <div class="form-group col-lg">
                                 <label for="">คำทำนาย</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="predict" placeholder="" value="{{ request('predict') }}" autocomplete="off">
-                                </div>
+                                {{ $mean1->content }}
+                                {{ $mean2->content }}
+                                {{ $mean3 }}
+                                {{ $mean4->content }}
                             </div>
                         </div>
                         <div class="row">
                         <div class="form-group col-lg">
                                 <label for="">Radar Chart</label>
+                                <canvas id="myChart" style="max-width: 600px; max-height : 600px;"></canvas>
                             </div>
                         </div>
                         </form>
@@ -66,6 +62,54 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
+
+<script>
+var ctx = document.getElementById('myChart');
+var jArray= <?php echo json_encode($plotchart); ?>;
+var myChart = new Chart(ctx, {
+    type: 'radar',
+    data: {
+        labels: ['ความรัก', 'เสี่ยงโชค', 'ครอบครัว', 'สังคม', 'การเงิน', 'สุขภาพ'],
+        datasets: [{
+            label: 'กราฟคะแนนคำทำนาย',
+            //data: [12, 19, 3, 5, 2, 3],
+            data: jArray,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
 
 @endsection
 
