@@ -46,7 +46,7 @@
                                 <label for="">คำทำนาย</label>
                                 {{ $mean1->content }}
                                 {{ $mean2->content }}
-                                {{ $mean3 }}
+                                {{ $mean3->content }}
                                 {{ $mean4->content }}
                             </div>
                         </div>
