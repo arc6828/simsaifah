@@ -339,10 +339,13 @@ class ForecastController extends Controller
             $key1 = date('w', $timestamp);
             $day = date('D', $timestamp);
         }
-        
+        $key1=$key1+1;
+        //echo "<br>key1 : " . $key1;
+
         if ($hour == null && $minute == null){
-            $key2 = $key1;
-            //echo "key2" . $key2;
+            $key2 = intval($key1);
+            //echo "<br>key2 : " . $key2;
+            
         } else {
             //$timearr = explode(":",$time);
             //$hour = $timearr[0];
@@ -367,30 +370,32 @@ class ForecastController extends Controller
             $rowtrue = $row + $offset;
             //echo "rowtrue" . $rowtrue;
             //exit;
-            $key2 = $grandtable[$rowtrue][$key1];
+            $key2 = $grandtable[$rowtrue][$key1-1];
             //echo "key2" . $key2;
         }
-
+        
+        //echo "<br>key2 : " . $key2;
+        
         //key1
-        if ($key1 == 0) {
+        if ($key1 == 1) {
             $arrmaha1 = array(1,2,3,4,7,5,8,6);
         }
-        if ($key1 == 1) {
+        if ($key1 == 2) {
             $arrmaha1 = array(2,3,4,7,5,8,6,1);
         }
-        if ($key1 == 2) {
+        if ($key1 == 3) {
             $arrmaha1 = array(3,4,7,5,8,6,1,2);
         }
-        if ($key1 == 3) {
+        if ($key1 == 4) {
             $arrmaha1 = array(4,7,5,8,6,1,2,3);
         }
-        if ($key1 == 4) {
+        if ($key1 == 5) {
             $arrmaha1 = array(5,8,6,1,2,3,4,7);
         }
-        if ($key1 == 5) {
+        if ($key1 == 6) {
             $arrmaha1 = array(6,1,2,3,4,7,5,8);
         }
-        if ($key1 == 6) {
+        if ($key1 == 7) {
             $arrmaha1 = array(7,5,8,6,1,2,3,4);
         }
 
@@ -779,7 +784,14 @@ class ForecastController extends Controller
         $commu_true = $commu + $middle;
         $money_true = $money + $middle;
         $health_true = $health + $middle;
-
+        /*
+        echo "<br> Love : " . $love_true;
+        echo "<br> Bet : " . $bet_true;
+        echo "<br> Family : " . $family_true;
+        echo "<br> commu : " . $commu_true;
+        echo "<br> money : " . $money_true;
+        echo "<br> health : " . $health_true;
+        */
         //chart
         $plotchart = array($love_true,$bet_true,$family_true,$commu_true,$money_true,$health_true);
 

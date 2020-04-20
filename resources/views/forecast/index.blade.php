@@ -206,12 +206,14 @@
                                         }]
                                     },
                                     options: {
-                                        scales: {
-                                            yAxes: [{
-                                                ticks: {
-                                                    beginAtZero: true
-                                                }
-                                            }]
+                                        scale: {
+                                            ticks: {
+                                                //beginAtZero: true
+                                                min: 0,
+                                                max: 10,
+                                                showLabelBackdrop : true,
+                                                display : false,
+                                            }
                                         }
                                     }
                                 });
