@@ -25,8 +25,8 @@
                             <div class="form-group col-lg-2">
                                 <label for="hour">เวลา (ชั่วโมง)</label>
                                 <div class="input-group">
-                                <select id="hour" name="hour" required>
-                                    <option value=""></option>
+                                <select id="hour" name="hour" class="form-control" required>
+                                    <option value="">ไม่ระบุ</option>
                                     <option value="00">00</option>
                                     <option value="01">01</option>
                                     <option value="02">02</option>
@@ -57,8 +57,8 @@
                             <div class="form-group col-lg-2">
                                 <label for="minute">เวลา (นาที)</label>
                                 <div class="input-group">
-                                <select id="minute" name="minute" required>
-                                    <option value=""></option>
+                                <select id="minute" name="minute" class="form-control" required>
+                                    <option value="">ไม่ระบุ</option>
                                     <option value="00">00</option>
                                     <option value="01">01</option>
                                     <option value="02">02</option>
