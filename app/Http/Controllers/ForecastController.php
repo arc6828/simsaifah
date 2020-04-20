@@ -27,7 +27,7 @@ class ForecastController extends Controller
         //$arr1 = str_split($str);
 
         //$length = count($array);
-        if (empty($tel && $date && $hour && $minute)) {
+        if (empty($tel) && empty($date) && empty($hour) && empty($minute)) {
             $forecast = null;
             $plotchart = null;
             $mean1 = null;
@@ -35,11 +35,11 @@ class ForecastController extends Controller
             $mean3 = null;
             $mean4 = null;
             return view('forecast.index', compact('forecast','plotchart','mean1','mean2','mean3','mean4'));
-        } else if (empty($hour && $minute)) {
+        } else if (empty($hour) && empty($minute)) {
             $hour = null;
             $minute = null;
             return $this->forecast($tel,$date,$hour,$minute);
-        } else if (empty($date && $hour && $minute)) {
+        } else if (empty($date) && empty($hour) && empty($minute)) {
             return $this->forecast2($tel);
         } else {
             return $this->forecast($tel,$date,$hour,$minute);
