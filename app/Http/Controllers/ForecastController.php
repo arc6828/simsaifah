@@ -342,19 +342,20 @@ class ForecastController extends Controller
         
         if ($hour == null && $minute == null){
             $key2 = $key1;
-            echo "key2" . $key2;
+            //echo "key2" . $key2;
         } else {
             //$timearr = explode(":",$time);
             //$hour = $timearr[0];
             //$minute = $timearr[1];
 
             $row = fmod(floor(($hour + $minute / 60) / 24*16) -4, 16);
+            $row = $row<0 ? $row+16 : $row;
             //$row2 = (floor(($hour + $minute / 60) / 24*16) -4) %16;
-            echo "row" . $row;
+            //echo "row" . $row;
             //echo "row2" . $row2;
 
             $space = 8 - fmod($row,8);
-            echo "space" . $space;
+            //echo "space" . $space;
 
             $offset = fmod(floor($minute / 60 * 16) , 8);
 
@@ -362,12 +363,12 @@ class ForecastController extends Controller
                 $offset = fmod(floor($minute / 60 * 16) , 8) - 7;
             }
 
-            echo "offset" . $offset;
+            //echo "offset" . $offset;
             $rowtrue = $row + $offset;
-            echo "rowtrue" . $rowtrue;
-
+            //echo "rowtrue" . $rowtrue;
+            //exit;
             $key2 = $grandtable[$rowtrue][$key1];
-            echo "key2" . $key2;
+            //echo "key2" . $key2;
         }
 
         //key1
