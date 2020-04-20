@@ -27,7 +27,7 @@ class ForecastController extends Controller
         //$arr1 = str_split($str);
 
         //$length = count($array);
-        if (empty($tel && $date && $hour && $minute)){
+        if (empty($tel && $date && $hour && $minute)) {
             $forecast = null;
             $plotchart = null;
             $mean1 = null;
@@ -35,6 +35,12 @@ class ForecastController extends Controller
             $mean3 = null;
             $mean4 = null;
             return view('forecast.index', compact('forecast','plotchart','mean1','mean2','mean3','mean4'));
+        } else if (empty($hour && $minute)) {
+            $hour = null;
+            $minute = null;
+            return $this->forecast($tel,$date,$hour,$minute);
+        } else if (empty($date && $hour && $minute)) {
+            return $this->forecast2($tel);
         } else {
             return $this->forecast($tel,$date,$hour,$minute);
         }
@@ -323,9 +329,20 @@ class ForecastController extends Controller
                             );
 
         //algorithm2
-        if (empty($hour && $minute)){
-            $minute = null;
-            $hour = null;
+
+        if (empty($date)){
+            $day = null;
+            $noday = null;
+            $key1 = null;
+        } else {
+            $timestamp = strtotime($date);
+            $key1 = date('w', $timestamp);
+            $day = date('D', $timestamp);
+        }
+        
+        if ($hour == null && $minute == null){
+            $key2 = $key1;
+            echo "key2" . $key2;
         } else {
             //$timearr = explode(":",$time);
             //$hour = $timearr[0];
@@ -348,19 +365,10 @@ class ForecastController extends Controller
             echo "offset" . $offset;
             $rowtrue = $row + $offset;
             echo "rowtrue" . $rowtrue;
-        }
 
-        if (empty($date)){
-            $day = null;
-            $noday = null;
-        } else {
-            $timestamp = strtotime($date);
-            $key1 = date('w', $timestamp);
-            $day = date('D', $timestamp);
+            $key2 = $grandtable[$rowtrue][$key1];
+            echo "key2" . $key2;
         }
-
-        $key2 = $grandtable[$rowtrue][$key1];
-        echo "key2" . $key2;
 
         //key1
         if ($key1 == 0) {
@@ -801,5 +809,209 @@ class ForecastController extends Controller
         //$meaning = $mean1 . $mean2 . $mean3 . $mean4;
 
         return view('forecast.index', compact('forecast','plotchart','mean1','mean2','mean3','mean4'));
+    }
+
+    public function forecast2($tel){
+        if(empty($tel)){
+            $forecast = "";
+        } else {
+            $array = [];
+            $array = str_split($tel);
+            $set1 = $array[1] . $array[2];
+            $set2 = $array[2] . $array[3];
+            $set3 = $array[3] . $array[4];
+            $set4 = $array[4] . $array[5];
+            $set5 = $array[5] . $array[6];
+            $set6 = $array[6] . $array[7];
+            $set7 = $array[7] . $array[8];
+            $set8 = $array[8] . $array[9];
+
+            //echo " " . $set1;
+            //echo " " . $set2;
+            //echo " " . $set3;
+            //echo " " . $set4;
+            //echo " " . $set5;
+            //echo " " . $set6;
+            //echo " " . $set7;
+            //echo " " . $set8;
+
+            //strpos
+            //$array = array("color" => array("blue", "red", "green"),
+                       //"size"  => array("small", "medium", "large"));
+
+            $goodarr = array("14","15","16","19","22","23","24","26","28","29","32","35","36","39","41","42","44","45",
+            "46","49","51","53","54","55","56","59","61","62","63","64","65","66","69","78","79","82","87","89","91",
+            "92","93","94","95","96","97","98","99");
+            
+            $medarr = array("33","47","74");
+
+            $badarr = array("00","01","02","03","04","05","06","07","08","09","10","11","12","13","17","18","20","21",
+            "25","27","30","31","34","37","38","40","43","48","50","52","57","58","60","67","68","70",
+            "71","72","73","75","76","77","80","81","83","84","85","86","88","90");
+
+            //good
+            if (in_array($set1, $goodarr))
+            {
+                $grade1 = 1;
+            }
+            if (in_array($set2, $goodarr))
+            {
+                $grade2 = 1;
+            }
+            if (in_array($set3, $goodarr))
+            {
+                $grade3 = 1;
+            }
+            if (in_array($set4, $goodarr))
+            {
+                $grade4 = 1;
+            }
+            if (in_array($set5, $goodarr))
+            {
+                $grade5 = 1;
+            }
+            if (in_array($set6, $goodarr))
+            {
+                $grade6 = 1;
+            }
+            if (in_array($set7, $goodarr))
+            {
+                $grade7 = 1;
+            }
+            if (in_array($set8, $goodarr))
+            {
+                $grade8 = 1;
+            }
+            //med
+            if (in_array($set1, $medarr))
+            {
+                $grade1 = 0.5;
+            }
+            if (in_array($set2, $medarr))
+            {
+                $grade2 = 0.5;
+            }
+            if (in_array($set3, $medarr))
+            {
+                $grade3 = 0.5;
+            }
+            if (in_array($set4, $medarr))
+            {
+                $grade4 = 0.5;
+            }
+            if (in_array($set5, $medarr))
+            {
+                $grade5 = 0.5;
+            }
+            if (in_array($set6, $medarr))
+            {
+                $grade6 = 0.5;
+            }
+            if (in_array($set7, $medarr))
+            {
+                $grade7 = 0.5;
+            }
+            if (in_array($set8, $medarr))
+            {
+                $grade8 = 0.5;
+            }
+            //bad
+            if (in_array($set1, $badarr))
+            {
+                $grade1 = 0;
+            }
+            if (in_array($set2, $badarr))
+            {
+                $grade2 = 0;
+            }
+            if (in_array($set3, $badarr))
+            {
+                $grade3 = 0;
+            }
+            if (in_array($set4, $badarr))
+            {
+                $grade4 = 0;
+            }
+            if (in_array($set5, $badarr))
+            {
+                $grade5 = 0;
+            }
+            if (in_array($set6, $badarr))
+            {
+                $grade6 = 0;
+            }
+            if (in_array($set7, $badarr))
+            {
+                $grade7 = 0;
+            }
+            if (in_array($set8, $badarr))
+            {
+                $grade8 = 0;
+            }
+
+            //echo "g1" . $grade1;
+            //echo "g2" . $grade2;
+            //echo "g3" . $grade3;
+            //echo "g4" . $grade4;
+            //echo "g5" . $grade5;
+            //echo "g6" . $grade6;
+            //echo "g7" . $grade7;
+            //echo "g8" . $grade8;
+
+            $grade = $grade1 + $grade2 + $grade3 + $grade4 + $grade5 + $grade6 + $grade7 + $grade8;
+
+            $avggrade = $grade/8;
+
+            //echo "avg" . $avggrade;
+
+            if ($avggrade > 0.95){
+                $result = "A+";
+            }
+            else if ($avggrade > 0.75){
+                $result = "A";
+            }
+            else if ($avggrade > 0.50){
+                $result = "B";
+            }
+            else if ($avggrade > 0.20){
+                $result = "C";
+            }
+            else if ($avggrade > 0.00){
+                $result = "D";
+            }
+            else if ($avggrade = 0.00){
+                $result = "F";
+            }
+
+            $forecast = $result;
+
+            //คำทำนาย
+        $arrstr1 = intval($array[2] . $array[3]);
+        $arrstr2 = intval($array[4] . $array[5]);
+        $arrstr3 = intval($array[6] . $array[7]);
+        $arrstr4 = intval($array[8] . $array[9]);
+
+        
+
+        $mean1 = ForecastMeaning::where('number','=',$arrstr1)
+                                ->where('position','=','P23')
+                                ->first();
+
+        $mean2 = ForecastMeaning::where('number','=',$arrstr2)
+                                ->where('position','=','P45')
+                                ->first();
+
+        $mean3 = ForecastMeaning::where('number','=',$arrstr3)
+                                ->where('position','=','P67')
+                                ->first();
+
+        $mean4 = ForecastMeaning::where('number','=',$arrstr4)
+                                ->where('position','=','P89')
+                                ->first();
+
+        //$meaning = $mean1 . $mean2 . $mean3 . $mean4;
+
+        return view('forecast.index', compact('forecast','mean1','mean2','mean3','mean4'));
+        }
     }
 }

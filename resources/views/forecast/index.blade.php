@@ -13,19 +13,19 @@
                             <div class="form-group col-lg-4">
                                 <label for="">กรุณาระบุเบอร์ที่คุณต้องการทำนาย (ตัวเลข 10 หลัก)</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="tel" placeholder="" value="{{ request('tel') }}" autocomplete="off" pattern="[0-9]{10}" required>
+                                    <input type="text" class="form-control" name="tel" placeholder="" value="{{ request('tel') }}" autocomplete="off" pattern="[0-9]{10}">
                                 </div>
                             </div>
                             <div class="form-group col-lg-4">
                                 <label for="">วันที่ (วันที่/เดือน/ปี)</label>
                                 <div class="input-group">
-                                    <input type="date" class="form-control" name="date" placeholder="" value="{{ request('date') }}" autocomplete="off" required>
+                                    <input type="date" class="form-control" name="date" placeholder="" value="{{ request('date') }}" autocomplete="off">
                                 </div>
                             </div>
                             <div class="form-group col-lg-2">
                                 <label for="hour">เวลา (ชั่วโมง)</label>
                                 <div class="input-group">
-                                <select id="hour" name="hour" class="form-control" required>
+                                <select id="hour" name="hour" class="form-control">
                                     <option value="">ไม่ระบุ</option>
                                     <option value="00">00</option>
                                     <option value="01">01</option>
@@ -57,7 +57,7 @@
                             <div class="form-group col-lg-2">
                                 <label for="minute">เวลา (นาที)</label>
                                 <div class="input-group">
-                                <select id="minute" name="minute" class="form-control" required>
+                                <select id="minute" name="minute" class="form-control">
                                     <option value="">ไม่ระบุ</option>
                                     <option value="00">00</option>
                                     <option value="01">01</option>
@@ -135,10 +135,12 @@
                                 <label for="">คะแนนของเบอร์</label><br>
                                 {{ $forecast }}
                             </div>
+                            @if(isset($plotchart))
                             <div class="form-group col-lg">
                                 <label for="">Radar Chart</label>
                                 <canvas id="myChart" style="max-width: 600px; max-height : 600px;"></canvas>
                             </div>
+                            @endif
                         </div>
                         <div class="row">
                             <div class="form-group col-lg">
