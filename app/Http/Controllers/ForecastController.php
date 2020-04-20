@@ -775,15 +775,12 @@ class ForecastController extends Controller
         $plotchart = array($love_true,$bet_true,$family_true,$commu_true,$money_true,$health_true);
 
         //คำทำนาย
-        $arrstr1 = $array[2] . $array[3];
-        $arrstr2 = $array[4] . $array[5];
-        $arrstr3 = $array[6] . $array[7];
-        $arrstr4 = $array[8] . $array[9];
+        $arrstr1 = intval($array[2] . $array[3]);
+        $arrstr2 = intval($array[4] . $array[5]);
+        $arrstr3 = intval($array[6] . $array[7]);
+        $arrstr4 = intval($array[8] . $array[9]);
 
-        intval($arrstr1);
-        intval($arrstr2);
-        intval($arrstr3);
-        intval($arrstr4);
+        
 
         $mean1 = ForecastMeaning::where('number','=',$arrstr1)
                                 ->where('position','=','P23')

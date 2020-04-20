@@ -142,10 +142,10 @@
                         <div class="row">
                         <div class="form-group col-lg">
                                 <label for="">คำทำนาย</label>
-                                {{ $mean1 }}
-                                {{ $mean2 }}
-                                {{ $mean3 }}
-                                {{ $mean4 }}
+                                <p>P23 : {{ isset($mean1) ? $mean1->content : '' }}</p>
+                                <p>P45 : {{ isset($mean2) ? $mean2->content : '' }}</p>
+                                <p>P67 : {{ isset($mean3) ? $mean3->content : '' }}</p>
+                                <p>P89 : {{ isset($mean4) ? $mean4->content : '' }}</p>
                             </div>
                         </div>
                         </form>
