@@ -20,13 +20,24 @@ class ForecastController extends Controller
     {
         $tel = $request->get('tel');
         $date = $request->get('date');
-        $time = $request->get('time');
+        $hour = $request->get('hour');
+        $minute = $request->get('minute');
         //$grade = $request->get('grade');
 
         //$arr1 = str_split($str);
 
         //$length = count($array);
-        return $this->forecast($tel,$date,$time);
+        if (empty($tel && $date && $hour && $minute)){
+            $forecast = null;
+            $plotchart = null;
+            $mean1 = null;
+            $mean2 = null;
+            $mean3 = null;
+            $mean4 = null;
+            return view('forecast.index', compact('forecast','plotchart','mean1','mean2','mean3','mean4'));
+        } else {
+            return $this->forecast($tel,$date,$hour,$minute);
+        }
     }
 
     /**
@@ -117,7 +128,7 @@ class ForecastController extends Controller
         return redirect('forecast')->with('flash_message', 'Forecast deleted!');
     }
 
-    public function forecast($tel,$date,$time)
+    public function forecast($tel,$date,$hour,$minute)
     {
         if(empty($tel)){
             $forecast = "";
@@ -312,12 +323,13 @@ class ForecastController extends Controller
                             );
 
         //algorithm2
-        if (empty($time)){
+        if (empty($hour && $minute)){
             $minute = null;
+            $hour = null;
         } else {
-            $timearr = explode(":",$time);
-            $hour = $timearr[0];
-            $minute = $timearr[1];
+            //$timearr = explode(":",$time);
+            //$hour = $timearr[0];
+            //$minute = $timearr[1];
 
             $row = fmod(floor(($hour + $minute / 60) / 24*16) -4, 16);
             //$row2 = (floor(($hour + $minute / 60) / 24*16) -4) %16;
@@ -763,10 +775,15 @@ class ForecastController extends Controller
         $plotchart = array($love_true,$bet_true,$family_true,$commu_true,$money_true,$health_true);
 
         //คำทำนาย
-        $arrstr1 = (int)$array[2] . (int)$array[3];
-        $arrstr2 = (int)$array[4] . (int)$array[5];
-        $arrstr3 = (int)$array[6] . (int)$array[7];
-        $arrstr4 = (int)$array[8] . (int)$array[9];
+        $arrstr1 = $array[2] . $array[3];
+        $arrstr2 = $array[4] . $array[5];
+        $arrstr3 = $array[6] . $array[7];
+        $arrstr4 = $array[8] . $array[9];
+
+        intval($arrstr1);
+        intval($arrstr2);
+        intval($arrstr3);
+        intval($arrstr4);
 
         $mean1 = ForecastMeaning::where('number','=',$arrstr1)
                                 ->where('position','=','P23')
