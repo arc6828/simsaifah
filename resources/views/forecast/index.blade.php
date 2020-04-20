@@ -129,6 +129,7 @@
                                 <button class="btn btn-success" type="submit">ทำนายเบอร์</button>
                             </div>
                         </div>
+                        @if(isset($forecast))
                         <div class="row">
                             <div class="form-group col-lg">
                                 <label for="">คะแนนของเบอร์</label><br>
@@ -140,7 +141,7 @@
                             </div>
                         </div>
                         <div class="row">
-                        <div class="form-group col-lg">
+                            <div class="form-group col-lg">
                                 <label for="">คำทำนาย</label>
                                 <p>P23 : {{ isset($mean1) ? $mean1->content : '' }}</p>
                                 <p>P45 : {{ isset($mean2) ? $mean2->content : '' }}</p>
@@ -148,6 +149,7 @@
                                 <p>P89 : {{ isset($mean4) ? $mean4->content : '' }}</p>
                             </div>
                         </div>
+                        @endif
                         </form>
                     </div>
                 </div>
