@@ -35,9 +35,9 @@ class ForecastController extends Controller
             $mean3 = null;
             $mean4 = null;
             return view('forecast.index', compact('forecast','plotchart','mean1','mean2','mean3','mean4'));
-        }  else if (empty($date) && empty($hour) && empty($minute)) {
+        } else if (empty($date) && empty($hour) && empty($minute)) {
             return $this->forecast2($tel);
-        }else if (empty($hour) && empty($minute)) {
+        } else if (empty($hour) && empty($minute)) {
             $hour = null;
             $minute = null;
             return $this->forecast($tel,$date,$hour,$minute);
@@ -1009,9 +1009,11 @@ class ForecastController extends Controller
                                 ->where('position','=','P89')
                                 ->first();
 
+        $plotchart = array(0,0,0,0,0,0);
+
         //$meaning = $mean1 . $mean2 . $mean3 . $mean4;
 
-        return view('forecast.index', compact('forecast','mean1','mean2','mean3','mean4'));
+        return view('forecast.index', compact('forecast','plotchart','mean1','mean2','mean3','mean4'));
         }
     }
 }
