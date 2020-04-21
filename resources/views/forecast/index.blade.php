@@ -6,8 +6,8 @@
 
             <div class="col-md-12">
                 <div class="card mb-4">
-                    <div class="card-header">ทำนายเบอร์</div>
                     <div class="card-body">
+                        <h4 class="mb-4">ทำนายเบอร์</h4> 
                         <form method="GET" action="{{ url('/forecast') }}" accept-charset="UTF-8" class="" role="search">
                             <div class="row">
                                 <div class="form-group col-lg-4">
@@ -138,11 +138,10 @@
                         </form>
                     </div>
                 </div>
-
+                @if(isset($forecast))
                 <div class="card mb-4">
-                    <div class="card-header">ผลลัพธ์ทำนายเบอร์</div>
-                    <div class="card-body">
-                        @if(isset($forecast))
+                    <div class="card-body">         
+                        <h4 class="mb-4">ผลลัพธ์ทำนายเบอร์</h4>                
                         <div class="row">
                             <div class="form-group col-lg">                                
                                 <div class="text-center mt-4 d-none">
@@ -164,9 +163,36 @@
                         
                             
                             @if(isset($plotchart))
-                            <div class="form-group col-lg">
-                                <label for="">Radar Chart</label>
+                            <div class="form-group col-lg text-center">
                                 <canvas id="myChart" style="max-width: 600px; max-height : 600px;"></canvas>
+                                
+                                <div class="mt-4"><label >เบอร์นี้ส่งเสริมให้ผู้ที่ใช้เบอร์ {{ request('tel') }} <br>และเกิดวันที่ {{ request('date') }}   เวลา {{ request('hour') }}:{{ request('minute') }} น. ในด้านต่อไปนี้</label></div>                                
+                                <table class="table table-sm text-center table-bordered">
+                                    <tr>
+                                        <th>ความรัก</th>
+                                        <th>เสี่ยงโชค</th>
+                                        <th>ครอบครัว</th>
+                                        <th>สังคม</th>
+                                        <th>การเงิน</th>
+                                        <th>สุขภาพ</th>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ $plotchart[0] * 10 }}% </td>
+                                        <td>{{ $plotchart[1] * 10 }}% </td>
+                                        <td>{{ $plotchart[2] * 10 }}% </td>
+                                        <td>{{ $plotchart[3] * 10 }}% </td>
+                                        <td>{{ $plotchart[4] * 10 }}% </td>
+                                        <td>{{ $plotchart[5] * 10 }}% </td>
+                                    </tr>
+                                </table>
+                                <ul class="d-none">
+                                    <li>ความรัก : {{ $plotchart[0] * 10 }}%</li>
+                                    <li>เสี่ยงโชค : {{ $plotchart[1] * 10 }}%</li>
+                                    <li>ครอบครัว : {{ $plotchart[2] * 10 }}%</li>
+                                    <li>สังคม : {{ $plotchart[3] * 10 }}%</li>
+                                    <li>การเงิน : {{ $plotchart[4] * 10 }}%</li>
+                                    <li>สุขภาพ : {{ $plotchart[5] * 10 }}%</li>
+                                </ul>
                             </div>
                             
                             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
@@ -218,12 +244,13 @@
                                     }
                                 });
                             </script>
-
+                           
                             @endif
                         </div>
-                        @endif
                     </div>
                 </div>
+                @endif
+
             </div>
         </div>
     </div>
