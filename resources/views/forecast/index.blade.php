@@ -11,19 +11,19 @@
                         <form method="GET" action="{{ url('/forecast') }}" accept-charset="UTF-8" class="" role="search">
                             <div class="row">
                                 <div class="form-group col-lg-4">
-                                    <label for="">กรุณาระบุเบอร์ที่คุณต้องการทำนาย (ตัวเลข 10 หลัก)</label>
+                                    <label for="">กรุณาระบุเบอร์ที่ต้องการทำนาย (ตัวเลข 10 หลัก) <span class="text-danger">*</span></label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="tel" placeholder="" value="{{ request('tel') }}" autocomplete="off" pattern="[0-9]{10}">
+                                        <input type="text" class="form-control" name="tel" placeholder="" value="{{ request('tel') }}" autocomplete="off" pattern="[0-9]{10}" required>
                                     </div>
                                 </div>
                                 <div class="form-group col-lg-4">
-                                    <label for="">วันที่ (วันที่/เดือน/ปี)</label>
+                                    <label for="">วันที่เกิด (วันที่/เดือน/ปี)</label>
                                     <div class="input-group">
                                         <input type="date" class="form-control" name="date" placeholder="" value="{{ request('date') }}" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="form-group col-lg-2">
-                                    <label for="hour">เวลา (ชั่วโมง)</label>
+                                    <label for="hour">เวลาเกิด (ชั่วโมง)</label>
                                     <div class="input-group">
                                     <select id="hour" name="hour" class="form-control">
                                         <option value="">ไม่ระบุ</option>
@@ -58,7 +58,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-lg-2">
-                                    <label for="minute">เวลา (นาที)</label>
+                                    <label for="minute">เวลาเกิด (นาที)</label>
                                     <div class="input-group">
                                     <select id="minute" name="minute" class="form-control">
                                         <option value="">ไม่ระบุ</option>
@@ -166,8 +166,8 @@
                             <div class="form-group col-lg text-center">
                                 <canvas id="myChart" style="max-width: 600px; max-height : 600px;"></canvas>
                                 
-                                <div class="mt-4"><label >เบอร์นี้ส่งเสริมให้ผู้ที่ใช้เบอร์ {{ request('tel') }} <br>และเกิดวันที่ {{ request('date') }}   เวลา {{ request('hour') }}:{{ request('minute') }} น. ในด้านต่อไปนี้</label></div>                                
-                                <table class="table table-sm text-center table-bordered">
+                                <div class="mt-4"><label >เบอร์ {{ request('tel') }} เสริมดวงให้เจ้าของเบอร์ที่เกิดใน<br>วัน<span id="my-date">{{ request('date') }}</span> เวลา {{ request('hour',' - ') }}:{{ request('minute',' - ') }} น. คิดเป็น</label></div>                                
+                                <table class="table table-sm text-center table-bordered mt-2">
                                     <tr>
                                         <th>ความรัก</th>
                                         <th>เสี่ยงโชค</th>
@@ -243,6 +243,28 @@
                                         }
                                     }
                                 });
+
+
+                                
+                                
+
+                                document.addEventListener('DOMContentLoaded', (event) => {
+                                    console.log('DOM fully loaded and parsed');
+
+                                    var mydate = document.getElementById('my-date');
+                                    var text = mydate.innerHTML;
+                                    console.log(text);
+                                
+                                    console.log(new Date(text));
+                                    moment.locale('th');
+                                    console.log(moment().format("dddd, MMMM Do YYYY, h:mm:ss a"));
+                                    //moment().format();
+                                    
+                                    mydate.innerHTML = text != "" ? moment().format("ddddที่ Do MMMM YYYY") : " - ";
+                                    
+                                    
+                                });
+                                
                             </script>
                            
                             @endif

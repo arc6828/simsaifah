@@ -30,7 +30,8 @@
     </style>
         
 </head>
-<body>
+<body>    
+    <script src="{{ asset('js/moment-with-locales.min.js') }}" ></script>
     <div id="">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="background-image: linear-gradient(270deg, #2af598 0%, #009efd 100%);">
             <div class="container">
