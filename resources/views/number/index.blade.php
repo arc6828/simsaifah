@@ -93,7 +93,7 @@
                                     @if($i==3 || $i==7) 
                                         <div style="flex:1; padding:0 1px;"><input style="text-align: center;" align="middle" class="number-sm dash" type="text"  name="numbers[]" value="-"  readonly> </div>
                                     @else
-                                        <div style="flex:5; padding:0 1px; "><input style="text-align: center;" align="middle" class="number-sm digit"  name="numbers[]" onkeydown="" maxlength="1" value="{{ isset($numbers[$i])? $numbers[$i] : '' }}" > </div>
+                                        <div style="flex:5; padding:0 1px; "><input style="text-align: center;" align="middle" class="number-sm digit" type="number"  name="numbers[]" onkeydown="" maxlength="1" value="{{ isset($numbers[$i])? $numbers[$i] : '' }}" > </div>
                                     @endif
                                 @endfor                              
                                 </div>
@@ -101,6 +101,11 @@
                                 <style>
                                     .number-sm{
                                         width:100%;
+                                    }
+                                    input[type=number]::-webkit-inner-spin-button, 
+                                    input[type=number]::-webkit-outer-spin-button { 
+                                        -webkit-appearance: none; 
+                                        margin: 0; 
                                     }
                                     .dash{
                                         border: none;
@@ -115,7 +120,7 @@
                                     var myLength = target.value.length;
                                     if (myLength >= maxLength) {
                                         var next = target;
-                                        while (next = next.nextElementSibling) {
+                                        while (next = next.parentNode.nextElementSibling.firstChild) {
                                             if (next == null)
                                                 break;
                                             if (next.tagName.toLowerCase() === "input" && next.classList.contains('digit')) {
@@ -127,7 +132,7 @@
                                     // Move to previous field if empty (user pressed backspace)
                                     else if (myLength === 0) {
                                         var previous = target;
-                                        while (previous = previous.previousElementSibling) {
+                                        while (previous = previous.parentNode.previousElementSibling.firstChild) {
                                             if (previous == null)
                                                 break;
                                             if (previous.tagName.toLowerCase() === "input") {
