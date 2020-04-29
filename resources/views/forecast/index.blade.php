@@ -141,7 +141,7 @@
                 @if(isset($forecast))
                 <div class="card mb-4">
                     <div class="card-body">         
-                        <h4 class="mb-4">ผลลัพธ์ทำนายเบอร์</h4>                
+                        <h4 class="mb-4"><span class="mr-2">ผลลัพธ์ทำนายเบอร์</span> <span class="grade-label">{{ request('tel') }} </span></h4>                
                         <div class="row">
                             <div class="form-group col-lg">                                
                                 <div class="text-center mt-4 d-none">
@@ -150,8 +150,42 @@
                                         <div style="font-size : 40px; height:100px;" class="px-4 py-3 d-inline">{{ $forecast }}</div>
                                     </div>
                                 </div>
-                                <div class="text-center mt-4">
-                                    <h1> เบอร์เกรด : {{ $forecast }} </h1>
+                                @php
+                                    //$forecast = "F";
+                                    $color = "";
+                                    switch($forecast){
+                                        case "A+" : 
+                                        case "A" :
+                                            $color = "text-success";
+                                            break;
+
+                                            
+                                        case "B" :
+                                            $color = "text-primary";
+                                            break;
+                                        case "C" :
+                                            $color = "text-warning";
+                                            break;
+                                        case "D" :
+                                        case "F" :
+                                            $color = "text-danger";
+                                            break;
+                                    }
+                                @endphp
+                                <style>
+                                    .grade-label{
+                                        color : #888;      
+                                        font-size: 1.35rem;                                  
+                                    }
+                                    .grade{
+                                        font-size: 4rem;
+                                    }
+                                </style>
+                                <div class="text-center mt-4">                                    
+                                    <label> 
+                                        <span class="grade-label mr-2">เกรด </span>
+                                        <span class="grade {{ $color }}">{{ $forecast }} </span>
+                                    </label>
                                 </div>
                                 <div class="mt-4">
                                     <h6 class="mt-4">บุคลิก</h6>
@@ -171,22 +205,29 @@
                                 <canvas id="myChart" style="max-width: 600px; max-height : 600px;"></canvas>
                                 
                                 <div class="mt-4"><label >เบอร์ {{ request('tel') }} เสริมดวงให้เจ้าของเบอร์ที่เกิดใน<br>วัน<span id="my-date">{{ request('date') }}</span> เวลา {{ request('hour',' - ') }}:{{ request('minute',' - ') }} น. คิดเป็น</label></div>                                
-                                <table class="table table-sm text-center table-bordered mt-2">
+                                <style>
+                                    #result th, #result td{
+                                        width: 50%;
+                                    }
+                                </style>
+                                <table class="table table-sm text-center table-bordered mt-2" id="result">
                                     <tr>
-                                        <th>ความรัก</th>
-                                        <th>ลูกหลาน <br>โชคลาภ</th>
-                                        <th>ครอบครัว</th>
-                                        <th>สังคม</th>
-                                        <th>การเงิน</th>
-                                        <th>สุขภาพ</th>
+                                        <th>ความรัก</th> <td>{{ $plotchart[0] * 10 }}% </td>
                                     </tr>
                                     <tr>
-                                        <td>{{ $plotchart[0] * 10 }}% </td>
-                                        <td>{{ $plotchart[1] * 10 }}% </td>
-                                        <td>{{ $plotchart[2] * 10 }}% </td>
-                                        <td>{{ $plotchart[3] * 10 }}% </td>
-                                        <td>{{ $plotchart[4] * 10 }}% </td>
-                                        <td>{{ $plotchart[5] * 10 }}% </td>
+                                        <th>ลูกหลานและโชคลาภ</th><td>{{ $plotchart[1] * 10 }}% </td>
+                                    </tr>
+                                    <tr>
+                                        <th>ครอบครัว</th><td>{{ $plotchart[2] * 10 }}% </td>
+                                    </tr>
+                                    <tr>
+                                        <th>สังคม</th><td>{{ $plotchart[3] * 10 }}% </td>
+                                    </tr>
+                                    <tr>
+                                        <th>การเงิน</th><td>{{ $plotchart[4] * 10 }}% </td>
+                                    </tr>
+                                    <tr>
+                                        <th>สุขภาพ</th><td>{{ $plotchart[5] * 10 }}% </td>
                                     </tr>
                                 </table>
                                 <ul class="d-none">
