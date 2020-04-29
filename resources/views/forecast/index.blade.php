@@ -154,13 +154,13 @@
                                     <h1> เบอร์เกรด : {{ $forecast }} </h1>
                                 </div>
                                 <div class="mt-4">
-                                    <h5 class="mt-2">บุคลิก</h5>
+                                    <h6 class="mt-4">บุคลิก</h6>
                                     <p> {{ isset($mean1) ? $mean1->content : '' }}</p>
-                                    <h5 class="mt-2">การสื่อสาร</h5>
+                                    <h6 class="mt-4">การสื่อสาร</h6>
                                     <p> {{ isset($mean2) ? $mean2->content : '' }}</p>
-                                    <h5 class="mt-2">ความคิด</h5>
+                                    <h6 class="mt-4">ความคิด</h6>
                                     <p> {{ isset($mean3) ? $mean3->content : '' }}</p>
-                                    <h5 class="mt-2">จิตใจ</h5>
+                                    <h6 class="mt-4">จิตใจ</h6>
                                     <p> {{ isset($mean4) ? $mean4->content : '' }}</p>
                                 </div>
                             </div>                           
