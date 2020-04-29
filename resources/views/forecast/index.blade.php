@@ -17,7 +17,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-lg-4">
-                                    <label for="">วันที่เกิด (วันที่/เดือน/ปี)</label>
+                                    <label for="">วันที่เกิด (เดือน/วันที่/ปี)</label>
                                     <div class="input-group">
                                         <input type="date" class="form-control" name="date" placeholder="" value="{{ request('date') }}" autocomplete="off">
                                     </div>
