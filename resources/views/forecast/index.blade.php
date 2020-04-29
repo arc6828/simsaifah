@@ -260,7 +260,7 @@
                                     console.log(moment().format("dddd, MMMM Do YYYY, h:mm:ss a"));
                                     //moment().format();
                                     
-                                    mydate.innerHTML = text != "" ? moment().format("ddddที่ Do MMMM YYYY") : " - ";
+                                    mydate.innerHTML = text != "" ? moment(new Date(text)).format("ddddที่ Do MMMM YYYY") : " - ";
                                     
                                     
                                 });
