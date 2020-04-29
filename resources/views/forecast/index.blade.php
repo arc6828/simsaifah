@@ -154,9 +154,13 @@
                                     <h1> เบอร์เกรด : {{ $forecast }} </h1>
                                 </div>
                                 <div class="mt-4">
+                                    <h5 class="mt-2">บุคลิก</h5>
                                     <p> {{ isset($mean1) ? $mean1->content : '' }}</p>
+                                    <h5 class="mt-2">การสื่อสาร</h5>
                                     <p> {{ isset($mean2) ? $mean2->content : '' }}</p>
+                                    <h5 class="mt-2">ความคิด</h5>
                                     <p> {{ isset($mean3) ? $mean3->content : '' }}</p>
+                                    <h5 class="mt-2">จิตใจ</h5>
                                     <p> {{ isset($mean4) ? $mean4->content : '' }}</p>
                                 </div>
                             </div>                           
@@ -170,7 +174,7 @@
                                 <table class="table table-sm text-center table-bordered mt-2">
                                     <tr>
                                         <th>ความรัก</th>
-                                        <th>เสี่ยงโชค</th>
+                                        <th>ลูกหลาน <br>โชคลาภ</th>
                                         <th>ครอบครัว</th>
                                         <th>สังคม</th>
                                         <th>การเงิน</th>
@@ -187,7 +191,7 @@
                                 </table>
                                 <ul class="d-none">
                                     <li>ความรัก : {{ $plotchart[0] * 10 }}%</li>
-                                    <li>เสี่ยงโชค : {{ $plotchart[1] * 10 }}%</li>
+                                    <li>ลูกหลาน<br>และโชคลาภ : {{ $plotchart[1] * 10 }}%</li>
                                     <li>ครอบครัว : {{ $plotchart[2] * 10 }}%</li>
                                     <li>สังคม : {{ $plotchart[3] * 10 }}%</li>
                                     <li>การเงิน : {{ $plotchart[4] * 10 }}%</li>
@@ -207,7 +211,7 @@
                                 var myChart = new Chart(ctx, {
                                     type: 'radar',
                                     data: {
-                                        labels: ['ความรัก', 'เสี่ยงโชค', 'ครอบครัว', 'สังคม', 'การเงิน', 'สุขภาพ'],
+                                        labels: ['ความรัก', 'ลูกหลานและโชคลาภ', 'ครอบครัว', 'สังคม', 'การเงิน', 'สุขภาพ'],
                                         datasets: [{
                                             label: 'กราฟคะแนนคำทำนาย',
                                             //data: [12, 19, 3, 5, 2, 3],
