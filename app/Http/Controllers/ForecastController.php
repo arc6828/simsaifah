@@ -471,7 +471,7 @@ class ForecastController extends Controller
         }
 
         //กาลี
-        if ($arrmaha[7] == $success) {
+        if ($arrmaha1[7] == $success) {
             if ($arrmaha1[7] == $array[3]) {
                 $rgbtb[1][3] = -4;
             }
