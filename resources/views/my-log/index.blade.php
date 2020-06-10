@@ -30,13 +30,14 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Message</th><th>Code</th><th>File</th><th>Line</th><th>Content</th><th>Actions</th>
+                                        <th>#</th><th>Created At</th><th>Message</th><th>Code</th><th>File</th><th>Line</th><th>Content</th><th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($mylog as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->created_at }}</td>
                                         <td>{{ $item->message }}</td><td>{{ $item->code }}</td><td>{{ $item->file }}</td><td>{{ $item->line }}</td><td>{{ $item->content }}</td>
                                         <td>
                                             <a href="{{ url('/my-log/' . $item->id) }}" title="View MyLog"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
