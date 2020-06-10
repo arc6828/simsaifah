@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use App\MyLog;
 
 class Handler extends ExceptionHandler
 {
@@ -34,6 +35,14 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+        MyLog::create([
+            "message"  => $exception->getMessage(),
+            "code"  => $exception->getCode(),
+            "file"  => $exception->getFile(),
+            "line"  => $exception->getLine(),
+            //"content"  => parent::render($request, $exception)->content(),
+        ]);
+        
         parent::report($exception);
     }
 

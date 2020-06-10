@@ -3,3 +3,5 @@ php artisan crud:generate Post --fields_from_file="resources/crud-generator/json
 php artisan crud:generate Bank --fields_from_file="resources/crud-generator/json/bank.json"
 
 php artisan crud:generate ForecastMeaning --fields_from_file="resources/crud-generator/json/forecast_meaning.json"
+
+php artisan crud:generate MyLog --fields_from_file="resources/crud-generator/json/mylog.json"

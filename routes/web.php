@@ -40,3 +40,4 @@ Route::group(['middleware' => ['auth','role:admin']], function()
     Route::post('number/import','NumberController@importAll');
 });
 Route::resource('forecast-meaning', 'ForecastMeaningController');
+Route::resource('my-log', 'MyLogController');

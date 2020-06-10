@@ -1,0 +1,24 @@
+{
+    "fields": [
+        {
+            "name": "message",
+            "type": "text"
+        },
+        {
+            "name": "code",
+            "type": "string"
+        },
+        {
+            "name": "file",
+            "type": "string"
+        },
+        {
+            "name": "line",
+            "type": "string"
+        },
+        {
+            "name": "content",
+            "type": "text"
+        }
+    ]
+}
