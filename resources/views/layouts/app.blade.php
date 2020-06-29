@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-100">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,9 +30,8 @@
     </style>
         
 </head>
-<body>    
+<body class="d-flex flex-column h-100">    
     <script src="{{ asset('js/moment-with-locales.min.js') }}" ></script>
-    <div id="">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="background-image: linear-gradient(270deg, #2af598 0%, #009efd 100%);">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -136,6 +135,21 @@
         <main class="py-4">
             @yield('content')
         </main>
-    </div>
+
+        <footer class="footer mt-auto bg-white">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 py-4">
+                        <span class="text-muted">Copyright {{ date("Y") }} © <strong>Berthongpol</strong></span>
+                    </div>
+                    <div class="col-lg-6 py-2 text-right">
+                        <script src="https://www.trustmarkthai.com/callbackData/initialize.js?t=7c9fdf4f4b-24-5-867edf8c753c0f89166bcf85ddace77e93e" id="dbd-init"></script>
+                        <div id="Certificate-banners"></div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </footer>
 </body>
 </html>
