@@ -693,7 +693,7 @@ class ForecastController extends Controller
 
         //$meaning = $mean1 . $mean2 . $mean3 . $mean4;
 
-        return view('forecast.index', compact('forecast','plotchart','mean1','mean2','mean3','mean4'));
+        return view('forecast.index', compact('forecast','plotchart','mean1','mean2','mean3','mean4','key1','key2'));
     }
 
     public function forecast2($tel){

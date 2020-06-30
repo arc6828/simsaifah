@@ -203,7 +203,7 @@
                             @if(isset($plotchart))
                             <div class="form-group col-lg text-center">
                                 <canvas id="myChart" style="max-width: 600px; max-height : 600px;"></canvas>
-                                
+                                <div> <label >เลขตัวตน คือ {{$key1}},{{$key2}}</label ></div>
                                 <div class="mt-4"><label >เบอร์ {{ request('tel') }} เสริมดวงให้เจ้าของเบอร์ที่เกิดใน<br>วัน<span id="my-date">{{ request('date') }}</span> เวลา {{ request('hour',' - ') }}:{{ request('minute',' - ') }} น. คิดเป็น</label></div>                                
                                 <style>
                                     #result th, #result td{
