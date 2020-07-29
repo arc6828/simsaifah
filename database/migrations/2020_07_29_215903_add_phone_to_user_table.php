@@ -15,7 +15,10 @@ class AddPhoneToUserTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('phone')->nullable();
+            $table->dropColumn('user_id');
+            $table->string('role')->default("guest")->nullable()->change();
         });
+        
     }
 
     /**
@@ -25,7 +28,7 @@ class AddPhoneToUserTable extends Migration
      */
     public function down()
     {
-        Schema::table('phone', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
         });
     }

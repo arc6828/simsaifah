@@ -108,6 +108,9 @@
                                     <a class="dropdown-item" href="{{ url('/bank') }}" >
                                         <i class="fa fa-bank mr-2"></i> ตั้งค่าธนาคาร (for Admin)
                                     </a>
+                                    <a class="dropdown-item" href="{{ url('/user') }}" >
+                                        <i class="fa fa-bank mr-2"></i> ข้อมูลผู้ใช้งาน (for Admin)
+                                    </a>
                                     @endif
                                     <a class="dropdown-item" href="{{ url('/order') }}" >
                                         <i class="fa fa-shopping-cart mr-2"></i> การสั่งซื้อ
