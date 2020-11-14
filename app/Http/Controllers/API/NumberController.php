@@ -15,19 +15,20 @@ class NumberController extends Controller
      */
     public function index()
     {
-        $dtac = Number::limit(10)
+        $limit = 5;
+        $dtac = Number::limit($limit)
             ->where('operator','dtac')
             ->orderBy('price','desc');
         
-        $ais = Number::limit(10)
+        $ais = Number::limit($limit)
             ->where('operator','ais')
             ->orderBy('price','desc');
 
-        $happy = Number::limit(10)
+        $happy = Number::limit($limit)
             ->where('operator','happy')
             ->orderBy('price','desc');
 
-        $truemove = Number::limit(10)
+        $truemove = Number::limit($limit)
             ->where('operator','truemove')
             ->orderBy('price','desc');
 
