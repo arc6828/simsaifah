@@ -34,8 +34,11 @@
         .navbar{
             background-color: rgba(32,47,91,0.1) !important;
         }
-        ul.navbar-nav > li > a{
+        /* ul.navbar-nav > li > a{
             color : #eee !important;
+        } */
+        .navbar-dark .navbar-nav .nav-link {
+            color: hsla(0,0%,100%,.8);
         }
     </style>
         
@@ -43,7 +46,7 @@
 <body class="d-flex flex-column h-100">    
     <script src="{{ asset('js/moment-with-locales.min.js') }}" ></script>
         <div class="outer-navbar" >
-            <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="">
+            <nav class="navbar navbar-expand-md navbar-dark shadow-sm" style="">
                 <div class="container">
                     <a class="navbar-brand" href="{{ url('/') }}">
                         <img src="{{ asset('/img/logo-berthongpol.png')}}" width="60" height="60" class="mr-2" alt="">
