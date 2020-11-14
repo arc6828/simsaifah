@@ -15,7 +15,7 @@ class NumberController extends Controller
      */
     public function index()
     {
-        $limit = 5;
+        $limit = 7;
         $dtac = Number::limit($limit)
             ->where('operator','dtac')
             ->orderBy('price','desc');
