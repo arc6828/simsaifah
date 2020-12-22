@@ -41,9 +41,9 @@
     <input class="form-control" name="payment_id" type="number" id="payment_id" value="{{ isset($order->payment_id) ? $order->payment_id : '' }}">
     {!! $errors->first('payment_id', '<p class="help-block">:message</p>') !!}
 </div>
-<div class="form-group  d-none {{ $errors->has('remake') ? 'has-error' : ''}}">
+<div class="form-group {{ $errors->has('remake') ? 'has-error' : ''}}">
     <label for="remake" class="control-label">{{ 'หมายเหตุ :' }}</label>
-    <textarea class="form-control" rows="5" name="remake" type="textarea" id="remake" value=" {{ isset($order->remake) ? $order->remake : ''}}"> </textarea>
+    <textarea class="form-control" rows="5" name="remake" type="textarea" id="remake" value=" ">{{ isset($order->remake) ? $order->remake : $bt}} </textarea>
     {!! $errors->first('remake', '<p class="help-block">:message</p>') !!}
 </div>
 

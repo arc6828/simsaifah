@@ -84,8 +84,15 @@ class OrderController extends Controller
         //ดึงข้อมูล where ขึ้นมาเฉพาะเบอร์ที่เราต้องการ 
         $number = Number::where('number',$number_keyword)->firstOrFail(); //FirstOrFail หมายถึง ถ้าเจอหลายตัวให้ดึงตัวแรก แต่ถ้าไม่เจอสักตัวให้ 404
             
+        $bt = file_get_contents("https://berlnw.com/reserve/0987899651/step-1");
+        $bt = explode("textarea",$bt)[1];
+        $bt = explode(">",$bt)[1];
+        $bt = explode("<",$bt)[0];
+        echo $bt;
         
-        return view('order.create',compact('number'));//compact เพื่อส่งไปยังไน้า blade
+
+        
+        return view('order.create',compact('number','bt'));//compact เพื่อส่งไปยังไน้า blade
     }
 
     /**
