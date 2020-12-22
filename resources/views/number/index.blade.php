@@ -57,9 +57,9 @@
                                     <label for="">ค้นหาจากราคา</label>
                                     <select name="price" id="price" class="form-control" >
                                         <option value="1000000" >ทุกราคา</option>                                    
-                                        @for($i=80000; $i>1000; $i=$i/2)
+                                        @foreach([1000,1500,2000,2500,3000,4000,5000,8000,10000,20000] as $i)
                                         <option value="{{ $i }}" {{ request('price') == $i ? 'selected' : ''  }}>ไม่เกิน {{ number_format($i,0) }}</option>
-                                        @endfor                                    
+                                        @endforeach                                    
                                     </select>                                  
                                 </div>
 

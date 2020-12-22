@@ -93,6 +93,7 @@ class OrderController extends Controller
             $bt = explode("textarea",$bt_original)[1];
             $bt = explode(">",$bt)[1];
             $bt = explode("<",$bt)[0];
+            
         }else{
             $bt = "";
         }
@@ -126,7 +127,10 @@ class OrderController extends Controller
         
         
         if(strpos($bt_verify,"ขออภัย ไม่สามารถจองเบอร์นี้ได้")){
-            echo "<script>alert('ขออภัย ไม่สามารถจองเบอร์นี้ได้')</script>";
+            $number->delete();
+            echo "<script>alert('ขออภัย ไม่สามารถจองเบอร์นี้ได้'); window.history.back();</script>";
+
+            exit();
             
         }
         
