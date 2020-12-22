@@ -85,11 +85,20 @@ class OrderController extends Controller
         $number = Number::where('number',$number_keyword)->firstOrFail(); //FirstOrFail หมายถึง ถ้าเจอหลายตัวให้ดึงตัวแรก แต่ถ้าไม่เจอสักตัวให้ 404
         // echo $number->number;
         // exit();
+        $bt = "";
+        // try{
         $bt = file_get_contents("https://berlnw.com/reserve/".str_replace("-","",$number->number)."/step-1");
-        $bt = explode("textarea",$bt)[1];
-        $bt = explode(">",$bt)[1];
-        $bt = explode("<",$bt)[0];
+        //$bt = explode("textarea",$bt);
+        if(count(explode("textarea",$bt))>2){
+            $bt = explode("textarea",$bt)[1];
+            $bt = explode(">",$bt)[1];
+            $bt = explode("<",$bt)[0];
+        }else{
+            $bt = "";
+        }
+        
         // echo $bt;
+        // }
         
 
         
