@@ -87,18 +87,50 @@ class OrderController extends Controller
         // exit();
         $bt = "";
         // try{
-        $bt = file_get_contents("https://berlnw.com/reserve/".str_replace("-","",$number->number)."/step-1");
+        $bt_original = file_get_contents("https://berlnw.com/reserve/".str_replace("-","",$number->number)."/step-1");
         //$bt = explode("textarea",$bt);
-        if(count(explode("textarea",$bt))>2){
-            $bt = explode("textarea",$bt)[1];
+        if(count(explode("textarea",$bt_original))>2){
+            $bt = explode("textarea",$bt_original)[1];
             $bt = explode(">",$bt)[1];
             $bt = explode("<",$bt)[0];
         }else{
             $bt = "";
         }
+
+        $id = explode('<input type="hidden" value="',$bt_original)[1];
+        $id = explode('" name="id">',$id)[0];
+        // $id = "";
+        // echo $id;
+        // exit();
+
+        //VERIFY
+        $data = [
+            "id" => $id,
+            "number" => str_replace("-","",$number->number),
+            // "price" => "2499",
+            // "carrier" => "20",
+            "client_number" => "0800000000"
+        ]; 
         
-        // echo $bt;
-        // }
+        $options = array( 
+            'http' => array( 
+                'method' => 'POST', 
+                'header'  => 'Content-Type: application/x-www-form-urlencoded',
+                'content' => http_build_query($data)
+            ) 
+        ); 
+
+        // the specified options 
+        $stream = stream_context_create($options); 
+        $bt_verify = file_get_contents("https://berlnw.com/reserve/".str_replace("-","",$number->number)."/step-2",false, $stream);
+        
+        
+        if(strpos($bt_verify,"ขออภัย ไม่สามารถจองเบอร์นี้ได้")){
+            echo "<script>alert('ขออภัย ไม่สามารถจองเบอร์นี้ได้')</script>";
+            
+        }
+        
+        
         
 
         
