@@ -158,6 +158,17 @@
                     <div class="card-body">
                         <h5>เมนูลัด</h5>
                         <ul>
+                            <li class=""><a href="{{ url('/') }}?search=&operator=&total=&price=1000&sort=asc&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=">	เบอร์ราคาไม่เกิน 1,000฿</a></li>
+                            <li class=""><a href="{{ url('/') }}?search=&operator=&total=&price=1500&sort=asc&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=">	เบอร์ราคาไม่เกิน 1,500฿</a></li>
+                            <li class=""><a href="{{ url('/') }}?search=&operator=&total=&price=2000&sort=asc&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=">	เบอร์ราคาไม่เกิน 2,000฿</a></li>
+                            <li class=""><a href="{{ url('/') }}?search=&operator=&total=&price=2500&sort=asc&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=">	เบอร์ราคาไม่เกิน 2,500฿</a></li>
+                            <li class=""><a href="{{ url('/') }}?search=&operator=&total=&price=3000&sort=asc&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=">	เบอร์ราคาไม่เกิน 3,000฿</a></li>
+                            <li class=""><a href="{{ url('/') }}?search=&operator=&total=&price=4000&sort=asc&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=">	เบอร์ราคาไม่เกิน 4,000฿</a></li>
+                            <li class=""><a href="{{ url('/') }}?search=&operator=&total=&price=5000&sort=asc&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=">	เบอร์ราคาไม่เกิน 5,000฿</a></li>
+                            <li class=""><a href="{{ url('/') }}?search=&operator=&total=&price=8000&sort=asc&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=">	เบอร์ราคาไม่เกิน 8,000฿</a></li>
+                            <li class=""><a href="{{ url('/') }}?search=&operator=&total=&price=10000&sort=asc&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=">	เบอร์ราคาไม่เกิน 10,000฿</a></li>
+                            <li class=""><a href="{{ url('/') }}?search=&operator=&total=&price=20000&sort=asc&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=">	เบอร์ราคาไม่เกิน 20,000฿</a></li>
+                            <hr/>
                             <li class=""><a href="#">เบอร์มงคลสวย เบอร์มงคลพิเศษ VIP</a></li>
                             <li class=""><a href="#">เบอร์มงคลตอง XXX</a></li>
                             <li class=""><a href="#">เบอร์มงคลเลขสลับ XYXY</a></li>
@@ -168,7 +179,7 @@
                             <li class=""><a href="#">เบอร์โฟร์หน้า เลข4ตัวเหมือน</a></li>
                             <li class=""><a href="#">เบอร์สลับ3ชุด</a></li>
                             <li class=""><a href="#">เบอร์สามคู่</a></li>
-                            <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 1,000 บาท</a></li>
+                            <!-- <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 1,000 บาท</a></li>
                             <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 2,000 บาท</a></li>
                             <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 3,000 บาท</a></li>
                             <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 4,000 บาท</a></li>
@@ -177,7 +188,7 @@
                             <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 10,000 บาท</a></li>
                             <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 15,000 บาท</a></li>
                             <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 20,000 บาท</a></li>
-                            <li class=""><a href="#">เบอร์มงคลราคาเกิน 20,000 บาท</a></li>
+                            <li class=""><a href="#">เบอร์มงคลราคาเกิน 20,000 บาท</a></li> -->
                         </ul>
                         
                     </div>
