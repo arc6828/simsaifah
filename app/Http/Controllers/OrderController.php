@@ -83,12 +83,13 @@ class OrderController extends Controller
         $number_keyword = $request->get('number');//ดึงnumber จาก url : order/create?number=08x-xxx-xxxx
         //ดึงข้อมูล where ขึ้นมาเฉพาะเบอร์ที่เราต้องการ 
         $number = Number::where('number',$number_keyword)->firstOrFail(); //FirstOrFail หมายถึง ถ้าเจอหลายตัวให้ดึงตัวแรก แต่ถ้าไม่เจอสักตัวให้ 404
-            
-        $bt = file_get_contents("https://berlnw.com/reserve/0987899651/step-1");
+        // echo $number->number;
+        // exit();
+        $bt = file_get_contents("https://berlnw.com/reserve/".str_replace("-","",$number->number)."/step-1");
         $bt = explode("textarea",$bt)[1];
         $bt = explode(">",$bt)[1];
         $bt = explode("<",$bt)[0];
-        echo $bt;
+        // echo $bt;
         
 
         
