@@ -22,7 +22,7 @@ class NumberController extends Controller
         $operator = $request->get('operator');
         $total = $request->get('total');
         $price = $request->get('price');
-        $sort = $request->get('sort','asc');
+        $sort = $request->get('sort','number');
         $numbers = $request->get('numbers');
         
         $perPage = 100;
@@ -48,7 +48,7 @@ class NumberController extends Controller
                 ->orderBy('price', $sort)
                 ->latest()->paginate($perPage);
         } else {
-            $number = Number::orderBy('price', 'asc')->latest()->paginate($perPage);
+            $number = Number::orderBy('price', $sort)->latest()->paginate($perPage);
         }
 
         

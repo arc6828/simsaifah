@@ -64,10 +64,11 @@
                                 </div>
 
                                 <div class="form-group col-lg-12">                                
-                                    <label for="">เรียงจากราคา</label>
+                                    <label for="">เรียงลำดับ</label>
                                     <select name="sort" id="sort" class="form-control" >
-                                        <option value="asc" {{ request('sort') == 'asc' ? 'selected' : ''  }}>น้อยไปหามาก</option>
-                                        <option value="desc" {{ request('sort') == 'desc' ? 'selected' : ''  }}>มากไปหาน้อย</option>                                     
+                                        <option value="number" {{ request('sort') == 'number' ? 'selected' : ''  }}>หมายเลขเบอร์</option>
+                                        <option value="asc" {{ request('sort') == 'asc' ? 'selected' : ''  }}>ราคาจากน้อยไปหามาก</option>
+                                        <option value="desc" {{ request('sort') == 'desc' ? 'selected' : ''  }}>ราคาจากมากไปหาน้อย</option>                                     
                                                                    
                                     </select>                                  
                                 </div>
