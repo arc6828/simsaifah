@@ -28,7 +28,7 @@ class NumberController extends Controller
         $perPage = 100;
         
         
-        $filter_number_string = "____________";
+        $filter_number_string = "__________";
         if( is_array($numbers) ){
             for($i=0; $i<count($numbers); $i++){
                 if( !empty($numbers[$i]) ){
