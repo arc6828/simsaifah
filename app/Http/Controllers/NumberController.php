@@ -44,11 +44,18 @@ class NumberController extends Controller
                 ->where('price', '<', $price)
                 ->where('total', 'LIKE', "%$total%")
                 ->where('number', 'LIKE', $filter_number_string)
-                ->where('number', 'LIKE', "%$keyword%")
-                ->orderBy('price', $sort)
-                ->latest()->paginate($perPage);
+                ->where('number', 'LIKE', "%$keyword%");
+            
+            switch($sort){
+                case "number" :
+                    $number ->orderBy('number', 'asc')->latest()->paginate($perPage);
+                    break; 
+                default : 
+                    $number ->orderBy('price', $sort)->latest()->paginate($perPage);
+            }
+                
         } else {
-            $number = Number::orderBy('price', $sort)->latest()->paginate($perPage);
+            $number = Number::orderBy('number', 'asc')->latest()->paginate($perPage);
         }
 
         
