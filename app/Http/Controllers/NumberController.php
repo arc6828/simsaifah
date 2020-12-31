@@ -40,18 +40,19 @@ class NumberController extends Controller
 
         $needFilter = !empty($keyword) || !empty($operator) || !empty($sum)  || !empty($price) ;
         if ($needFilter) {
-            $number = Number::where('operator', 'LIKE', "%$operator%")
+            $query = Number::where('operator', 'LIKE', "%$operator%")
                 ->where('price', '<', $price)
                 ->where('total', 'LIKE', "%$total%")
                 ->where('number', 'LIKE', $filter_number_string)
                 ->where('number', 'LIKE', "%$keyword%");
             
             switch($sort){
-                case "number" :
-                    $number ->orderBy('number', 'asc')->latest()->paginate($perPage);
+                case "asc" :
+                case "desc" :                    
+                    $number = $query->orderBy('price', $sort)->latest()->paginate($perPage);
                     break; 
                 default : 
-                    $number ->orderBy('price', $sort)->latest()->paginate($perPage);
+                    $number = $query->orderBy('number', 'asc')->latest()->paginate($perPage);
             }
                 
         } else {
