@@ -16,7 +16,7 @@
                                     <div class="input-group">
                                         <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}" autocomplete="off">
                                         <span class="input-group-append">
-                                            <button class="btn btn-primary" type="submit">
+                                            <button class="btn btn-danger" type="submit">
                                                 <i class="fa fa-search"></i>
                                             </button>
                                         </span>
@@ -57,9 +57,9 @@
                                     <label for="">ค้นหาจากราคา</label>
                                     <select name="price" id="price" class="form-control" >
                                         <option value="1000000" >ทุกราคา</option>                                    
-                                        @for($i=80000; $i>1000; $i=$i/2)
+                                        @foreach([1000,1500,2000,2500,3000,4000,5000,8000,10000,20000] as $i)
                                         <option value="{{ $i }}" {{ request('price') == $i ? 'selected' : ''  }}>ไม่เกิน {{ number_format($i,0) }}</option>
-                                        @endfor                                    
+                                        @endforeach                                    
                                     </select>                                  
                                 </div>
 
@@ -85,16 +85,16 @@
                                     //print_r( $numbers);
                                 }
                                 @endphp
-                                @for($i=0; $i< 12; $i++) 
+                                @for($i=0; $i< 10; $i++) 
                                     
                                     @php
                                         $numbers[$i] =  isset($numbers[$i])? $numbers[$i] : '';
                                     @endphp
                                     @if($i==3 || $i==7) 
                                         <div style="flex:1; padding:0 1px;"><input style="text-align: center;" align="middle" class="number-sm dash" type="text"   value="-"  readonly> </div>
-                                    @else
-                                        <div style="flex:5; padding:0 1px; "><input style="text-align: center;" align="middle" class="number-sm digit" type="number"   onkeydown="" maxlength="1" value="{{ isset($numbers[$i])? $numbers[$i] : '' }}" pattern="[0-9]*" > </div>
                                     @endif
+                                    <div style="flex:5; padding:0 1px; "><input style="text-align: center;" align="middle" class="number-sm digit" type="text"  name="numbers[]" onkeydown="" maxlength="1" value="{{ isset($numbers[$i])? $numbers[$i] : '' }}" pattern="[0-9]*" > </div>
+                                    
                                 @endfor                              
                                 </div>
                                 
@@ -148,8 +148,8 @@
 
                             
 
-                            <a class="btn btn-outline-primary" href="{{ url('/number') }}" >Reset</a> 
-                            <button class="btn btn-primary" type="submit">Submit</button>     
+                            <a class="btn btn-outline-danger" href="{{ url('/number') }}" >ล้าง</a> 
+                            <button class="btn btn-danger" type="submit">ค้นหา</button>     
                         </form>
 
                     </div>
@@ -158,6 +158,17 @@
                     <div class="card-body">
                         <h5>เมนูลัด</h5>
                         <ul>
+                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=1000&sort=asc&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=">	เบอร์ราคาไม่เกิน 1,000฿</a></li>
+                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=1500&sort=asc&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=">	เบอร์ราคาไม่เกิน 1,500฿</a></li>
+                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=2000&sort=asc&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=">	เบอร์ราคาไม่เกิน 2,000฿</a></li>
+                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=2500&sort=asc&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=">	เบอร์ราคาไม่เกิน 2,500฿</a></li>
+                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=3000&sort=asc&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=">	เบอร์ราคาไม่เกิน 3,000฿</a></li>
+                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=4000&sort=asc&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=">	เบอร์ราคาไม่เกิน 4,000฿</a></li>
+                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=5000&sort=asc&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=">	เบอร์ราคาไม่เกิน 5,000฿</a></li>
+                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=8000&sort=asc&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=">	เบอร์ราคาไม่เกิน 8,000฿</a></li>
+                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=10000&sort=asc&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=">	เบอร์ราคาไม่เกิน 10,000฿</a></li>
+                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=20000&sort=asc&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=">	เบอร์ราคาไม่เกิน 20,000฿</a></li>
+                            <hr/>
                             <li class=""><a href="#">เบอร์มงคลสวย เบอร์มงคลพิเศษ VIP</a></li>
                             <li class=""><a href="#">เบอร์มงคลตอง XXX</a></li>
                             <li class=""><a href="#">เบอร์มงคลเลขสลับ XYXY</a></li>
@@ -168,7 +179,7 @@
                             <li class=""><a href="#">เบอร์โฟร์หน้า เลข4ตัวเหมือน</a></li>
                             <li class=""><a href="#">เบอร์สลับ3ชุด</a></li>
                             <li class=""><a href="#">เบอร์สามคู่</a></li>
-                            <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 1,000 บาท</a></li>
+                            <!-- <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 1,000 บาท</a></li>
                             <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 2,000 บาท</a></li>
                             <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 3,000 บาท</a></li>
                             <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 4,000 บาท</a></li>
@@ -177,7 +188,7 @@
                             <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 10,000 บาท</a></li>
                             <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 15,000 บาท</a></li>
                             <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 20,000 บาท</a></li>
-                            <li class=""><a href="#">เบอร์มงคลราคาเกิน 20,000 บาท</a></li>
+                            <li class=""><a href="#">เบอร์มงคลราคาเกิน 20,000 บาท</a></li> -->
                         </ul>
                         
                     </div>
@@ -231,12 +242,12 @@
                                         <td>
                                             <!-- ตรงนี้ต้องแนบเบอร์ ไปหน้า create ด้วย -->
                                             @if( $item->status != "Reserved")
-                                            <a href="{{ url('/order/create') }}?number={{ $item->number }}" title="View Number"><button class="btn btn-success btn-sm"><i class="fa fa-shopping-cart" aria-hidden="true"></i> สั่งซื้อ</button></a>
+                                            <a href="{{ url('/order/create') }}?number={{ $item->number }}" title="View Number"><button class="btn btn-danger btn-sm"><i class="fa fa-shopping-cart" aria-hidden="true"></i> สั่งซื้อ</button></a>
                                             @else
                                             {{$item->status}}
                                             @endif
                                             <a class="d-none" href="{{ url('/number/' . $item->id) }}" title="View Number"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                            <a class="d-none" href="{{ url('/number/' . $item->id . '/edit') }}" title="Edit Number"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                            <a class="d-none" href="{{ url('/number/' . $item->id . '/edit') }}" title="Edit Number"><button class="btn btn-danger btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
 
                                             <form  class="d-none" method="POST" action="{{ url('/number' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                                 {{ method_field('DELETE') }}

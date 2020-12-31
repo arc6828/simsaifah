@@ -83,9 +83,62 @@ class OrderController extends Controller
         $number_keyword = $request->get('number');//ดึงnumber จาก url : order/create?number=08x-xxx-xxxx
         //ดึงข้อมูล where ขึ้นมาเฉพาะเบอร์ที่เราต้องการ 
         $number = Number::where('number',$number_keyword)->firstOrFail(); //FirstOrFail หมายถึง ถ้าเจอหลายตัวให้ดึงตัวแรก แต่ถ้าไม่เจอสักตัวให้ 404
+        // echo $number->number;
+        // exit();
+        $bt = "";
+        // try{
+        $bt_original = file_get_contents("https://berlnw.com/reserve/".str_replace("-","",$number->number)."/step-1");
+        //$bt = explode("textarea",$bt);
+        if(count(explode("textarea",$bt_original))>2){
+            $bt = explode("textarea",$bt_original)[1];
+            $bt = explode(">",$bt)[1];
+            $bt = explode("<",$bt)[0];
             
+        }else{
+            $bt = "";
+        }
+
+        $id = explode('<input type="hidden" value="',$bt_original)[1];
+        $id = explode('" name="id">',$id)[0];
+        // $id = "";
+        // echo $id;
+        // exit();
+
+        //VERIFY
+        $data = [
+            "id" => $id,
+            "number" => str_replace("-","",$number->number),
+            // "price" => "2499",
+            // "carrier" => "20",
+            "client_number" => "0800000000"
+        ]; 
         
-        return view('order.create',compact('number'));//compact เพื่อส่งไปยังไน้า blade
+        $options = array( 
+            'http' => array( 
+                'method' => 'POST', 
+                'header'  => 'Content-Type: application/x-www-form-urlencoded',
+                'content' => http_build_query($data)
+            ) 
+        ); 
+
+        // the specified options 
+        $stream = stream_context_create($options); 
+        $bt_verify = file_get_contents("https://berlnw.com/reserve/".str_replace("-","",$number->number)."/step-2",false, $stream);
+        
+        
+        if(strpos($bt_verify,"ขออภัย ไม่สามารถจองเบอร์นี้ได้")){
+            $number->delete();
+            echo "<script>alert('ขออภัย ไม่สามารถจองเบอร์นี้ได้'); window.history.back();</script>";
+
+            exit();
+            
+        }
+        
+        
+        
+
+        
+        return view('order.create',compact('number','bt'));//compact เพื่อส่งไปยังไน้า blade
     }
 
     /**
