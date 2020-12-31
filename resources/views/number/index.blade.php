@@ -231,7 +231,7 @@
                                             
                                             
                                             
-                                            <h5 class="mt-0">{{ substr($item->number,0,3)."".substr($item->number,3,3)."-".substr($item->number,6,4) }}</h5>
+                                            <h5 class="mt-0">{{ substr($item->number,0,3)."-".substr($item->number,3,3)."-".substr($item->number,6,4) }}</h5>
                                             <div><strong>ผลรวมเบอร์ : {{ $item->total }}</strong></div>
                                             <img class="d-lg-none img-thumbnail" src="{{ url('/') }}/img/operators/logo_{{ strtolower($item->operator) }}.jpg" width="100%" style="max-width:50px;">
                                             
