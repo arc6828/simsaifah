@@ -12,7 +12,7 @@
 
                             <div class="row mt-4">    
                                 <div class="form-group col-lg">
-                                    <label for="">ค้นหาเบอร์</label>
+                                    <label for=""><i class="fa fa-search"></i> ค้นหาเบอร์</label>
                                     <div class="input-group">
                                         <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}" autocomplete="off">
                                         <span class="input-group-append">
@@ -27,7 +27,7 @@
                             <div class="row">                                                   
 
                                 <div class="form-group col-lg-12">
-                                    <label for="">ค่ายมือถือ</label>
+                                    <label for=""><i class="fa fa-signal"></i> ค่ายมือถือ</label>
                                     <select name="operator" id="operator" class="form-control" >
                                         <option value="" >ทั้งหมด</option>                                    
                                         @foreach($operator_array as $op)
@@ -42,7 +42,7 @@
                                 </div>
 
                                 <div class="form-group col-lg-12">
-                                    <label for="">ผลรวมเบอร์</label>
+                                    <label for=""><i class="fa fa-align-justify"></i> ผลรวมเบอร์</label>
                                     <select name="total" id="total" class="form-control" >
                                         <option value="" >ทั้งหมด</option>                                    
                                         @foreach($total_array as $t) 
@@ -54,7 +54,7 @@
                                 
 
                                 <div class="form-group col-lg-12">                                
-                                    <label for="">ค้นหาจากราคา</label>
+                                    <label for=""><i class="fa fa-tags"></i> ค้นหาจากราคา</label>
                                     <select name="price" id="price" class="form-control" >
                                         <option value="1000000" >ทุกราคา</option>                                    
                                         @foreach([1000,1500,2000,2500,3000,4000,5000,8000,10000,20000] as $i)
@@ -64,7 +64,7 @@
                                 </div>
 
                                 <div class="form-group col-lg-12">                                
-                                    <label for="">เรียงลำดับ</label>
+                                    <label for=""><i class="fa fa-sort"></i> เรียงลำดับ</label>
                                     <select name="sort" id="sort" class="form-control" >
                                         <option value="number" {{ request('sort') == 'number' ? 'selected' : ''  }}>หมายเลขเบอร์</option>
                                         <option value="asc" {{ request('sort') == 'asc' ? 'selected' : ''  }}>ราคาจากน้อยไปหามาก</option>
@@ -77,7 +77,7 @@
 
                             <div class="form-group">
                                 
-                                <label for="">ระบุตัวเลขตามตำแหน่ง</label>
+                                <label for=""><i class="fa fa-asterisk"></i> ระบุตัวเลขตามตำแหน่ง</label>
                                 <div class="my-container" style="flex-direction:row; display: flex;" >
                                 @php
                                 $numbers = ["","","","","","","","","","","",""];
@@ -92,7 +92,7 @@
                                         $numbers[$i] =  isset($numbers[$i])? $numbers[$i] : '';
                                     @endphp
                                     @if($i==3 || $i==7) 
-                                        <div style="flex:1; padding:0 1px;"><input style="text-align: center;" align="middle" class="number-sm dash" type="text"   value="-"  readonly> </div>
+                                        <div style="flex:1; padding:0 1px;">-</div>
                                     @endif
                                     <div style="flex:5; padding:0 1px; "><input style="text-align: center;" align="middle" class="number-sm digit" type="text"  name="numbers[]" onkeydown="" maxlength="1" value="{{ isset($numbers[$i])? $numbers[$i] : '' }}" pattern="[0-9]*" > </div>
                                     
@@ -145,6 +145,28 @@
                                 } 
                                 </script>
                             </div>
+                            <div class="form-group ">                                
+                                <label for="">
+                                    <i class="fa fa-check"></i> 
+                                    เลขที่ต้องการ 
+                                    <span class="text-secondary" data-toggle="tooltip" data-placement="top" title="ตัวอย่างเช่น 55, 88, 99 เป็นต้น">
+                                        <i class="fa fa-question-circle"></i> 
+                                    </span> 
+                                </label>
+                                <input type="text" class="form-control" id="whitelist" name="whitelist" value="{{ request('whitelist') }}" >
+                                                              
+                            </div>
+                            <div class="form-group">                                
+                                <label for="">
+                                    <i class="fa fa-times"></i> 
+                                    เลขที่ไม่ต้องการ
+                                    <span class="text-secondary" data-toggle="tooltip" data-placement="top" title="ตัวอย่างเช่น 00, 11 เป็นต้น">
+                                        <i class="fa fa-question-circle"></i> 
+                                    </span> 
+                                </label>
+                                <input type="text" class="form-control" id="blacklist" name="blacklist" value="{{ request('blacklist') }}">
+                                
+                            </div>
 
 
                             
@@ -159,16 +181,16 @@
                     <div class="card-body">
                         <h5>เมนูลัด</h5>
                         <ul>
-                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=1000&sort=asc&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=">	เบอร์ราคาไม่เกิน 1,000฿</a></li>
-                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=1500&sort=asc&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=">	เบอร์ราคาไม่เกิน 1,500฿</a></li>
-                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=2000&sort=asc&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=">	เบอร์ราคาไม่เกิน 2,000฿</a></li>
-                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=2500&sort=asc&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=">	เบอร์ราคาไม่เกิน 2,500฿</a></li>
-                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=3000&sort=asc&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=">	เบอร์ราคาไม่เกิน 3,000฿</a></li>
-                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=4000&sort=asc&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=">	เบอร์ราคาไม่เกิน 4,000฿</a></li>
-                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=5000&sort=asc&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=">	เบอร์ราคาไม่เกิน 5,000฿</a></li>
-                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=8000&sort=asc&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=">	เบอร์ราคาไม่เกิน 8,000฿</a></li>
-                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=10000&sort=asc&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=">	เบอร์ราคาไม่เกิน 10,000฿</a></li>
-                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=20000&sort=asc&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=-&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=">	เบอร์ราคาไม่เกิน 20,000฿</a></li>
+                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=1000&sort=number">	เบอร์ราคาไม่เกิน 1,000฿</a></li>
+                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=1500&sort=number">	เบอร์ราคาไม่เกิน 1,500฿</a></li>
+                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=2000&sort=number">	เบอร์ราคาไม่เกิน 2,000฿</a></li>
+                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=2500&sort=number">	เบอร์ราคาไม่เกิน 2,500฿</a></li>
+                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=3000&sort=number">	เบอร์ราคาไม่เกิน 3,000฿</a></li>
+                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=4000&sort=number">	เบอร์ราคาไม่เกิน 4,000฿</a></li>
+                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=5000&sort=number">	เบอร์ราคาไม่เกิน 5,000฿</a></li>
+                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=8000&sort=number">	เบอร์ราคาไม่เกิน 8,000฿</a></li>
+                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=10000&sort=number">	เบอร์ราคาไม่เกิน 10,000฿</a></li>
+                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=20000&sort=number">	เบอร์ราคาไม่เกิน 20,000฿</a></li>
                             <hr/>
                             <li class=""><a href="#">เบอร์มงคลสวย เบอร์มงคลพิเศษ VIP</a></li>
                             <li class=""><a href="#">เบอร์มงคลตอง XXX</a></li>

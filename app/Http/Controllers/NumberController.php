@@ -24,6 +24,8 @@ class NumberController extends Controller
         $price = $request->get('price');
         $sort = $request->get('sort','number');
         $numbers = $request->get('numbers');
+        $whitelist = $request->get('whitelist');
+        $blacklist = $request->get('blacklist');
         
         $perPage = 100;
         
@@ -36,16 +38,48 @@ class NumberController extends Controller
                 }
             }
         }
+        
 
 
-        $needFilter = !empty($keyword) || !empty($operator) || !empty($sum)  || !empty($price) ;
+        $needFilter = !empty($keyword) || !empty($operator) || !empty($sum)  || !empty($price) || !empty($numbers)  || !empty($whitelist)   || !empty($blacklist)  ;
         if ($needFilter) {
+            //http://localhost/simsaifah/public/number?search=chavalit.kow%40gmail.com&operator=&total=&price=1000000&sort=number&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&whitelist=1+%2C+2+%2C+3+%2C+4&blacklist=4+%2C+5+%2C+6+%2C+7
+            $whitelist = explode(",", $whitelist);
+            $blacklist = explode(",", $blacklist);
+            // print_r($whitelist);
+            // echo "<br>";
+            // print_r($blacklist) ;
+            // exit();
+            //FILTER
             $query = Number::where('operator', 'LIKE', "%$operator%")
                 ->where('price', '<', $price)
                 ->where('total', 'LIKE', "%$total%")
                 ->where('number', 'LIKE', $filter_number_string)
                 ->where('number', 'LIKE', "%$keyword%");
-            
+            //WHITELIST
+            $query = $query->where(function ($query) use ($whitelist) {
+                for($i=0; $i<count($whitelist); $i++){
+                    if($i==0){
+                        $query = $query->where('number', 'LIKE', "%{$whitelist[$i]}%");
+                    }else{
+                        $query = $query->orWhere('number', 'LIKE', "%{$whitelist[$i]}%");
+                    }
+                }
+            });
+            //BLACKLIST
+            $query = $query->where(function ($query) use ($blacklist) {
+                for($i=0; $i<count($blacklist); $i++){
+                    if($blacklist[$i]==""){
+                        continue;
+                    }
+                    if($i==0){
+                        $query = $query->where('number', 'NOT LIKE', "%{$blacklist[$i]}%");
+                    }else{
+                        $query = $query->orWhere('number', 'NOT LIKE', "%{$blacklist[$i]}%");
+                    }
+                }
+            });
+            //SORT
             switch($sort){
                 case "asc" :
                 case "desc" :                    
