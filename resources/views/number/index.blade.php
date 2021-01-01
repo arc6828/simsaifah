@@ -91,7 +91,7 @@
                                     @php
                                         $numbers[$i] =  isset($numbers[$i])? $numbers[$i] : '';
                                     @endphp
-                                    @if($i==3 || $i==7) 
+                                    @if($i==3 || $i==6) 
                                         <div style="flex:1; padding:0 1px;">-</div>
                                     @endif
                                     <div style="flex:5; padding:0 1px; "><input style="text-align: center;" align="middle" class="number-sm digit" type="text"  name="numbers[]" onkeydown="" maxlength="1" value="{{ isset($numbers[$i])? $numbers[$i] : '' }}" pattern="[0-9]*" > </div>
