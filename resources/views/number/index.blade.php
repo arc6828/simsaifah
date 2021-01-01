@@ -90,11 +90,12 @@
                                     
                                     @php
                                         $numbers[$i] =  isset($numbers[$i])? $numbers[$i] : '';
+                                        $numbers[$i] = ($i==0)?"0":$numbers[$i];
                                     @endphp
-                                    @if($i==3 || $i==6) 
-                                        <div style="flex:1; padding:0 1px;">-</div>
-                                    @endif
-                                    <div style="flex:5; padding:0 1px; "><input style="text-align: center;" align="middle" class="number-sm digit" type="text"  name="numbers[]" onkeydown="" maxlength="1" value="{{ isset($numbers[$i])? $numbers[$i] : '' }}" pattern="[0-9]*" > </div>
+                                    
+                                    <div style="flex:5; padding:0 1px; ">
+                                        <input style="text-align: center;" align="middle" class="number-sm digit" type="text"  name="numbers[]" onkeydown="" maxlength="1" value="{{ isset($numbers[$i])? $numbers[$i] : '' }}" pattern="[0-9]*" >                                                                                 
+                                    </div>
                                     
                                 @endfor                              
                                 </div>
@@ -116,12 +117,22 @@
                                 
                                 var container = document.getElementsByClassName("my-container")[0];
                                 container.onkeyup = function(e) {
+                                    
                                     var target = e.srcElement || e.target;
+                                    
+                                    
                                     var maxLength = parseInt(target.attributes["maxlength"].value, 10);
+
                                     var myLength = target.value.length;
+                                    
                                     if (myLength >= maxLength) {
                                         var next = target;
-                                        while (next = next.parentNode.nextElementSibling.firstChild) {
+                                        // console.log(target.value,maxLength,myLength,next);
+                                        // console.log(next.parentNode);
+                                        // console.log(next.parentNode.nextElementSibling);
+                                        // console.log(next.parentNode.nextElementSibling.firstElementChild );
+                                        while (next = next.parentNode.nextElementSibling.firstElementChild) {                                            
+                                            
                                             if (next == null)
                                                 break;
                                             if (next.tagName.toLowerCase() === "input" && next.classList.contains('digit')) {
@@ -133,7 +144,7 @@
                                     // Move to previous field if empty (user pressed backspace)
                                     else if (myLength === 0) {
                                         var previous = target;
-                                        while (previous = previous.parentNode.previousElementSibling.firstChild) {
+                                        while (previous = previous.parentNode.previousElementSibling.firstElementChild) {
                                             if (previous == null)
                                                 break;
                                             if (previous.tagName.toLowerCase() === "input") {
@@ -181,16 +192,16 @@
                     <div class="card-body">
                         <h5>เมนูลัด</h5>
                         <ul>
-                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=1000&sort=number">	เบอร์ราคาไม่เกิน 1,000฿</a></li>
-                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=1500&sort=number">	เบอร์ราคาไม่เกิน 1,500฿</a></li>
-                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=2000&sort=number">	เบอร์ราคาไม่เกิน 2,000฿</a></li>
-                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=2500&sort=number">	เบอร์ราคาไม่เกิน 2,500฿</a></li>
-                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=3000&sort=number">	เบอร์ราคาไม่เกิน 3,000฿</a></li>
-                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=4000&sort=number">	เบอร์ราคาไม่เกิน 4,000฿</a></li>
-                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=5000&sort=number">	เบอร์ราคาไม่เกิน 5,000฿</a></li>
-                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=8000&sort=number">	เบอร์ราคาไม่เกิน 8,000฿</a></li>
-                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=10000&sort=number">	เบอร์ราคาไม่เกิน 10,000฿</a></li>
-                            <li class=""><a href="{{ url('/number') }}?search=&operator=&total=&price=20000&sort=number">	เบอร์ราคาไม่เกิน 20,000฿</a></li>
+                            <li class=""><a href="{{ url('/number') }}?price=1000">	เบอร์ราคาไม่เกิน 1,000฿</a></li>
+                            <li class=""><a href="{{ url('/number') }}?price=1500">	เบอร์ราคาไม่เกิน 1,500฿</a></li>
+                            <li class=""><a href="{{ url('/number') }}?price=2000">	เบอร์ราคาไม่เกิน 2,000฿</a></li>
+                            <li class=""><a href="{{ url('/number') }}?price=2500">	เบอร์ราคาไม่เกิน 2,500฿</a></li>
+                            <li class=""><a href="{{ url('/number') }}?price=3000">	เบอร์ราคาไม่เกิน 3,000฿</a></li>
+                            <li class=""><a href="{{ url('/number') }}?price=4000">	เบอร์ราคาไม่เกิน 4,000฿</a></li>
+                            <li class=""><a href="{{ url('/number') }}?price=5000">	เบอร์ราคาไม่เกิน 5,000฿</a></li>
+                            <li class=""><a href="{{ url('/number') }}?price=8000">	เบอร์ราคาไม่เกิน 8,000฿</a></li>
+                            <li class=""><a href="{{ url('/number') }}?price=10000">	เบอร์ราคาไม่เกิน 10,000฿</a></li>
+                            <li class=""><a href="{{ url('/number') }}?price=20000">	เบอร์ราคาไม่เกิน 20,000฿</a></li>
                             <hr/>
                             <li class=""><a href="#">เบอร์มงคลสวย เบอร์มงคลพิเศษ VIP</a></li>
                             <li class=""><a href="#">เบอร์มงคลตอง XXX</a></li>
@@ -287,8 +298,10 @@
                                 'operator' => Request::get('operator'),
                                 'total' => Request::get('total'),
                                 'price' => Request::get('price'),
-                                'sort' => Request::get('sort','asc'),
+                                'sort' => Request::get('sort','number'),
                                 'numbers' => $numbers,
+                                'whitelist' => Request::get('whitelist'),
+                                'blacklist' => Request::get('blacklist'),
                             ])->render() !!} </div>
                         </div>
                     </div>

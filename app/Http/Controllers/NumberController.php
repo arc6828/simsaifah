@@ -75,7 +75,7 @@ class NumberController extends Controller
                     if($i==0){
                         $query = $query->where('number', 'NOT LIKE', "%{$blacklist[$i]}%");
                     }else{
-                        $query = $query->orWhere('number', 'NOT LIKE', "%{$blacklist[$i]}%");
+                        $query = $query->where('number', 'NOT LIKE', "%{$blacklist[$i]}%");
                     }
                 }
             });
