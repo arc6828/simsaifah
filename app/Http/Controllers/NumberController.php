@@ -26,7 +26,7 @@ class NumberController extends Controller
         $numbers = $request->get('numbers');
         $whitelist = $request->get('whitelist');
         $blacklist = $request->get('blacklist');
-        
+        $tags = [];
         $perPage = 100;
         
         
@@ -46,6 +46,21 @@ class NumberController extends Controller
             //http://localhost/simsaifah/public/number?search=chavalit.kow%40gmail.com&operator=&total=&price=1000000&sort=number&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&whitelist=1+%2C+2+%2C+3+%2C+4&blacklist=4+%2C+5+%2C+6+%2C+7
             $whitelist = explode(",", $whitelist);
             $blacklist = explode(",", $blacklist);
+
+            
+            $whitelist_sum = array_sum($whitelist);  
+            if($whitelist[0]!=""){
+                $tags[] = $this->getTag($whitelist_sum);
+            }
+             
+            if($blacklist[0]!=""){               
+                $blacklist_square = array_map(function ($n) { return($n*$n);},$blacklist) ;  
+                $blacklist_sum = array_sum($blacklist_square);
+                $tags[] = $this->getTag($blacklist_sum);
+            }
+            $tags[] = strtoupper($operator);
+
+            $price = empty($price) ? 1000000 : $price;
             // print_r($whitelist);
             // echo "<br>";
             // print_r($blacklist) ;
@@ -105,7 +120,36 @@ class NumberController extends Controller
             ->get();
 
 
-        return view('number.index', compact('number','total_array','operator_array'));
+        return view('number.index', compact('number','total_array','operator_array','tags'));
+    }
+
+    public function getTag($index)
+    {
+        switch($index){
+            //WHITELIST
+            case "854" : return "งานบัญชี ธุรการ";
+            case "2127" : return "อาชีพสีเทา";
+            case "2044" : return "เบอร์ข้าราชการ พนักงาน";
+            case "962" : return "เบอร์ดารา นักแสดง";
+            case "1983" : return "เบอร์ทนายความ นิติกร อัยการ ผู้พิพากษา";
+            case "3005" : return "เบอร์นักเรียน นักศึกษา";
+            case "3633" : return "เบอร์มังกร 789 อำนาจเงินก้อน";
+            case "1932" : return "เบอร์วิศวกร ช่าง เบอร์สถาปัต การออกแบบ";
+            case "3028" : return "เบอร์หงส์ 289 เสน่ห์เงินก้อน";
+            case "490" : return "เบอร์เสน่ห์ เมตตามหานิยม";
+            case "3988" : return "เบอร์โกยทรัพย์ 639 539 939";
+            case "2331" : return "เลขมหาโชค 456 565";
+            case "407" : return "เบอร์สุขภาพ ผู้สูงอายุ";
+            //BLACKLIST
+            case "45" : return "เกิดวันอาทิตย์";
+            case "26" : return "เกิดวันจันทร์";
+            case "5" : return "เกิดวันอังคาร";
+            case "73" : return "เกิดวันพุธ";
+            case "53" : return "เกิดวันพุฤหัส";
+            case "113" : return "เกิดวันศุกร์";
+            case "52" : return "เกิดวันเสาร์";
+        }
+        return "";
     }
 
     /**

@@ -203,26 +203,29 @@
                             <li class=""><a href="{{ url('/number') }}?price=10000">	เบอร์ราคาไม่เกิน 10,000฿</a></li>
                             <li class=""><a href="{{ url('/number') }}?price=20000">	เบอร์ราคาไม่เกิน 20,000฿</a></li>
                             <hr/>
-                            <li class=""><a href="#">เบอร์มงคลสวย เบอร์มงคลพิเศษ VIP</a></li>
-                            <li class=""><a href="#">เบอร์มงคลตอง XXX</a></li>
-                            <li class=""><a href="#">เบอร์มงคลเลขสลับ XYXY</a></li>
-                            <li class=""><a href="#">เบอร์มงคลเลขคู่ XXYY</a></li>
-                            <li class=""><a href="#">เบอร์มงคลเลขหาบ XYYX</a></li>
-                            <li class=""><a href="#">เบอร์มงคลเลขเรียง 456 / 654</a></li>
-                            <li class=""><a href="#">เบอร์มงคลเลขเรียง 789 / 987</a></li>
-                            <li class=""><a href="#">เบอร์โฟร์หน้า เลข4ตัวเหมือน</a></li>
-                            <li class=""><a href="#">เบอร์สลับ3ชุด</a></li>
-                            <li class=""><a href="#">เบอร์สามคู่</a></li>
-                            <!-- <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 1,000 บาท</a></li>
-                            <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 2,000 บาท</a></li>
-                            <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 3,000 บาท</a></li>
-                            <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 4,000 บาท</a></li>
-                            <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 5,000 บาท</a></li>
-                            <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 8,000 บาท</a></li>
-                            <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 10,000 บาท</a></li>
-                            <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 15,000 บาท</a></li>
-                            <li class=""><a href="#">เบอร์มงคลราคาไม่เกิน 20,000 บาท</a></li>
-                            <li class=""><a href="#">เบอร์มงคลราคาเกิน 20,000 บาท</a></li> -->
+                           
+                            <li class=""><a href="{{ url('/number') }}?whitelist=16%2C61%2C161%2C616">งานบัญชี ธุรการ</a></li>
+                            <li class=""><a href="{{ url('/number') }}?whitelist=48%2C84%2C58%2C85%2C68%2C86%2C88%2C782%2C828">อาชีพสีเทา</a></li>
+                            <li class=""><a href="{{ url('/number') }}?whitelist=22%2C44%2C46%2C246%2C424%2C626%2C636">เบอร์ข้าราชการ พนักงาน</a></li>
+                            <li class=""><a href="{{ url('/number') }}?whitelist=19%2C91%2C23%2C32%2C29%2C92%2C192%2C193%2C291">เบอร์ดารา นักแสดง</a></li>
+                            <li class=""><a href="{{ url('/number') }}?whitelist=35%2C359%2C515%2C535%2C539">เบอร์ทนายความ</a></li>
+                            <li class=""><a href="{{ url('/number') }}?whitelist=14%2C41%2C15%2C51%2C145%2C149%2C154%2C415%2C451%2C514">เบอร์นักเรียน นักศึกษา</a></li>
+                            <li class=""><a href="{{ url('/number') }}?whitelist=35%2C359%2C515%2C535%2C539">เบอร์นิติกร อัยการ ผู้พิพากษา</a></li>
+                            <li class=""><a href="{{ url('/number') }}?whitelist=789%2C987%2C879%2C978">เบอร์มังกร 789 อำนาจเงินก้อน</a></li>
+                            <li class=""><a href="{{ url('/number') }}?whitelist=29%2C292%2C782%2C829">เบอร์วิศวกร ช่าง เบอร์สถาปัต การออกแบบ</a></li>
+                            <li class=""><a href="{{ url('/number') }}?whitelist=289%2C982%2C928%2C829">เบอร์หงส์ 289 เสน่ห์เงินก้อน</a></li>
+                            <li class=""><a href="{{ url('/number') }}?whitelist=24%2C42%2C424">เบอร์เสน่ห์ เมตตามหานิยม</a></li>
+                            <li class=""><a href="{{ url('/number') }}?whitelist=639%2C539%2C939%2C936%2C935">เบอร์โกยทรัพย์ 639 539 939</a></li>
+                            <li class=""><a href="{{ url('/number') }}?whitelist=456%2C565%2C654%2C656">เลขมหาโชค 456 565</a></li>
+                            <li class=""><a href="{{ url('/number') }}?whitelist=45%2C54%2C95%2C99%2C59%2C55">เบอร์สุขภาพ ผู้สูงอายุ</a></li>
+                            <hr/>
+                            <li class=""><a href="{{ url('/number') }}?blacklist=3%2C6">	เกิดวันอาทิตย์</a></li>
+                            <li class=""><a href="{{ url('/number') }}?blacklist=5%2C1">	เกิดวันจันทร์</a></li>
+                            <li class=""><a href="{{ url('/number') }}?blacklist=1%2C2">	เกิดวันอังคาร</a></li>
+                            <li class=""><a href="{{ url('/number') }}?blacklist=8%2C3">	เกิดวันพุธ</a></li>
+                            <li class=""><a href="{{ url('/number') }}?blacklist=2%2C7">	เกิดวันพุฤหัส</a></li>
+                            <li class=""><a href="{{ url('/number') }}?blacklist=7%2C8">	เกิดวันศุกร์</a></li>
+                            <li class=""><a href="{{ url('/number') }}?blacklist=6%2C4">	เกิดวันเสาร์</a></li>
                         </ul>
                         
                     </div>
@@ -240,7 +243,17 @@
                                     @break
                             @endswitch  
                         @endif
-                        <h4>ผลการค้นหาเบอร์โทรศัพท์</h4> 
+                        <h4>
+                            ผลการค้นหาเบอร์โทรศัพท์ 
+                            @foreach($tags as $t)
+                                @if($t != "")
+                                <span class="badge badge-warning">{{ $t }}</span>
+                                @endif
+                            @endforeach
+                        </h4> 
+                        <div>
+                            
+                        </div>
                         <div class="table-responsive mt-4">
                             <table class="table table-dark table-striped  table-hover">
                                 <thead>
