@@ -42,6 +42,28 @@
                                 </div>
 
                                 <div class="form-group col-lg-12">
+                                    <label for=""><i class="fa fa-birthday-cake"></i> ตามวันเกิด</label>
+                                    <select name="birthday" id="birthday" class="form-control" >
+                                        <option value="" >ทั้งหมด</option>   
+                                        @php
+                                            $birthdays = [
+                                                "sun" => "เกิดวันอาทิตย์",
+                                                "mon" => "เกิดวันจันทร์",
+                                                "tue" => "เกิดวันอังคาร",
+                                                "wed" => "เกิดวันพุธ",
+                                                "thu" => "เกิดวันพฤหัส",
+                                                "fri" => "เกิดวันศุกร์",
+                                                "saa" => "เกิดวันเสาร์",
+                                            ];
+                                        @endphp
+                                        @foreach($birthdays as $key => $value) 
+                                        <option value="{{ $key }}" {{ request('birthday') == ($key) ? 'selected' : ''  }} >{{ $value }} </option>
+                                        @endforeach
+                                    </select>
+                                    <input type="password" class="form-control d-none" id="exampleInputPassword1">
+                                </div>
+
+                                <div class="form-group col-lg-12">
                                     <label for=""><i class="fa fa-align-justify"></i> ผลรวมเบอร์</label>
                                     <select name="total" id="total" class="form-control" >
                                         <option value="" >ทั้งหมด</option>                                    
@@ -204,8 +226,8 @@
                             <li class=""><a href="{{ url('/number') }}?price=20000">	เบอร์ราคาไม่เกิน 20,000฿</a></li>
                             <hr/>
                            
-                            <li class=""><a href="{{ url('/number') }}?whitelist=16%2C61%2C161%2C616">งานบัญชี ธุรการ</a></li>
-                            <li class=""><a href="{{ url('/number') }}?whitelist=48%2C84%2C58%2C85%2C68%2C86%2C88%2C782%2C828">อาชีพสีเทา</a></li>
+                            <li class=""><a href="{{ url('/number') }}?whitelist=16%2C61%2C161%2C616">เบอร์งานบัญชี ธุรการ</a></li>
+                            <li class=""><a href="{{ url('/number') }}?whitelist=48%2C84%2C58%2C85%2C68%2C86%2C88%2C782%2C828">เบอร์อาชีพสีเทา</a></li>
                             <li class=""><a href="{{ url('/number') }}?whitelist=22%2C44%2C46%2C246%2C424%2C626%2C636">เบอร์ข้าราชการ พนักงาน</a></li>
                             <li class=""><a href="{{ url('/number') }}?whitelist=19%2C91%2C23%2C32%2C29%2C92%2C192%2C193%2C291">เบอร์ดารา นักแสดง</a></li>
                             <li class=""><a href="{{ url('/number') }}?whitelist=35%2C359%2C515%2C535%2C539">เบอร์ทนายความ</a></li>
@@ -219,13 +241,13 @@
                             <li class=""><a href="{{ url('/number') }}?whitelist=456%2C565%2C654%2C656">เลขมหาโชค 456 565</a></li>
                             <li class=""><a href="{{ url('/number') }}?whitelist=45%2C54%2C95%2C99%2C59%2C55">เบอร์สุขภาพ ผู้สูงอายุ</a></li>
                             <hr/>
-                            <li class=""><a href="{{ url('/number') }}?blacklist=3%2C6">	เกิดวันอาทิตย์</a></li>
-                            <li class=""><a href="{{ url('/number') }}?blacklist=5%2C1">	เกิดวันจันทร์</a></li>
-                            <li class=""><a href="{{ url('/number') }}?blacklist=1%2C2">	เกิดวันอังคาร</a></li>
-                            <li class=""><a href="{{ url('/number') }}?blacklist=8%2C3">	เกิดวันพุธ</a></li>
-                            <li class=""><a href="{{ url('/number') }}?blacklist=2%2C7">	เกิดวันพุฤหัส</a></li>
-                            <li class=""><a href="{{ url('/number') }}?blacklist=7%2C8">	เกิดวันศุกร์</a></li>
-                            <li class=""><a href="{{ url('/number') }}?blacklist=6%2C4">	เกิดวันเสาร์</a></li>
+                            <li class=""><a href="{{ url('/number') }}?birthday=sun">เบอร์เกิดวันอาทิตย์</a></li>
+                            <li class=""><a href="{{ url('/number') }}?birthday=mon">เบอร์เกิดวันจันทร์</a></li>
+                            <li class=""><a href="{{ url('/number') }}?birthday=tue">เบอร์เกิดวันอังคาร</a></li>
+                            <li class=""><a href="{{ url('/number') }}?birthday=wed">เบอร์เกิดวันพุธ</a></li>
+                            <li class=""><a href="{{ url('/number') }}?birthday=thu">เบอร์เกิดวันพฤหัส</a></li>
+                            <li class=""><a href="{{ url('/number') }}?birthday=fri">เบอร์เกิดวันศุกร์</a></li>
+                            <li class=""><a href="{{ url('/number') }}?birthday=sat">เบอร์เกิดวันเสาร์</a></li>
                         </ul>
                         
                     </div>

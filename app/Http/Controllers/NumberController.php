@@ -24,6 +24,7 @@ class NumberController extends Controller
         $price = $request->get('price');
         $sort = $request->get('sort','number');
         $numbers = $request->get('numbers');
+        $birthday = $request->get('birthday');
         $whitelist = $request->get('whitelist');
         $blacklist = $request->get('blacklist');
         $tags = [];
@@ -41,7 +42,7 @@ class NumberController extends Controller
         
 
 
-        $needFilter = !empty($keyword) || !empty($operator) || !empty($sum)  || !empty($price) || !empty($numbers)  || !empty($whitelist)   || !empty($blacklist)  ;
+        $needFilter = !empty($keyword) || !empty($operator) || !empty($birthday) || !empty($sum)  || !empty($price) || !empty($numbers)  || !empty($whitelist)   || !empty($blacklist)  ;
         if ($needFilter) {
             //http://localhost/simsaifah/public/number?search=chavalit.kow%40gmail.com&operator=&total=&price=1000000&sort=number&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&numbers%5B%5D=&whitelist=1+%2C+2+%2C+3+%2C+4&blacklist=4+%2C+5+%2C+6+%2C+7
             $whitelist = explode(",", $whitelist);
@@ -53,11 +54,7 @@ class NumberController extends Controller
                 $tags[] = $this->getTag($whitelist_sum);
             }
              
-            if($blacklist[0]!=""){               
-                $blacklist_square = array_map(function ($n) { return($n*$n);},$blacklist) ;  
-                $blacklist_sum = array_sum($blacklist_square);
-                $tags[] = $this->getTag($blacklist_sum);
-            }
+            
             $tags[] = strtoupper($operator);
 
             $price = empty($price) ? 1000000 : $price;
@@ -94,6 +91,37 @@ class NumberController extends Controller
                     }
                 }
             });
+            //BIRTHDAY
+            if(!empty($birthday)){
+                $birthday_indexes = [
+                    "sun" => [3,6],
+                    "mon" => [1,5],
+                    "tue" => [1,2],
+                    "wed" => [3,8],
+                    "thu" => [2,7],
+                    "fri" => [7,8],
+                    "saa" => [4,6],
+                ];
+                $blacklist_birthday = $birthday_indexes[$birthday];
+                           
+                $blacklist_square = array_map(function ($n) { return($n*$n);},$blacklist_birthday) ;  
+                $blacklist_sum = array_sum($blacklist_square);
+                $tags[] = $this->getTag($blacklist_sum);
+                
+                $query = $query->where(function ($query) use ($blacklist_birthday) {
+                    for($i=0; $i<count($blacklist_birthday); $i++){
+                        if($blacklist_birthday[$i]==""){
+                            continue;
+                        }
+                        if($i==0){
+                            $query = $query->where('number', 'NOT LIKE', "%{$blacklist_birthday[$i]}%");
+                        }else{
+                            $query = $query->where('number', 'NOT LIKE', "%{$blacklist_birthday[$i]}%");
+                        }
+                    }
+                });
+            }
+            
             //SORT
             switch($sort){
                 case "asc" :
