@@ -31,6 +31,9 @@
             /* background-image: url(https://www.berthongpol.com/wp-content/themes/newsberg/images/head-back.jpg); */
             background-image: url(https://www.berthongpol.com/wp-content/uploads/2021/01/4c2cb73e4358790087dcfa49d14e1108.jpg);
 
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
         }
         .navbar{
             background-color: rgba(32,47,91,0.1) !important;
@@ -39,7 +42,8 @@
             color : #eee !important;
         } */
         .navbar-dark .navbar-nav .nav-link {
-            color: hsla(0,0%,100%,.8);
+            /* color: hsla(0,0%,100%,.8); */
+            color : white;
         }
     </style>
     <link rel="icon" href="{{ url('img/logofinal.png') }}" sizes="32x32">
