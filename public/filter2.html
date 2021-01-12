@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+<title>Hello, world!</title>
+</head>
+<body>
+<div class="container">
+<div class="card">
+<div class="card-body">
+
+
+<!-- START SEARCH -->
+<script src="https://momentjs.com/downloads/moment.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<form method="GET" action="https://explore.berthongpol.com/number" accept-charset="UTF-8" class="" role="search">
+
+    <div class="row mt-4">    
+        <div class="form-group col-lg">
+            <label for=""><i class="fa fa-search"></i> ค้นหาเบอร์</label>
+            <div class="input-group">
+                <input type="text" class="form-control" name="search" placeholder="Search..." value="" autocomplete="off">
+                <span class="input-group-append">
+                    <button class="btn btn-danger" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>    
+        </div>   
+    </div>
+
+    <div class="row">                                                   
+
+        <div class="form-group col-lg-6">
+            <label for=""><i class="fa fa-signal"></i> ค่ายมือถือ</label>
+            <select name="operator" id="operator" class="form-control">
+                <option value="">ทั้งหมด</option>                                    
+                                                        <option value="ais" style="background-image:url(https://explore.berthongpol.com/img/operators/logo_ais.jpg); background-repeat: no-repeat, repeat;">
+                    ais (1,694 รายการ)
+                </option>
+                                                        <option value="dtac" style="background-image:url(https://explore.berthongpol.com/img/operators/logo_dtac.jpg); background-repeat: no-repeat, repeat;">
+                    dtac (9,816 รายการ)
+                </option>
+                                                        <option value="happy" style="background-image:url(https://explore.berthongpol.com/img/operators/logo_happy.jpg); background-repeat: no-repeat, repeat;">
+                    happy (12,989 รายการ)
+                </option>
+                                                        <option value="my" style="background-image:url(https://explore.berthongpol.com/img/operators/logo_my.jpg); background-repeat: no-repeat, repeat;">
+                    my (11 รายการ)
+                </option>
+                                                        <option value="true" style="background-image:url(https://explore.berthongpol.com/img/operators/logo_true.jpg); background-repeat: no-repeat, repeat;">
+                    true (3,531 รายการ)
+                </option>
+                                                    
+            </select>                                
+        </div>
+
+        <div class="form-group col-lg-6">
+            <label for=""><i class="fa fa-birthday-cake"></i> ตามวันเกิด</label>
+            <select name="birthday" id="birthday" class="form-control">
+                <option value="">ทั้งหมด</option>   
+                                                         
+                <option value="sun">เกิดวันอาทิตย์ </option>
+                 
+                <option value="mon">เกิดวันจันทร์ </option>
+                 
+                <option value="tue">เกิดวันอังคาร </option>
+                 
+                <option value="wed">เกิดวันพุธ </option>
+                 
+                <option value="thu">เกิดวันพฤหัส </option>
+                 
+                <option value="fri">เกิดวันศุกร์ </option>
+                 
+                <option value="saa">เกิดวันเสาร์ </option>
+                                                    </select>
+            <input type="password" class="form-control d-none" id="exampleInputPassword1">
+        </div>
+
+        <div class="form-group col-lg-6">
+            <label for=""><i class="fa fa-align-justify"></i> ผลรวมเบอร์</label>
+            <select name="total" id="total" class="form-control">
+                <option value="">ทั้งหมด</option>                                    
+                 
+                <option value="30">30 (มี 4 รายการ)</option>
+                 
+                <option value="31">31 (มี 3 รายการ)</option>
+                 
+                <option value="32">32 (มี 3 รายการ)</option>
+                 
+                <option value="33">33 (มี 19 รายการ)</option>
+                 
+                <option value="34">34 (มี 40 รายการ)</option>
+                 
+                <option value="35">35 (มี 63 รายการ)</option>
+                 
+                <option value="36">36 (มี 23 รายการ)</option>
+                 
+                <option value="37">37 (มี 151 รายการ)</option>
+                 
+                <option value="38">38 (มี 196 รายการ)</option>
+                 
+                <option value="39">39 (มี 350 รายการ)</option>
+                 
+                <option value="40">40 (มี 349 รายการ)</option>
+                 
+                <option value="41">41 (มี 235 รายการ)</option>
+                 
+                <option value="42">42 (มี 246 รายการ)</option>
+                 
+                <option value="43">43 (มี 1,235 รายการ)</option>
+                 
+                <option value="44">44 (มี 665 รายการ)</option>
+                 
+                <option value="45">45 (มี 543 รายการ)</option>
+                 
+                <option value="46">46 (มี 868 รายการ)</option>
+                 
+                <option value="47">47 (มี 2,023 รายการ)</option>
+                 
+                <option value="48">48 (มี 2,426 รายการ)</option>
+                 
+                <option value="49">49 (มี 2,424 รายการ)</option>
+                 
+                <option value="50">50 (มี 1,369 รายการ)</option>
+                 
+                <option value="51">51 (มี 1,058 รายการ)</option>
+                 
+                <option value="52">52 (มี 2,533 รายการ)</option>
+                 
+                <option value="53">53 (มี 2,363 รายการ)</option>
+                 
+                <option value="54">54 (มี 942 รายการ)</option>
+                 
+                <option value="55">55 (มี 918 รายการ)</option>
+                 
+                <option value="56">56 (มี 833 รายการ)</option>
+                 
+                <option value="57">57 (มี 1,765 รายการ)</option>
+                 
+                <option value="58">58 (มี 1,433 รายการ)</option>
+                 
+                <option value="59">59 (มี 525 รายการ)</option>
+                 
+                <option value="60">60 (มี 624 รายการ)</option>
+                 
+                <option value="61">61 (มี 733 รายการ)</option>
+                 
+                <option value="62">62 (มี 488 รายการ)</option>
+                 
+                <option value="63">63 (มี 171 รายการ)</option>
+                 
+                <option value="64">64 (มี 195 รายการ)</option>
+                 
+                <option value="65">65 (มี 34 รายการ)</option>
+                 
+                <option value="66">66 (มี 89 รายการ)</option>
+                 
+                <option value="67">67 (มี 58 รายการ)</option>
+                 
+                <option value="68">68 (มี 25 รายการ)</option>
+                 
+                <option value="69">69 (มี 8 รายการ)</option>
+                 
+                <option value="70">70 (มี 8 รายการ)</option>
+                 
+                <option value="71">71 (มี 2 รายการ)</option>
+                 
+                <option value="72">72 (มี 1 รายการ)</option>
+                                                    </select>
+            <input type="password" class="form-control d-none" id="exampleInputPassword1">
+        </div>
+        
+
+        <div class="form-group col-lg-6">                                
+            <label for=""><i class="fa fa-tags"></i> ค้นหาจากราคา</label>
+            <select name="price" id="price" class="form-control">
+                <option value="1000000">ทุกราคา</option>                                    
+                                                        <option value="1000">ไม่เกิน 1,000</option>
+                                                        <option value="1500">ไม่เกิน 1,500</option>
+                                                        <option value="2000">ไม่เกิน 2,000</option>
+                                                        <option value="2500">ไม่เกิน 2,500</option>
+                                                        <option value="3000">ไม่เกิน 3,000</option>
+                                                        <option value="4000">ไม่เกิน 4,000</option>
+                                                        <option value="5000">ไม่เกิน 5,000</option>
+                                                        <option value="8000">ไม่เกิน 8,000</option>
+                                                        <option value="10000">ไม่เกิน 10,000</option>
+                                                        <option value="20000">ไม่เกิน 20,000</option>
+                                                    
+            </select>                                  
+        </div>
+
+        <div class="form-group col-lg-6">                                
+            <label for=""><i class="fa fa-sort"></i> เรียงลำดับ</label>
+            <select name="sort" id="sort" class="form-control">
+                <option value="number">หมายเลขเบอร์</option>
+                <option value="asc">ราคาจากน้อยไปหามาก</option>
+                <option value="desc">ราคาจากมากไปหาน้อย</option>                                     
+                                           
+            </select>                                  
+        </div>
+    
+    </div>
+
+    <div class="form-group">
+        
+        <label for=""><i class="fa fa-asterisk"></i> ระบุตัวเลขตามตำแหน่ง</label>
+        <div class="my-container" style="flex-direction:row; display: flex;">
+                                         
+            
+                                                
+            <div style="flex:5; padding:0 1px; ">
+                <input style="text-align: center;" align="middle" class="number-sm digit" type="text" name="numbers[]" onkeydown="" maxlength="1" value="0" pattern="[0-9]*">                                                                                 
+            </div>
+            
+         
+            
+                                                
+            <div style="flex:5; padding:0 1px; ">
+                <input style="text-align: center;" align="middle" class="number-sm digit" type="text" name="numbers[]" onkeydown="" maxlength="1" value="" pattern="[0-9]*">                                                                                 
+            </div>
+            
+         
+            
+                                                
+            <div style="flex:5; padding:0 1px; ">
+                <input style="text-align: center;" align="middle" class="number-sm digit" type="text" name="numbers[]" onkeydown="" maxlength="1" value="" pattern="[0-9]*">                                                                                 
+            </div>
+            
+         
+            
+                                                
+            <div style="flex:5; padding:0 1px; ">
+                <input style="text-align: center;" align="middle" class="number-sm digit" type="text" name="numbers[]" onkeydown="" maxlength="1" value="" pattern="[0-9]*">                                                                                 
+            </div>
+            
+         
+            
+                                                
+            <div style="flex:5; padding:0 1px; ">
+                <input style="text-align: center;" align="middle" class="number-sm digit" type="text" name="numbers[]" onkeydown="" maxlength="1" value="" pattern="[0-9]*">                                                                                 
+            </div>
+            
+         
+            
+                                                
+            <div style="flex:5; padding:0 1px; ">
+                <input style="text-align: center;" align="middle" class="number-sm digit" type="text" name="numbers[]" onkeydown="" maxlength="1" value="" pattern="[0-9]*">                                                                                 
+            </div>
+            
+         
+            
+                                                
+            <div style="flex:5; padding:0 1px; ">
+                <input style="text-align: center;" align="middle" class="number-sm digit" type="text" name="numbers[]" onkeydown="" maxlength="1" value="" pattern="[0-9]*">                                                                                 
+            </div>
+            
+         
+            
+                                                
+            <div style="flex:5; padding:0 1px; ">
+                <input style="text-align: center;" align="middle" class="number-sm digit" type="text" name="numbers[]" onkeydown="" maxlength="1" value="" pattern="[0-9]*">                                                                                 
+            </div>
+            
+         
+            
+                                                
+            <div style="flex:5; padding:0 1px; ">
+                <input style="text-align: center;" align="middle" class="number-sm digit" type="text" name="numbers[]" onkeydown="" maxlength="1" value="" pattern="[0-9]*">                                                                                 
+            </div>
+            
+         
+            
+                                                
+            <div style="flex:5; padding:0 1px; ">
+                <input style="text-align: center;" align="middle" class="number-sm digit" type="text" name="numbers[]" onkeydown="" maxlength="1" value="" pattern="[0-9]*">                                                                                 
+            </div>
+            
+                                      
+        </div>
+        
+        <style>
+            .number-sm{
+                width:100%;
+            }
+            input[type=number]::-webkit-inner-spin-button, 
+            input[type=number]::-webkit-outer-spin-button { 
+                -webkit-appearance: none; 
+                margin: 0; 
+            }
+            .dash{
+                border: none;
+            }
+        </style>
+        <script>
+        
+        var container = document.getElementsByClassName("my-container")[0];
+        container.onkeyup = function(e) {
+            
+            var target = e.srcElement || e.target;
+            
+            
+            var maxLength = parseInt(target.attributes["maxlength"].value, 10);
+
+            var myLength = target.value.length;
+            
+            if (myLength >= maxLength) {
+                var next = target;
+                // console.log(target.value,maxLength,myLength,next);
+                // console.log(next.parentNode);
+                // console.log(next.parentNode.nextElementSibling);
+                // console.log(next.parentNode.nextElementSibling.firstElementChild );
+                while (next = next.parentNode.nextElementSibling.firstElementChild) {                                            
+                    
+                    if (next == null)
+                        break;
+                    if (next.tagName.toLowerCase() === "input" && next.classList.contains('digit')) {
+                        next.focus();
+                        break;
+                    }
+                }
+            }
+            // Move to previous field if empty (user pressed backspace)
+            else if (myLength === 0) {
+                var previous = target;
+                while (previous = previous.parentNode.previousElementSibling.firstElementChild) {
+                    if (previous == null)
+                        break;
+                    if (previous.tagName.toLowerCase() === "input") {
+                        previous.focus();
+                        break;
+                    }
+                }
+            }
+        } 
+        </script>
+    </div>
+    <div class="form-group ">                                
+        <label for="">
+            <i class="fa fa-check"></i> 
+            เลขที่ต้องการ 
+            <span class="text-secondary" data-toggle="tooltip" data-placement="top" title="ตัวอย่างเช่น 55, 88, 99 เป็นต้น">
+                <i class="fa fa-question-circle"></i> 
+            </span> 
+        </label>
+        <input type="text" class="form-control" id="whitelist" name="whitelist" value="">
+                                      
+    </div>
+    <div class="form-group">                                
+        <label for="">
+            <i class="fa fa-times"></i> 
+            เลขที่ไม่ต้องการ
+            <span class="text-secondary" data-toggle="tooltip" data-placement="top" title="ตัวอย่างเช่น 00, 11 เป็นต้น">
+                <i class="fa fa-question-circle"></i> 
+            </span> 
+        </label>
+        <input type="text" class="form-control" id="blacklist" name="blacklist" value="">
+        
+    </div>
+
+
+    
+
+    <a class="btn btn-outline-danger" href="https://explore.berthongpol.com/number">ล้าง</a> 
+    <button class="btn btn-danger" type="submit">ค้นหา</button>     
+</form>
+<!-- END SEARH -->
+
+
+</div>
+</div>        
+</div>
+
+<!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+    <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+    -->
+</body>
+</html>
