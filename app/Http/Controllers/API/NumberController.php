@@ -25,7 +25,7 @@ class NumberController extends Controller
         $whitelist = $request->get('whitelist');
         $blacklist = $request->get('blacklist');
         $tags = [];
-        $perPage = 100;
+        $perPage = 20;
         
         
         $filter_number_string = "__________";
