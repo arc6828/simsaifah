@@ -28,7 +28,8 @@
         }
         .outer-navbar{
             /*background-image: linear-gradient(270deg, #2af598 0%, #009efd 100%);*/
-            background-image: url(https://www.berthongpol.com/wp-content/themes/newsberg/images/head-back.jpg);
+            /* background-image: url(https://www.berthongpol.com/wp-content/themes/newsberg/images/head-back.jpg); */
+            background-image: url(https://www.berthongpol.com/wp-content/uploads/2021/01/4c2cb73e4358790087dcfa49d14e1108.jpg);
 
         }
         .navbar{
