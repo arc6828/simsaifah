@@ -130,7 +130,7 @@ class NumberController extends Controller
             }
                 
         } else {
-            $number = Number::orderBy('number', 'asc')->latest()->limit($perPage)->inRandomOrder()->get();
+            $number = Number::orderBy('number', 'asc')->limit($perPage)->inRandomOrder()->get();
         }        
 
         // return view('number.index', compact('number','total_array','operator_array','tags'));
