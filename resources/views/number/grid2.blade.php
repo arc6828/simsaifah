@@ -71,4 +71,4 @@
     'numbers' => $numbers,
     'whitelist' => Request::get('whitelist'),
     'blacklist' => Request::get('blacklist'),
-])->render() !!} </div>
+])->onEachSide(1)->links() !!} </div>
