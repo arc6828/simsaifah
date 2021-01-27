@@ -45,6 +45,9 @@
             /* color: hsla(0,0%,100%,.8); */
             color : white;
         }
+        body{
+            background : #efefef;
+        }
     </style>
     <link rel="icon" href="{{ url('img/logofinal.png') }}" sizes="32x32">
         
