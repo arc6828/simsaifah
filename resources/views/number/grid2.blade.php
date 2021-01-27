@@ -1,8 +1,13 @@
 <div class="row">
+    <style>
+        .card-number a, .card-number a:hover {            
+            text-decoration: none;
+        }
+    </style>
     
     @foreach($number as $item)
         <div class="col-lg-4 col-sm-6">
-            <div class="card mx-2 my-2" style="width: 100%;">
+            <div class="card mx-2 my-2 card-number" style="width: 100%;">
                 <!-- <img class="align-self-center img-thumbnail"  > -->
                 <a href="{{ url('/order/create') }}?number={{ $item->number }}" title="View Number"  style="width:100%">
                     <div class="card-body " >
