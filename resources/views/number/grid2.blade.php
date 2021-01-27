@@ -59,14 +59,15 @@
         </div>
     @endforeach
        
-    <div class="pagination-wrapper ">{!! $number->appends([
-        'search' => Request::get('search'),
-        'operator' => Request::get('operator'),
-        'total' => Request::get('total'),
-        'price' => Request::get('price'),
-        'sort' => Request::get('sort','number'),
-        'numbers' => $numbers,
-        'whitelist' => Request::get('whitelist'),
-        'blacklist' => Request::get('blacklist'),
-    ])->render() !!} </div>
+    
 </div>
+<div class="pagination-wrapper ">{!! $number->appends([
+    'search' => Request::get('search'),
+    'operator' => Request::get('operator'),
+    'total' => Request::get('total'),
+    'price' => Request::get('price'),
+    'sort' => Request::get('sort','number'),
+    'numbers' => $numbers,
+    'whitelist' => Request::get('whitelist'),
+    'blacklist' => Request::get('blacklist'),
+])->render() !!} </div>
