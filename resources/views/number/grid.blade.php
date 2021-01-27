@@ -1,10 +1,10 @@
 <div class="row">
     
     @foreach($number as $item)
-        <div class="col-lg-4">
+        <div class="col-xl-3 col-md-4  col-sm-6">
             <div class="card mx-2 my-2" style="width: 100%;">
-                <img src="{{ url('/') }}/img/operators/logo_{{ strtolower($item->operator) }}.jpg" class="card-img-top p-4" alt="...">
-                <!-- <img class="align-self-center img-thumbnail"  width="100%"  > -->
+                <img src="{{ url('/') }}/img/operators/logo_{{ strtolower($item->operator) }}.jpg" class="card-img-top px-5 pt-3"  alt="...">
+                <!-- <img class="align-self-center img-thumbnail"  > -->
                 <div class="card-body " >
                     <h4 class="card-title">{{ substr($item->number,0,3)."-".substr($item->number,3,3)."-".substr($item->number,6,4) }}</h4>
                     <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->

@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
     
         <div class="row mt-4">
-            <div class="col-lg-3">
+            <div class=" col-lg-3">
                 <div class="card">
                     <div class="card-body">
                         <h5>ตัวกรองเบอร์โทรศัพท์</h5>
@@ -254,7 +254,7 @@
                 </div>
             </div>
             
-            <div class="col-lg-9">                
+            <div class=" col-lg-9">                
 
                 <!-- <div class="card">
                     <div class="card-body ">    -->
@@ -273,7 +273,7 @@
                                 @endif
                             @endforeach
                         </h4> 
-                        @include('number.grid')
+                        @include('number.grid2')
                     <!-- </div>
                 </div> -->
             </div>
