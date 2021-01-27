@@ -9,7 +9,8 @@
         <div class="col-lg-4 col-sm-6">
             <div class="card mx-2 my-2 card-number" style="width: 100%;">
                 <!-- <img class="align-self-center img-thumbnail"  > -->
-                <a href="{{ url('/order/create') }}?number={{ $item->number }}" title="View Number"  style="width:100%">
+                <!-- <a href="{{ url('/order/create') }}?number={{ $item->number }}" title="View Number"  style="width:100%"> -->
+                <a href="{{ url('/number/'.$item->number) }}" title="View Number"  style="width:100%">
                     <div class="card-body " >
                         <h4 class="card-title text-center py-4" style="font-size: 36px;">{{ substr($item->number,0,3)."-".substr($item->number,3,3)."-".substr($item->number,6,4) }}</h4>
                         <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->

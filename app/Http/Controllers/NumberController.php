@@ -216,7 +216,8 @@ class NumberController extends Controller
      */
     public function show($id)
     {
-        $number = Number::findOrFail($id);
+        // $number = Number::findOrFail($id);
+        $number = Number::where('number',$id)->firstOrFail();
 
         return view('number.show', compact('number'));
     }

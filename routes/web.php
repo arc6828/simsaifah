@@ -26,12 +26,12 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::resource('number', 'NumberController')->only(['index']);
+Route::resource('number', 'NumberController')->only(['index','show']);
 Route::resource('forecast', 'ForecastController');
 
 Route::group(['middleware' => ['auth']], function()
 {    
-    Route::resource('number', 'NumberController')->except(['index']);
+    Route::resource('number', 'NumberController')->except(['index','show']);
     Route::resource('order', 'OrderController');
     Route::resource('payment', 'PaymentController');
     Route::resource('profiles', 'ProfilesController');

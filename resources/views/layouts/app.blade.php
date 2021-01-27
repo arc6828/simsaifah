@@ -46,7 +46,7 @@
             color : white;
         }
         body{
-            background : #efefef;
+            background : #ffffff;
         }
     </style>
     <link rel="icon" href="{{ url('img/logofinal.png') }}" sizes="32x32">
@@ -56,7 +56,7 @@
     <script src="{{ asset('js/moment-with-locales.min.js') }}" ></script>
         <div class="outer-navbar" >
             <nav class="navbar navbar-expand-md navbar-dark shadow-sm" style="">
-                <div class="container">
+                <div class="container-fluid">
                     <a class="navbar-brand" href="{{ url('/') }}">
                         <img src="{{ asset('/img/logofinal.png')}}" width="60" height="60" class="mr-2" alt="">
                         {{ config('app.name', 'หน้าหลัก') }}
@@ -159,12 +159,12 @@
             </nav>
         </div>
 
-        <main class="py-4">
+        <main class="">
             @yield('content')
         </main>
 
         <footer class="footer mt-auto bg-white">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-6 py-4">
                         <span class="text-muted">Copyright {{ date("Y") }} © <strong>Berthongpol</strong></span>

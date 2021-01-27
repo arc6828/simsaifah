@@ -3,9 +3,9 @@
 @section('content')
     <div class="container-fluid">
     
-        <div class="row mt-4">
+        <div class="row no-gutters">
             <div class=" col-lg-3">
-                <div class="card">
+                <div class="">
                     <div class="card-body">
                         <h5>ตัวกรองเบอร์โทรศัพท์</h5>
                         <form method="GET" action="{{ url('/number') }}" accept-charset="UTF-8" class="" role="search">
@@ -210,7 +210,7 @@
 
                     </div>
                 </div>
-                <div class="card mt-4 mb-4">
+                <div class=" mt-4 mb-4">
                     <div class="card-body">
                         <h5>เมนูลัด</h5>
                         <ul>
@@ -256,8 +256,8 @@
             
             <div class=" col-lg-9">                
 
-                <!-- <div class="card">
-                    <div class="card-body ">    -->
+                <div class="">
+                    <div class="card-body ">   
                         @if(Auth::check())
                             @switch(Auth::user()->role)
                                 @case("admin")                                    
@@ -274,8 +274,8 @@
                             @endforeach
                         </h4> 
                         @include('number.grid2')
-                    <!-- </div>
-                </div> -->
+                    </div>
+                </div>
             </div>
             
         </div>
