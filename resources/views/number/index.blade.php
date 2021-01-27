@@ -7,207 +7,208 @@
             <div class=" col-lg-3">
                 <div class="">
                     <div class="card-body">
-                        <h5>ตัวกรองเบอร์โทรศัพท์</h5>
-                        <form method="GET" action="{{ url('/number') }}" accept-charset="UTF-8" class="" role="search">
+                        <h5>ตัวกรองเบอร์โทรศัพท์ </h5>
+                        <div class="collapse show" id="#sidebar">
+                            <form method="GET" action="{{ url('/number') }}" accept-charset="UTF-8" class="" role="search">
 
-                            <div class="row mt-4">    
-                                <div class="form-group col-lg">
-                                    <label for=""><i class="fa fa-search"></i> ค้นหาเบอร์</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}" autocomplete="off">
-                                        <span class="input-group-append">
-                                            <button class="btn btn-danger" type="submit">
-                                                <i class="fa fa-search"></i>
-                                            </button>
-                                        </span>
-                                    </div>    
-                                </div>   
-                            </div>
-
-                            <div class="row">                                                   
-
-                                <div class="form-group col-lg-12">
-                                    <label for=""><i class="fa fa-signal"></i> ค่ายมือถือ</label>
-                                    <select name="operator" id="operator" class="form-control" >
-                                        <option value="" >ทั้งหมด</option>                                    
-                                        @foreach($operator_array as $op)
-                                        <option 
-                                            value="{{ $op->operator }}" 
-                                            style="background-image:url({{ url('/') }}/img/operators/logo_{{ $op->operator }}.jpg); background-repeat: no-repeat, repeat;" 
-                                            {{ request('operator') == $op->operator ? 'selected' : ''  }} >
-                                            {{ $op->operator }} ({{ number_format($op->count,0) }} รายการ)
-                                        </option>
-                                        @endforeach                                    
-                                    </select>                                
+                                <div class="row mt-4">    
+                                    <div class="form-group col-lg">
+                                        <label for=""><i class="fa fa-search"></i> ค้นหาเบอร์</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}" autocomplete="off">
+                                            <span class="input-group-append">
+                                                <button class="btn btn-danger" type="submit">
+                                                    <i class="fa fa-search"></i>
+                                                </button>
+                                            </span>
+                                        </div>    
+                                    </div>   
                                 </div>
 
-                                <div class="form-group col-lg-12">
-                                    <label for=""><i class="fa fa-birthday-cake"></i> ตามวันเกิด</label>
-                                    <select name="birthday" id="birthday" class="form-control" >
-                                        <option value="" >ทั้งหมด</option>   
-                                        @php
-                                            $birthdays = [
-                                                "sun" => "เกิดวันอาทิตย์",
-                                                "mon" => "เกิดวันจันทร์",
-                                                "tue" => "เกิดวันอังคาร",
-                                                "wed" => "เกิดวันพุธ",
-                                                "thu" => "เกิดวันพฤหัส",
-                                                "fri" => "เกิดวันศุกร์",
-                                                "saa" => "เกิดวันเสาร์",
-                                            ];
-                                        @endphp
-                                        @foreach($birthdays as $key => $value) 
-                                        <option value="{{ $key }}" {{ request('birthday') == ($key) ? 'selected' : ''  }} >{{ $value }} </option>
-                                        @endforeach
-                                    </select>
-                                    <input type="password" class="form-control d-none" id="exampleInputPassword1">
-                                </div>
+                                <div class="row">                                                   
 
-                                <div class="form-group col-lg-12">
-                                    <label for=""><i class="fa fa-align-justify"></i> ผลรวมเบอร์</label>
-                                    <select name="total" id="total" class="form-control" >
-                                        <option value="" >ทั้งหมด</option>                                    
-                                        @foreach($total_array as $t) 
-                                        <option value="{{ $t->total }}" {{ request('total') == ($t->total) ? 'selected' : ''  }} >{{ $t->total }} (มี {{ number_format($t->count,0) }} รายการ)</option>
-                                        @endforeach
-                                    </select>
-                                    <input type="password" class="form-control d-none" id="exampleInputPassword1">
-                                </div>
-                                
+                                    <div class="form-group col-lg-12">
+                                        <label for=""><i class="fa fa-signal"></i> ค่ายมือถือ</label>
+                                        <select name="operator" id="operator" class="form-control" >
+                                            <option value="" >ทั้งหมด</option>                                    
+                                            @foreach($operator_array as $op)
+                                            <option 
+                                                value="{{ $op->operator }}" 
+                                                style="background-image:url({{ url('/') }}/img/operators/logo_{{ $op->operator }}.jpg); background-repeat: no-repeat, repeat;" 
+                                                {{ request('operator') == $op->operator ? 'selected' : ''  }} >
+                                                {{ $op->operator }} ({{ number_format($op->count,0) }} รายการ)
+                                            </option>
+                                            @endforeach                                    
+                                        </select>                                
+                                    </div>
 
-                                <div class="form-group col-lg-12">                                
-                                    <label for=""><i class="fa fa-tags"></i> ค้นหาจากราคา</label>
-                                    <select name="price" id="price" class="form-control" >
-                                        <option value="1000000" >ทุกราคา</option>                                    
-                                        @foreach([1000,1500,2000,2500,3000,4000,5000,8000,10000,20000] as $i)
-                                        <option value="{{ $i }}" {{ request('price') == $i ? 'selected' : ''  }}>ไม่เกิน {{ number_format($i,0) }}</option>
-                                        @endforeach                                    
-                                    </select>                                  
-                                </div>
+                                    <div class="form-group col-lg-12">
+                                        <label for=""><i class="fa fa-birthday-cake"></i> ตามวันเกิด</label>
+                                        <select name="birthday" id="birthday" class="form-control" >
+                                            <option value="" >ทั้งหมด</option>   
+                                            @php
+                                                $birthdays = [
+                                                    "sun" => "เกิดวันอาทิตย์",
+                                                    "mon" => "เกิดวันจันทร์",
+                                                    "tue" => "เกิดวันอังคาร",
+                                                    "wed" => "เกิดวันพุธ",
+                                                    "thu" => "เกิดวันพฤหัส",
+                                                    "fri" => "เกิดวันศุกร์",
+                                                    "saa" => "เกิดวันเสาร์",
+                                                ];
+                                            @endphp
+                                            @foreach($birthdays as $key => $value) 
+                                            <option value="{{ $key }}" {{ request('birthday') == ($key) ? 'selected' : ''  }} >{{ $value }} </option>
+                                            @endforeach
+                                        </select>
+                                        <input type="password" class="form-control d-none" id="exampleInputPassword1">
+                                    </div>
 
-                                <div class="form-group col-lg-12">                                
-                                    <label for=""><i class="fa fa-sort"></i> เรียงลำดับ</label>
-                                    <select name="sort" id="sort" class="form-control" >
-                                        <option value="number" {{ request('sort') == 'number' ? 'selected' : ''  }}>หมายเลขเบอร์</option>
-                                        <option value="asc" {{ request('sort') == 'asc' ? 'selected' : ''  }}>ราคาจากน้อยไปหามาก</option>
-                                        <option value="desc" {{ request('sort') == 'desc' ? 'selected' : ''  }}>ราคาจากมากไปหาน้อย</option>                                     
-                                                                   
-                                    </select>                                  
-                                </div>
-                            
-                            </div>
-
-                            <div class="form-group">
-                                
-                                <label for=""><i class="fa fa-asterisk"></i> ระบุตัวเลขตามตำแหน่ง</label>
-                                <div class="my-container" style="flex-direction:row; display: flex;" >
-                                @php
-                                $numbers = ["","","","","","","","","","","",""];
-                                if( is_array(request('numbers')) ){                                    
-                                    $numbers = request('numbers');                                    
-                                    //print_r( $numbers);
-                                }
-                                @endphp
-                                @for($i=0; $i< 10; $i++) 
-                                    
-                                    @php
-                                        $numbers[$i] =  isset($numbers[$i])? $numbers[$i] : '';
-                                        $numbers[$i] = ($i==0)?"0":$numbers[$i];
-                                    @endphp
-                                    
-                                    <div style="flex:5; padding:0 1px; ">
-                                        <input style="text-align: center;" align="middle" class="number-sm digit" type="text"  name="numbers[]" onkeydown="" maxlength="1" value="{{ isset($numbers[$i])? $numbers[$i] : '' }}" pattern="[0-9]*" >                                                                                 
+                                    <div class="form-group col-lg-12">
+                                        <label for=""><i class="fa fa-align-justify"></i> ผลรวมเบอร์</label>
+                                        <select name="total" id="total" class="form-control" >
+                                            <option value="" >ทั้งหมด</option>                                    
+                                            @foreach($total_array as $t) 
+                                            <option value="{{ $t->total }}" {{ request('total') == ($t->total) ? 'selected' : ''  }} >{{ $t->total }} (มี {{ number_format($t->count,0) }} รายการ)</option>
+                                            @endforeach
+                                        </select>
+                                        <input type="password" class="form-control d-none" id="exampleInputPassword1">
                                     </div>
                                     
-                                @endfor                              
+
+                                    <div class="form-group col-lg-12">                                
+                                        <label for=""><i class="fa fa-tags"></i> ค้นหาจากราคา</label>
+                                        <select name="price" id="price" class="form-control" >
+                                            <option value="1000000" >ทุกราคา</option>                                    
+                                            @foreach([1000,1500,2000,2500,3000,4000,5000,8000,10000,20000] as $i)
+                                            <option value="{{ $i }}" {{ request('price') == $i ? 'selected' : ''  }}>ไม่เกิน {{ number_format($i,0) }}</option>
+                                            @endforeach                                    
+                                        </select>                                  
+                                    </div>
+
+                                    <div class="form-group col-lg-12">                                
+                                        <label for=""><i class="fa fa-sort"></i> เรียงลำดับ</label>
+                                        <select name="sort" id="sort" class="form-control" >
+                                            <option value="number" {{ request('sort') == 'number' ? 'selected' : ''  }}>หมายเลขเบอร์</option>
+                                            <option value="asc" {{ request('sort') == 'asc' ? 'selected' : ''  }}>ราคาจากน้อยไปหามาก</option>
+                                            <option value="desc" {{ request('sort') == 'desc' ? 'selected' : ''  }}>ราคาจากมากไปหาน้อย</option>                                     
+                                                                    
+                                        </select>                                  
+                                    </div>
+                                
                                 </div>
-                                
-                                <style>
-                                    .number-sm{
-                                        width:100%;
-                                    }
-                                    input[type=number]::-webkit-inner-spin-button, 
-                                    input[type=number]::-webkit-outer-spin-button { 
-                                        -webkit-appearance: none; 
-                                        margin: 0; 
-                                    }
-                                    .dash{
-                                        border: none;
-                                    }
-                                </style>
-                                <script>
-                                
-                                var container = document.getElementsByClassName("my-container")[0];
-                                container.onkeyup = function(e) {
-                                    
-                                    var target = e.srcElement || e.target;
-                                    
-                                    
-                                    var maxLength = parseInt(target.attributes["maxlength"].value, 10);
 
-                                    var myLength = target.value.length;
+                                <div class="form-group">
                                     
-                                    if (myLength >= maxLength) {
-                                        var next = target;
-                                        // console.log(target.value,maxLength,myLength,next);
-                                        // console.log(next.parentNode);
-                                        // console.log(next.parentNode.nextElementSibling);
-                                        // console.log(next.parentNode.nextElementSibling.firstElementChild );
-                                        while (next = next.parentNode.nextElementSibling.firstElementChild) {                                            
-                                            
-                                            if (next == null)
-                                                break;
-                                            if (next.tagName.toLowerCase() === "input" && next.classList.contains('digit')) {
-                                                next.focus();
-                                                break;
+                                    <label for=""><i class="fa fa-asterisk"></i> ระบุตัวเลขตามตำแหน่ง</label>
+                                    <div class="my-container" style="flex-direction:row; display: flex;" >
+                                    @php
+                                    $numbers = ["","","","","","","","","","","",""];
+                                    if( is_array(request('numbers')) ){                                    
+                                        $numbers = request('numbers');                                    
+                                        //print_r( $numbers);
+                                    }
+                                    @endphp
+                                    @for($i=0; $i< 10; $i++) 
+                                        
+                                        @php
+                                            $numbers[$i] =  isset($numbers[$i])? $numbers[$i] : '';
+                                            $numbers[$i] = ($i==0)?"0":$numbers[$i];
+                                        @endphp
+                                        
+                                        <div style="flex:5; padding:0 1px; ">
+                                            <input style="text-align: center;" align="middle" class="number-sm digit" type="text"  name="numbers[]" onkeydown="" maxlength="1" value="{{ isset($numbers[$i])? $numbers[$i] : '' }}" pattern="[0-9]*" >                                                                                 
+                                        </div>
+                                        
+                                    @endfor                              
+                                    </div>
+                                    
+                                    <style>
+                                        .number-sm{
+                                            width:100%;
+                                        }
+                                        input[type=number]::-webkit-inner-spin-button, 
+                                        input[type=number]::-webkit-outer-spin-button { 
+                                            -webkit-appearance: none; 
+                                            margin: 0; 
+                                        }
+                                        .dash{
+                                            border: none;
+                                        }
+                                    </style>
+                                    <script>
+                                    
+                                    var container = document.getElementsByClassName("my-container")[0];
+                                    container.onkeyup = function(e) {
+                                        
+                                        var target = e.srcElement || e.target;
+                                        
+                                        
+                                        var maxLength = parseInt(target.attributes["maxlength"].value, 10);
+
+                                        var myLength = target.value.length;
+                                        
+                                        if (myLength >= maxLength) {
+                                            var next = target;
+                                            // console.log(target.value,maxLength,myLength,next);
+                                            // console.log(next.parentNode);
+                                            // console.log(next.parentNode.nextElementSibling);
+                                            // console.log(next.parentNode.nextElementSibling.firstElementChild );
+                                            while (next = next.parentNode.nextElementSibling.firstElementChild) {                                            
+                                                
+                                                if (next == null)
+                                                    break;
+                                                if (next.tagName.toLowerCase() === "input" && next.classList.contains('digit')) {
+                                                    next.focus();
+                                                    break;
+                                                }
                                             }
                                         }
-                                    }
-                                    // Move to previous field if empty (user pressed backspace)
-                                    else if (myLength === 0) {
-                                        var previous = target;
-                                        while (previous = previous.parentNode.previousElementSibling.firstElementChild) {
-                                            if (previous == null)
-                                                break;
-                                            if (previous.tagName.toLowerCase() === "input") {
-                                                previous.focus();
-                                                break;
+                                        // Move to previous field if empty (user pressed backspace)
+                                        else if (myLength === 0) {
+                                            var previous = target;
+                                            while (previous = previous.parentNode.previousElementSibling.firstElementChild) {
+                                                if (previous == null)
+                                                    break;
+                                                if (previous.tagName.toLowerCase() === "input") {
+                                                    previous.focus();
+                                                    break;
+                                                }
                                             }
                                         }
-                                    }
-                                } 
-                                </script>
-                            </div>
-                            <div class="form-group ">                                
-                                <label for="">
-                                    <i class="fa fa-check"></i> 
-                                    เลขที่ต้องการ 
-                                    <span class="text-secondary" data-toggle="tooltip" data-placement="top" title="ตัวอย่างเช่น 55, 88, 99 เป็นต้น">
-                                        <i class="fa fa-question-circle"></i> 
-                                    </span> 
-                                </label>
-                                <input type="text" class="form-control" id="whitelist" name="whitelist" value="{{ request('whitelist') }}" >
-                                                              
-                            </div>
-                            <div class="form-group">                                
-                                <label for="">
-                                    <i class="fa fa-times"></i> 
-                                    เลขที่ไม่ต้องการ
-                                    <span class="text-secondary" data-toggle="tooltip" data-placement="top" title="ตัวอย่างเช่น 00, 11 เป็นต้น">
-                                        <i class="fa fa-question-circle"></i> 
-                                    </span> 
-                                </label>
-                                <input type="text" class="form-control" id="blacklist" name="blacklist" value="{{ request('blacklist') }}">
+                                    } 
+                                    </script>
+                                </div>
+                                <div class="form-group ">                                
+                                    <label for="">
+                                        <i class="fa fa-check"></i> 
+                                        เลขที่ต้องการ 
+                                        <span class="text-secondary" data-toggle="tooltip" data-placement="top" title="ตัวอย่างเช่น 55, 88, 99 เป็นต้น">
+                                            <i class="fa fa-question-circle"></i> 
+                                        </span> 
+                                    </label>
+                                    <input type="text" class="form-control" id="whitelist" name="whitelist" value="{{ request('whitelist') }}" >
+                                                                
+                                </div>
+                                <div class="form-group">                                
+                                    <label for="">
+                                        <i class="fa fa-times"></i> 
+                                        เลขที่ไม่ต้องการ
+                                        <span class="text-secondary" data-toggle="tooltip" data-placement="top" title="ตัวอย่างเช่น 00, 11 เป็นต้น">
+                                            <i class="fa fa-question-circle"></i> 
+                                        </span> 
+                                    </label>
+                                    <input type="text" class="form-control" id="blacklist" name="blacklist" value="{{ request('blacklist') }}">
+                                    
+                                </div>
+
+
                                 
-                            </div>
 
-
-                            
-
-                            <a class="btn btn-outline-danger" href="{{ url('/number') }}" >ล้าง</a> 
-                            <button class="btn btn-danger" type="submit">ค้นหา</button>     
-                        </form>
-
+                                <a class="btn btn-outline-danger" href="{{ url('/number') }}" >ล้าง</a> 
+                                <button class="btn btn-danger" type="submit">ค้นหา</button>     
+                            </form>
+                        </div>
                     </div>
                 </div>
                 <div class=" mt-4 mb-4">
@@ -280,6 +281,21 @@
             
         </div>
     </div>
+    
+<script>
+    // document.addEventListener('DOMContentLoaded', (event) => {
+    //     if ($(window).width() < 922) {
+    //         $('#sidebar').collapse({
+    //         toggle: false
+    //         });
+    //     } else {
+    //         $('#sidebar').collapse({
+    //         toggle: true
+    //         });
+    //     }
+    // });
+    
+</script>
 
 @endsection
 

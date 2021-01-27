@@ -9,8 +9,6 @@
 
     <title>{{ config('app.name', 'หน้าหลัก') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -53,6 +51,9 @@
         
 </head>
 <body class="d-flex flex-column h-100">    
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/moment-with-locales.min.js') }}" ></script>
         <div class="outer-navbar" >
             <nav class="navbar navbar-expand-md navbar-dark shadow-sm" style="">
