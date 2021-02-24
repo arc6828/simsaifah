@@ -26,8 +26,8 @@
         }
         .outer-navbar{
             /*background-image: linear-gradient(270deg, #2af598 0%, #009efd 100%);*/
-            /* background-image: url(https://www.berthongpol.com/wp-content/themes/newsberg/images/head-back.jpg); */
-            background-image: url(https://www.berthongpol.com/wp-content/uploads/2021/01/4c2cb73e4358790087dcfa49d14e1108.jpg);
+            /* background-image: url(https://www.simsaifah.com/wp-content/themes/newsberg/images/head-back.jpg); */
+            background-image: url(https://www.simsaifah.com/wp-content/uploads/2021/01/4c2cb73e4358790087dcfa49d14e1108.jpg);
 
             background-position: center;
             background-size: cover;
@@ -79,7 +79,7 @@
                         <ul class="navbar-nav ml-auto">
                             <!-- Authentication Links -->                        
                             <li class="nav-item">
-                                <a class="nav-link" href="https://www.berthongpol.com">หน้าหลัก<span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="https://www.simsaifah.com">หน้าหลัก<span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/number') }}">ค้นหาเบอร์<span class="sr-only">(current)</span></a>
@@ -91,12 +91,12 @@
                             
                             
                             <li class="nav-item">
-                                <a class="nav-link" href="https://www.berthongpol.com/knowledge">บทความ<span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="https://www.simsaifah.com/knowledge">บทความ<span class="sr-only">(current)</span></a>
                             </li>
                             
                             
                             <li class="nav-item">
-                                <a class="nav-link" href="https://www.berthongpol.com/contact">ติดต่อเรา<span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="https://www.simsaifah.com/contact">ติดต่อเรา<span class="sr-only">(current)</span></a>
                             </li>
                             @guest
                                 <li class="nav-item">
@@ -168,7 +168,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-6 py-4">
-                        <span class="text-muted">Copyright {{ date("Y") }} © <strong>Berthongpol</strong></span>
+                        <span class="text-muted">Copyright {{ date("Y") }} © <strong>Simsaifah</strong></span>
                     </div>
                     <div class="col-lg-6 py-2 text-right">
                         <script src="https://www.trustmarkthai.com/callbackData/initialize.js?t=7c9fdf4f4b-24-5-867edf8c753c0f89166bcf85ddace77e93e" id="dbd-init"></script>
