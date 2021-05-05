@@ -59,7 +59,8 @@
             <nav class="navbar navbar-expand-md navbar-dark shadow-sm" style="">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="{{ asset('/img/logofinal.png')}}" width="60" height="60" class="mr-2" alt="">
+                        <!-- <img src="{{ asset('/img/logofinal.png')}}" width="60" height="60" class="mr-2" alt=""> -->
+                        <img src="https://www.simsaifah.com/wp-content/uploads/2021/02/logosimsaifah-1.png" width="60" height="60" class="mr-2" alt="">
                         {{ config('app.name', 'หน้าหลัก') }}
                     </a>
                     <a class="navbar-brand" href="#">
@@ -99,11 +100,11 @@
                                 <a class="nav-link" href="https://www.simsaifah.com/contact">ติดต่อเรา<span class="sr-only">(current)</span></a>
                             </li>
                             @guest
-                                <li class="nav-item">
+                                <li class="nav-item d-none">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('เข้าสู่ระบบ') }}</a>
                                 </li>
                                 @if (Route::has('register'))
-                                    <li class="nav-item">
+                                    <li class="nav-item  d-none">
                                         <a class="nav-link" href="{{ route('register') }}">{{ __('สมัครสมาชิก') }}</a>
                                     </li>
                                 @endif

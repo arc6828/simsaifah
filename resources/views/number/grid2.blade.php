@@ -12,34 +12,26 @@
                 <!-- <a href="{{ url('/order/create') }}?number={{ $item->number }}" title="View Number"  style="width:100%"> -->
                 <a href="{{ url('/number/'.$item->number) }}" title="View Number"  style="width:100%">
                     <div class="card-body " >
-                        <h4 class="card-title text-center py-4" style="font-size: 36px;">{{ substr($item->number,0,3)."-".substr($item->number,3,3)."-".substr($item->number,6,4) }}</h4>
                         <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
                         <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                        <div class="card-text ">
-                            <div class="row">
-                            
-                                <div class="col-5 text-center ">
-                                    <img src="{{ url('/') }}/img/operators/logo_{{ strtolower($item->operator) }}.jpg" class="" width="100%"  alt="...">
-                    
-                                </div>
-                                <div class="col-7 py-3 text-center">                            
-                                    <label class="text-muted" style="font-size : 20px;">ผลรวม : {{ $item->total }}</label>
-                                </div>
-                                
-                                
-                                
-                            </div>
-                            <div class=" text-right px-4 py-2">                            
-                                <strong style="font-size : 22px;">{{ number_format($item->price,0) }}.- </strong>
-                            </div>
-                            
-
-                            
-                        </div>
+                        <div class="row">                            
+                            <div class="col-12 text-center ">                                
+                                <div class="card-title text-center py-2" style="font-size: 24px;">
+                                    <img src="{{ url('/') }}/img/operators/logo_{{ strtolower($item->operator) }}.jpg" class="" width="25%"  alt="...">
+                                    {{ substr($item->number,0,3)."-".substr($item->number,3,3)."-".substr($item->number,6,4) }}
+                                </div>                    
+                            </div>                        
                         
-                        <div class="card-text">
+                            <div class="col-6 text-center">                            
+                                <label class="text-muted" style="font-size : 20px;">ผลรวม : {{ $item->total }}</label>
+                            </div>
+                            <div class="col-6 text-center">                            
+                                <div class=" text-right px-4">                            
+                                    <strong style="font-size : 20px;">{{ number_format($item->price,0) }}.- </strong>
+                                </div>
+                            </div>
                             
-                        </div>
+                        </div>                        
 
                     </div>
                 </a>
