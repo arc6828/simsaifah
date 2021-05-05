@@ -26,7 +26,7 @@
                                 <label class="text-muted" style="font-size : 20px;">ผลรวม : {{ $item->total }}</label>
                             </div>
                             <div class="col-6 text-center">                            
-                                <div class=" text-right px-4">                            
+                                <div class=" text-right px-2">                            
                                     <strong style="font-size : 20px;">{{ number_format($item->price,0) }}.- </strong>
                                 </div>
                             </div>
