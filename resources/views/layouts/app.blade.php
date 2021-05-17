@@ -92,7 +92,7 @@
                             
                             
                             <li class="nav-item">
-                                <a class="nav-link" href="https://www.simsaifah.com/knowledge">บทความ<span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="https://www.simsaifah.com/บทความ">บทความ<span class="sr-only">(current)</span></a>
                             </li>
                             
                             
